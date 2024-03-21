@@ -4,17 +4,82 @@
  */
 package GUI;
 
+import DATABASE.DatabaseHelper;
+import ENTITY.TaiKhoan;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author TieuLong
  */
 public class DangNhap extends javax.swing.JFrame {
 
+    private Dashboard dashboard;
+
+    ArrayList<TaiKhoan> listTaiKhoan = null;
+
     /**
      * Creates new form DangNhap
      */
     public DangNhap() {
         initComponents();
+        setVisible(true);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        try {
+            LoadList(); // Load danh sách tài khoản khi khởi tạo cửa sổ đăng nhập
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void LoadList() throws Exception {
+        try {
+            listTaiKhoan = new ArrayList<>();
+            Connection connection = DatabaseHelper.getConnection();
+            String sql = "SELECT * FROM TAIKHOAN";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                TaiKhoan taiKhoan = new TaiKhoan();
+                taiKhoan.setTentaikhoan(resultSet.getString("Tentaikhoan"));
+                taiKhoan.setPass(resultSet.getString("Pass"));
+                taiKhoan.setChucvu(resultSet.getString("Chucvu"));
+
+                listTaiKhoan.add(taiKhoan);
+
+                System.out.println(resultSet.getString("Tentaikhoan") + " "
+                        + resultSet.getString("Pass") + " " + resultSet.getString("Chucvu"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int CheckTenTaiKhoan() {
+        String enteredUsername = txtTaiKhoan.getText().trim();
+        for (TaiKhoan taiKhoan : listTaiKhoan) {
+            if (enteredUsername.equals(taiKhoan.getTentaikhoan())) {
+                return 1; // Tên người dùng tồn tại trong danh sách
+            }
+        }
+        return 0; // Tên người dùng không tồn tại trong danh sách
+    }
+
+    public int CheckPass() {
+        String enteredPassword = txtMatKhau.getText();
+        for (TaiKhoan taiKhoan : listTaiKhoan) {
+            if (enteredPassword.equals(taiKhoan.getPass())) {
+                return 1; // Mật khẩu đúng
+            }
+        }
+        return 0; // Mật khẩu không đúng
     }
 
     /**
@@ -26,21 +91,137 @@ public class DangNhap extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitleDangNhap = new javax.swing.JLabel();
+        lblTaiKhoan = new javax.swing.JLabel();
+        lblMatKhau = new javax.swing.JLabel();
+        txtTaiKhoan = new javax.swing.JTextField();
+        txtMatKhau = new javax.swing.JTextField();
+        btnDangNhap = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTitleDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitleDangNhap.setText("ĐĂNG NHẬP");
+
+        lblTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTaiKhoan.setText("Tài Khoản");
+
+        lblMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblMatKhau.setText("Mật khẩu");
+
+        txtTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        btnDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDangNhap.setText("Đăng Nhập");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
+
+        btnThoat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMatKhau)
+                                    .addComponent(lblTaiKhoan))
+                                .addGap(119, 119, 119)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                                    .addComponent(txtMatKhau)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDangNhap)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(lblTitleDangNhap)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(lblTitleDangNhap)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTaiKhoan))
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMatKhau))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDangNhap)
+                    .addComponent(btnThoat))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        try {
+            String user = txtTaiKhoan.getText().trim();
+            String pass = txtMatKhau.getText();
+
+            // Kiểm tra tên đăng nhập và mật khẩu nhập vào
+            if (user.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (pass.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // Kiểm tra tài khoản và mật khẩu
+            if (CheckTenTaiKhoan() == 0 || CheckPass() == 0) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập không thành công!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Kiểm tra đăng nhập thành công
+            boolean loggedIn = false;
+            for (TaiKhoan taiKhoan : listTaiKhoan) {
+                if (taiKhoan.getTentaikhoan().equalsIgnoreCase(user) && taiKhoan.getPass().equals(pass)) {
+                    loggedIn = true;
+                    JOptionPane.showMessageDialog(this, "Đăng nhập thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    this.setVisible(false);
+                    // Mở giao diện Dashboard ở đây
+                    dashboard = new Dashboard(); // Cần viết phương thức tạo mới Dashboard
+                    break;
+                }
+            }
+            if (!loggedIn) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại! Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -56,16 +237,24 @@ public class DangNhap extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhap.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -78,5 +267,12 @@ public class DangNhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JButton btnThoat;
+    private javax.swing.JLabel lblMatKhau;
+    private javax.swing.JLabel lblTaiKhoan;
+    private javax.swing.JLabel lblTitleDangNhap;
+    private javax.swing.JTextField txtMatKhau;
+    private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
 }
