@@ -38,7 +38,8 @@ public class DeGiayDAO {
     }
 
     public List<DeGiay> getAll() {
-        String query = "SELECT[Made]\n"
+        String query = "SELECT "
+                + "[Made]\n"
                 + "      ,[Chatlieude]\n"
                 + "      ,[Docaode]\n"
                 + "  FROM [dbo].[DEGIAY]";

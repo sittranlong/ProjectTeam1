@@ -24,7 +24,7 @@ public class KieuDangDAO {
                 + "     VALUES\n"
                 + "           (?,?)";
         int check = 0;
-        try ( Connection con = DBConnection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, kd.getMakieu());
             ps.setObject(2, kd.getTenkieu());
             check = ps.executeUpdate();

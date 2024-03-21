@@ -13,16 +13,16 @@ import java.util.UUID;
  */
 public class ChiTietSanPham {
     private String id;
-    private String idsp;
-    private String idms;
-    private String idkieu;
-    private String idsize;
-    private String idde;
+    private String sanPham;
+    private String mauSac;
+    private String kieuDang;
+    private String size;
+    private String deGiay;
     private String mactsp;
-    private String hinhanh;
-    private int soluong;
-    private int dongia;
-    private String mota;
+    private String hinhAnh;
+    private int soLuong;
+    private int donGia;
+    private String moTa;
     private Date ngayTao;
     private Date ngayChinhSua;
     private int trangThai;
@@ -32,33 +32,33 @@ public class ChiTietSanPham {
     public ChiTietSanPham() {
     }
 
-    public ChiTietSanPham(String id, String idsp, String idms, String idkieu, String idsize, String idde, String mactsp, String hinhanh, int soluong, int dongia, String mota, Date ngayTao, Date ngayChinhSua, int trangThai) {
+    public ChiTietSanPham(String id, String sanPham, String mauSac, String kieuDang, String size, String deGiay, String mactsp, String hinhAnh, int soLuong, int donGia, String moTa, Date ngayTao, Date ngayChinhSua, int trangThai) {
         this.id = id;
-        this.idsp = idsp;
-        this.idms = idms;
-        this.idkieu = idkieu;
-        this.idsize = idsize;
-        this.idde = idde;
+        this.sanPham = sanPham;
+        this.mauSac = mauSac;
+        this.kieuDang = kieuDang;
+        this.size = size;
+        this.deGiay = deGiay;
         this.mactsp = mactsp;
-        this.hinhanh = hinhanh;
-        this.soluong = soluong;
-        this.dongia = dongia;
-        this.mota = mota;
+        this.hinhAnh = hinhAnh;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+        this.moTa = moTa;
         this.ngayTao = ngayTao;
         this.ngayChinhSua = ngayChinhSua;
         this.trangThai = trangThai;
     }
 
-    public ChiTietSanPham(String idsp, String idms, String idkieu, String idsize, String idde, String mactsp, int soluong, int dongia, String mota, int trangThai) {
-        this.idsp = idsp;
-        this.idms = idms;
-        this.idkieu = idkieu;
-        this.idsize = idsize;
-        this.idde = idde;
+    public ChiTietSanPham(String sanPham, String mauSac, String kieuDang, String size, String deGiay, String mactsp, int soLuong, int donGia, String moTa, int trangThai) {
+        this.sanPham = sanPham;
+        this.mauSac = mauSac;
+        this.kieuDang = kieuDang;
+        this.size = size;
+        this.deGiay = deGiay;
         this.mactsp = mactsp;
-        this.soluong = soluong;
-        this.dongia = dongia;
-        this.mota = mota;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+        this.moTa = moTa;
         this.trangThai = trangThai;
     }
 
@@ -70,44 +70,44 @@ public class ChiTietSanPham {
         this.id = id;
     }
 
-    public String getIdsp() {
-        return idsp;
+    public String getSanPham() {
+        return sanPham;
     }
 
-    public void setIdsp(String idsp) {
-        this.idsp = idsp;
+    public void setSanPham(String sanPham) {
+        this.sanPham = sanPham;
     }
 
-    public String getIdms() {
-        return idms;
+    public String getMauSac() {
+        return mauSac;
     }
 
-    public void setIdms(String idms) {
-        this.idms = idms;
+    public void setMauSac(String mauSac) {
+        this.mauSac = mauSac;
     }
 
-    public String getIdkieu() {
-        return idkieu;
+    public String getKieuDang() {
+        return kieuDang;
     }
 
-    public void setIdkieu(String idkieu) {
-        this.idkieu = idkieu;
+    public void setKieuDang(String kieuDang) {
+        this.kieuDang = kieuDang;
     }
 
-    public String getIdsize() {
-        return idsize;
+    public String getSize() {
+        return size;
     }
 
-    public void setIdsize(String idsize) {
-        this.idsize = idsize;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public String getIdde() {
-        return idde;
+    public String getDeGiay() {
+        return deGiay;
     }
 
-    public void setIdde(String idde) {
-        this.idde = idde;
+    public void setDeGiay(String deGiay) {
+        this.deGiay = deGiay;
     }
 
     public String getMactsp() {
@@ -118,36 +118,36 @@ public class ChiTietSanPham {
         this.mactsp = mactsp;
     }
 
-    public String getHinhanh() {
-        return hinhanh;
+    public String getHinhAnh() {
+        return hinhAnh;
     }
 
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
+    public void setHinhAnh(String hinhAnh) {
+        this.hinhAnh = hinhAnh;
     }
 
-    public int getSoluong() {
-        return soluong;
+    public int getSoLuong() {
+        return soLuong;
     }
 
-    public void setSoluong(int soluong) {
-        this.soluong = soluong;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
-    public int getDongia() {
-        return dongia;
+    public int getDonGia() {
+        return donGia;
     }
 
-    public void setDongia(int dongia) {
-        this.dongia = dongia;
+    public void setDonGia(int donGia) {
+        this.donGia = donGia;
     }
 
-    public String getMota() {
-        return mota;
+    public String getMoTa() {
+        return moTa;
     }
 
-    public void setMota(String mota) {
-        this.mota = mota;
+    public void setMoTa(String moTa) {
+        this.moTa = moTa;
     }
 
     public Date getNgayTao() {
@@ -176,7 +176,9 @@ public class ChiTietSanPham {
 
     @Override
     public String toString() {
-        return "ChiTietSanPham{" + "id=" + id + ", idsp=" + idsp + ", idms=" + idms + ", idkieu=" + idkieu + ", idsize=" + idsize + ", idde=" + idde + ", mactsp=" + mactsp + ", hinhanh=" + hinhanh + ", soluong=" + soluong + ", dongia=" + dongia + ", mota=" + mota + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + '}';
+        return "ChiTietSanPham{" + "id=" + id + ", sanPham=" + sanPham + ", mauSac=" + mauSac + ", kieuDang=" + kieuDang + ", size=" + size + ", deGiay=" + deGiay + ", mactsp=" + mactsp + ", hinhAnh=" + hinhAnh + ", soLuong=" + soLuong + ", donGia=" + donGia + ", moTa=" + moTa + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + '}';
     }
+
+    
     
 }

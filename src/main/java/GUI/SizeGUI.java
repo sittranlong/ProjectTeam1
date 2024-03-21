@@ -5,12 +5,12 @@
 package GUI;
 
 
+import DAO.SizeDao;
+import ENTITY.Size;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.SizeJPN;
-import services.impl.SizeServiceImpl;
 
 /**
  *
@@ -18,9 +18,9 @@ import services.impl.SizeServiceImpl;
  */
 public class SizeGUI extends javax.swing.JFrame {
 
-    private SizeServiceImpl ss = new SizeServiceImpl();
+    private SizeDao ss = new SizeDao();
         private DefaultTableModel dtm = new DefaultTableModel();
-            List<SizeJPN> list = new ArrayList<>();
+            List<Size> list = new ArrayList<>();
 
 
     /**
@@ -31,14 +31,14 @@ public class SizeGUI extends javax.swing.JFrame {
         jTable1.setModel(dtm);
         String[] tieuDe = {"Mã size","tên Size"};
         dtm.setColumnIdentifiers(tieuDe);
-        list = new SizeServiceImpl().getAll();
+        list = ss.getAll();
         showData(list);
     }
 
-    public void showData(List<SizeJPN> list){
+    public void showData(List<Size> list){
         dtm.setRowCount(0);
-        for (SizeJPN deGiayJPN : list) {
-            dtm.addRow(deGiayJPN.toDataRow());
+        for (Size deGiayJPN : list) {
+            dtm.addRow(new Object[]{deGiayJPN.getMasize(), deGiayJPN.getTensize()});
         }
     }
     /**
@@ -165,8 +165,8 @@ public class SizeGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ma = txtMa.getText();
         String ten = txtTen.getText()+ "";
-        model.SizeJPN s = new model.SizeJPN(Integer.parseInt(ten), ma);
-        JOptionPane.showMessageDialog(this, ss.Add(s));
+        Size s = new Size(Integer.parseInt(ten), ma);
+        JOptionPane.showMessageDialog(this, ss.add(s));
         list.add(s);
         showData(list);
     }//GEN-LAST:event_btAddActionPerformed
@@ -178,7 +178,7 @@ public class SizeGUI extends javax.swing.JFrame {
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
-        String ma = list.get(jTable1.getSelectedRow()).getMa();
+        String ma = list.get(jTable1.getSelectedRow()).getMasize();
         JOptionPane.showMessageDialog(this, ss.delete(ma));
         list = ss.getAll();
         showData(list);

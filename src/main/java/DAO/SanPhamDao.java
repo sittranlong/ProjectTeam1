@@ -75,7 +75,7 @@ public class SanPhamDao {
 
     public boolean delete(String id) {
         String query = "DELETE FROM [dbo].[SANPHAM]\n"
-                + "      WHERE Id like ?";
+                + "      WHERE Masp like ?";
         int check = 0;
         try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);

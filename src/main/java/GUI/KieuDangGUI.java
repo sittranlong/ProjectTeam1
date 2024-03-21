@@ -5,13 +5,12 @@
 package GUI;
 
 
+import DAO.KieuDangDAO;
+import ENTITY.KieuDang;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.DeGiayJPN;
-import model.KieuDangJPN;
-import services.impl.KieuDangServiceImpl;
 
 /**
  *
@@ -19,9 +18,9 @@ import services.impl.KieuDangServiceImpl;
  */
 public class KieuDangGUI extends javax.swing.JFrame {
 
-    private KieuDangServiceImpl kds = new KieuDangServiceImpl();
+    private KieuDangDAO kds = new KieuDangDAO();
     private DefaultTableModel dtm = new DefaultTableModel();
-   private List<KieuDangJPN> listDg = new ArrayList<>();
+   private List<KieuDang> listDg = new ArrayList<>();
     /**
      * Creates new form KieuDang
      */
@@ -30,14 +29,14 @@ public class KieuDangGUI extends javax.swing.JFrame {
         jTable1.setModel(dtm);
         String[] tieuDe = {"Mã kiểu dáng","Tên kiểu dáng"};
         dtm.setColumnIdentifiers(tieuDe);
-        listDg = new KieuDangServiceImpl().getAll();
+        listDg = kds.getAll();
         showData(listDg);
     }
 
-    public void showData(List<KieuDangJPN> list){
+    public void showData(List<KieuDang> list){
         dtm.setRowCount(0);
-        for (KieuDangJPN deGiayJPN : list) {
-            dtm.addRow(deGiayJPN.toDataRow());
+        for (KieuDang deGiayJPN : list) {
+            dtm.addRow(new Object[] {deGiayJPN.getMakieu(), deGiayJPN.getTenkieu()});
         }
     }
     /**
@@ -164,7 +163,7 @@ public class KieuDangGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ma = txtMa.getText();
         String ten = txtTen.getText();
-        model.KieuDangJPN kd = new model.KieuDangJPN(ten, ma);
+        KieuDang kd = new KieuDang(ten, ma);
         JOptionPane.showMessageDialog(this, kds.Add(kd));
         listDg.add(kd);
         showData(listDg);
@@ -172,7 +171,7 @@ public class KieuDangGUI extends javax.swing.JFrame {
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
-        String ma = listDg.get(jTable1.getSelectedRow()).getMa();
+        String ma = listDg.get(jTable1.getSelectedRow()).getMakieu();
         JOptionPane.showMessageDialog(this, kds.delete(ma));
         listDg = kds.getAll();
         showData(listDg);

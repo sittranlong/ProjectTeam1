@@ -5,14 +5,14 @@
 package GUI;
 
 
+import DAO.SanPhamDao;
+import ENTITY.SanPham;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.SanPhamJPN;
-import services.impl.SanPhamServiceImpl;
 
 /**
  *
@@ -21,8 +21,8 @@ import services.impl.SanPhamServiceImpl;
 public class SanPhamGUI extends javax.swing.JFrame {
 
     private DefaultTableModel dtm = new DefaultTableModel();
-    private List<SanPhamJPN> list = new ArrayList<>();
-    private SanPhamServiceImpl spsi = new SanPhamServiceImpl();
+    private List<SanPham> list = new ArrayList<>();
+    private SanPhamDao spsi = new SanPhamDao();
 
     /**
      * Creates new form NewJFrame
@@ -32,14 +32,14 @@ public class SanPhamGUI extends javax.swing.JFrame {
         jTable1.setModel(dtm);
         String[] tieuDe = {"Mã sản phẩm", "Tên sản phẩm"};
         dtm.setColumnIdentifiers(tieuDe);
-        list = new SanPhamServiceImpl().getAll();
+        list = spsi.getAll();
         showData(list);
     }
 
-    public void showData(List<SanPhamJPN> list){
+    public void showData(List<SanPham> list){
         dtm.setRowCount(0);
-        for (SanPhamJPN sanPhamJPN : list) {
-            dtm.addRow(sanPhamJPN.toDataRow());
+        for (SanPham sanPhamJPN : list) {
+            dtm.addRow(new Object[]{sanPhamJPN.getMasp(), sanPhamJPN.getTen()});
         }
     }
     /**
@@ -169,7 +169,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         String ma = txtMa.getText();
         String ten = txtTen.getText();
 //        String soLuong = txtSL.getText() + "";
-        model.SanPhamJPN sp = new model.SanPhamJPN(ma, ten);
+        SanPham sp = new SanPham(ma, ten);
         JOptionPane.showMessageDialog(this, spsi.add(sp));
         list.add(sp);
         showData(list);
@@ -177,7 +177,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
-        String ma = list.get(jTable1.getSelectedRow()).getId();
+        String ma = list.get(jTable1.getSelectedRow()).getMasp();
         JOptionPane.showMessageDialog(this, spsi.delete(ma));
         list = spsi.getAll();
         showData(list);

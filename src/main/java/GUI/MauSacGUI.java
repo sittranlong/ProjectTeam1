@@ -5,12 +5,12 @@
 package GUI;
 
 
+import DAO.MauSacDAO;
+import ENTITY.MauSac;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.MauSacJPN;
-import services.impl.MauSacServiceImpl;
 
 /**
  *
@@ -18,8 +18,8 @@ import services.impl.MauSacServiceImpl;
  */
 public class MauSacGUI extends javax.swing.JFrame {
     private DefaultTableModel dtm = new DefaultTableModel();
-    private MauSacServiceImpl ms = new MauSacServiceImpl();
-    List<MauSacJPN> list = new ArrayList<>();
+    private MauSacDAO ms = new MauSacDAO();
+    List<MauSac> list = new ArrayList<>();
     /**
      * Creates new form MauSac
      */
@@ -28,14 +28,14 @@ public class MauSacGUI extends javax.swing.JFrame {
         jTable1.setModel(dtm);
         String[] tieuDe = {"Mã màu sắc","Tên màu sắc"};
         dtm.setColumnIdentifiers(tieuDe);
-        list = new MauSacServiceImpl().getAll();
+        list = ms.getAll();
         showData(list);
     }
 
-     public void showData(List<MauSacJPN> list){
+     public void showData(List<MauSac> list){
         dtm.setRowCount(0);
-        for (MauSacJPN deGiayJPN : list) {
-            dtm.addRow(deGiayJPN.toDataRow());
+        for (MauSac deGiayJPN : list) {
+            dtm.addRow(new Object[]{deGiayJPN.getMamau(), deGiayJPN.getTenmau()});
         }
     }
     /**
@@ -166,7 +166,7 @@ public class MauSacGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ma = txtMa.getText();
         String ten = txtTen.getText();
-        model.MauSacJPN m = new model.MauSacJPN(ten, ma);
+        MauSac m = new MauSac(ten, ma);
         JOptionPane.showMessageDialog(this, ms.Add(m));
         list.add(m);
         showData(list);
@@ -174,7 +174,7 @@ public class MauSacGUI extends javax.swing.JFrame {
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
-        String ma = list.get(jTable1.getSelectedRow()).getMa();
+        String ma = list.get(jTable1.getSelectedRow()).getMamau();
         JOptionPane.showMessageDialog(this, ms.delete(ma));
         list = ms.getAll();
         showData(list);

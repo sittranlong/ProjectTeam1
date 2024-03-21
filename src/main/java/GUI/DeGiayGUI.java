@@ -17,7 +17,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Phan Loc
  */
 public class DeGiayGUI extends javax.swing.JFrame {
-    private DeGiayDAO d = new DeGiayDAO();
+
+    private DeGiayDAO service = new DeGiayDAO();
     private DefaultTableModel dtm = new DefaultTableModel();
    private List<DeGiay> listDg = new ArrayList<>();
     /**
@@ -28,15 +29,15 @@ public class DeGiayGUI extends javax.swing.JFrame {
         jTable1.setModel(dtm);
         String[] tieuDe = {"Ma","Chat Lieu De","Do Cao De"};
         dtm.setColumnIdentifiers(tieuDe);
-        listDg = d.getAll();
+        listDg = service.getAll();
         showData(listDg);
+        
     }
-    
     
     public void showData(List<DeGiay> list){
         dtm.setRowCount(0);
         for (DeGiay deGiayJPN : list) {
-            dtm.addRow(new Object[] {deGiayJPN.getMade(), deGiayJPN.getChatlieude(), deGiayJPN.getDocaode()});
+            dtm.addRow(new Object[]{deGiayJPN.getMade(), deGiayJPN.getChatlieude(), deGiayJPN.getDocaode()});
         }
     }
     
@@ -177,7 +178,7 @@ public class DeGiayGUI extends javax.swing.JFrame {
         String ten = txtTen.getText();
         String soLuong = txtSL.getText() + "";
         DeGiay dg = new DeGiay(ma, ten, Integer.parseInt(soLuong));
-        JOptionPane.showMessageDialog(this, d.Add(dg));
+        JOptionPane.showMessageDialog(this, service.Add(dg));
         listDg.add(dg);
         showData(listDg);
     }//GEN-LAST:event_btAddActionPerformed
@@ -185,8 +186,8 @@ public class DeGiayGUI extends javax.swing.JFrame {
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
         String ma = listDg.get(jTable1.getSelectedRow()).getMade();
-        JOptionPane.showMessageDialog(this, d.delete(ma));
-        listDg = d.getAll();
+        JOptionPane.showMessageDialog(this, service.delete(ma));
+        listDg = service.getAll();
         showData(listDg);
     }//GEN-LAST:event_btXoaActionPerformed
 
