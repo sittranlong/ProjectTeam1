@@ -80,7 +80,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Mã đơn hàng", "Tên sản phẩm", "Số lượng", "Đơn giá", "Thành tiền"
+                "Mã Hóa Đơn Bán", "Tên sản phẩm", "Số lượng", "Đơn giá", "Thành tiền"
             }
         ));
         jScrollPane2.setViewportView(jTableGioHang);
@@ -204,7 +204,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                                 .addComponent(jButtonTimKiemKhachHang)
                                 .addGap(34, 34, 34)))
                         .addGap(15, 15, 15)))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelGioHang)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
