@@ -447,6 +447,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        btAddMS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/themMon.png"))); // NOI18N
         btAddMS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btAddMS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,6 +455,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        btAddKD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/themMon.png"))); // NOI18N
         btAddKD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btAddKD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,6 +463,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        btAddSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/themMon.png"))); // NOI18N
         btAddSize.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btAddSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -468,6 +471,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        btAddCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/themMon.png"))); // NOI18N
         btAddCC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btAddCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -486,6 +490,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
 
+        btAddSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/themMon.png"))); // NOI18N
         btAddSP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btAddSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -546,7 +551,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                                     .addComponent(cbbKieu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbbChieuCao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbbSize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(48, 48, 48)
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
