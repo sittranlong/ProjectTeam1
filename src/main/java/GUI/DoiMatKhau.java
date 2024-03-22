@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import ENTITY.TaiKhoan;
+import static GUI.Dashboard.taiKhoan;
+
 /**
  *
  * @author TieuLong
@@ -13,7 +16,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
     /**
      * Creates new form DoiMatKhau
      */
-    public DoiMatKhau() {
+    public DoiMatKhau(TaiKhoan taiKhoan) {
         initComponents();
     }
 
@@ -72,7 +75,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DoiMatKhau().setVisible(true);
+                new DoiMatKhau(taiKhoan).setVisible(true);
             }
         });
     }

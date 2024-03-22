@@ -42,6 +42,53 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< Updated upstream
+=======
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        try {
+            String user = txtTaiKhoan.getText().trim();
+            String pass = txtMatKhau.getText();
+
+            // Kiểm tra tên đăng nhập và mật khẩu nhập vào
+            if (user.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (pass.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // Kiểm tra tài khoản và mật khẩu
+            if (CheckTenTaiKhoan() == 0 || CheckPass() == 0) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập không thành công!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Kiểm tra đăng nhập thành công
+            boolean loggedIn = false;
+            for (TaiKhoan taiKhoan : listTaiKhoan) {
+                if (taiKhoan.getTentaikhoan().equalsIgnoreCase(user) && taiKhoan.getPass().equals(pass)) {
+                    loggedIn = true;
+                    JOptionPane.showMessageDialog(this, "Đăng nhập thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    this.setVisible(false);
+                    // Mở giao diện Dashboard ở đây
+                    dashboard = new Dashboard(taiKhoan); // Cần viết phương thức tạo mới Dashboard
+                    break;
+                }
+            }
+            if (!loggedIn) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại! Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
