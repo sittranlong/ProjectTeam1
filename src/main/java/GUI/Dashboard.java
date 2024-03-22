@@ -26,17 +26,101 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBanHang = new javax.swing.JMenu();
+        jMenuItemBanHang = new javax.swing.JMenuItem();
+        jMenuItemDoiTra = new javax.swing.JMenuItem();
+        jMenuSanPham = new javax.swing.JMenu();
+        jMenuItemQLSanPham = new javax.swing.JMenuItem();
+        jMenuItemQLCTSP = new javax.swing.JMenuItem();
+        jMenuHoaDon = new javax.swing.JMenu();
+        jMenuItemXemHoaDon = new javax.swing.JMenuItem();
+        jMenuItemXemThongKe = new javax.swing.JMenuItem();
+        jMenuNguoiDung = new javax.swing.JMenu();
+        jMenuItemQLNhanVien = new javax.swing.JMenuItem();
+        jMenuItemQLKhachHang = new javax.swing.JMenuItem();
+        jMenuTaiKhoan = new javax.swing.JMenu();
+        jMenuItemDoiMatKhau = new javax.swing.JMenuItem();
+        jMenuItemDangXuat = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenuBanHang.setText("Bán Hàng");
+        jMenuBanHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jMenuItemBanHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemBanHang.setText("Quản Lý Bán Hàng");
+        jMenuBanHang.add(jMenuItemBanHang);
+
+        jMenuItemDoiTra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemDoiTra.setText("Quản Lý Đổi Trả");
+        jMenuBanHang.add(jMenuItemDoiTra);
+
+        jMenuBar1.add(jMenuBanHang);
+
+        jMenuSanPham.setText("Sản Phẩm");
+        jMenuSanPham.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jMenuItemQLSanPham.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemQLSanPham.setText("Quản Lý Sản Phẩm");
+        jMenuSanPham.add(jMenuItemQLSanPham);
+
+        jMenuItemQLCTSP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemQLCTSP.setText("Quản Lý Chi Tiết Sản Phẩm");
+        jMenuSanPham.add(jMenuItemQLCTSP);
+
+        jMenuBar1.add(jMenuSanPham);
+
+        jMenuHoaDon.setText("Hóa Đơn");
+        jMenuHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jMenuItemXemHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemXemHoaDon.setText("Xem Hóa Đơn");
+        jMenuHoaDon.add(jMenuItemXemHoaDon);
+
+        jMenuItemXemThongKe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemXemThongKe.setText("Xem Thống Kê");
+        jMenuHoaDon.add(jMenuItemXemThongKe);
+
+        jMenuBar1.add(jMenuHoaDon);
+
+        jMenuNguoiDung.setText("Người Dùng");
+        jMenuNguoiDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jMenuItemQLNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemQLNhanVien.setText("Quản Lý Nhân Viên");
+        jMenuNguoiDung.add(jMenuItemQLNhanVien);
+
+        jMenuItemQLKhachHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemQLKhachHang.setText("Quản Lý Khách Hàng");
+        jMenuNguoiDung.add(jMenuItemQLKhachHang);
+
+        jMenuBar1.add(jMenuNguoiDung);
+
+        jMenuTaiKhoan.setText("Tài Khoản");
+        jMenuTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jMenuItemDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemDoiMatKhau.setText("Đổi Mật Khẩu");
+        jMenuTaiKhoan.add(jMenuItemDoiMatKhau);
+
+        jMenuItemDangXuat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemDangXuat.setText("Đăng Xuất");
+        jMenuTaiKhoan.add(jMenuItemDangXuat);
+
+        jMenuBar1.add(jMenuTaiKhoan);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 695, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 268, Short.MAX_VALUE)
         );
 
         pack();
@@ -78,5 +162,21 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenuBanHang;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuHoaDon;
+    private javax.swing.JMenuItem jMenuItemBanHang;
+    private javax.swing.JMenuItem jMenuItemDangXuat;
+    private javax.swing.JMenuItem jMenuItemDoiMatKhau;
+    private javax.swing.JMenuItem jMenuItemDoiTra;
+    private javax.swing.JMenuItem jMenuItemQLCTSP;
+    private javax.swing.JMenuItem jMenuItemQLKhachHang;
+    private javax.swing.JMenuItem jMenuItemQLNhanVien;
+    private javax.swing.JMenuItem jMenuItemQLSanPham;
+    private javax.swing.JMenuItem jMenuItemXemHoaDon;
+    private javax.swing.JMenuItem jMenuItemXemThongKe;
+    private javax.swing.JMenu jMenuNguoiDung;
+    private javax.swing.JMenu jMenuSanPham;
+    private javax.swing.JMenu jMenuTaiKhoan;
     // End of variables declaration//GEN-END:variables
 }
