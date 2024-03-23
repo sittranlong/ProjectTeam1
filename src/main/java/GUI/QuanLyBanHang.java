@@ -119,6 +119,8 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jButtonTimTenSanPham = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
+        jLabelSanPham1 = new javax.swing.JLabel();
+        jLabelSanPham2 = new javax.swing.JLabel();
 
         jLabelQUANLYBANHANG.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabelQUANLYBANHANG.setText("QUẢN LÝ BÁN HÀNG");
@@ -217,6 +219,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblSanPham);
 
+        jLabelSanPham1.setText("Size");
+
+        jLabelSanPham2.setText("Kiểu Dáng");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,16 +261,21 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTk, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonTimTenSanPham)
-                                .addGap(49, 49, 49)
-                                .addComponent(cbbKieu, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonTimTenSanPham))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonTreoHoaDon))))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabelSanPham2)
+                            .addGap(18, 18, 18)
+                            .addComponent(cbbKieu, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(34, 34, 34)
+                            .addComponent(jLabelSanPham1)
+                            .addGap(18, 18, 18)
+                            .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 469, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -304,11 +315,13 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelSanPham)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbbKieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelTenSanPham)
                         .addComponent(txtTk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonTimTenSanPham)))
+                        .addComponent(jButtonTimTenSanPham)
+                        .addComponent(jLabelSanPham1)
+                        .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbbKieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelSanPham2)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(105, Short.MAX_VALUE))
@@ -419,6 +432,8 @@ if (rowIndex != -1) {
     private javax.swing.JLabel jLabelQUANLYBANHANG;
     private javax.swing.JLabel jLabelSDTKhachHang;
     private javax.swing.JLabel jLabelSanPham;
+    private javax.swing.JLabel jLabelSanPham1;
+    private javax.swing.JLabel jLabelSanPham2;
     private javax.swing.JLabel jLabelTenKhachHang;
     private javax.swing.JLabel jLabelTenSanPham;
     private javax.swing.JScrollPane jScrollPane1;

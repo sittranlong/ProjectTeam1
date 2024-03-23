@@ -59,10 +59,6 @@
                               <Component id="txtTk" min="-2" pref="104" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButtonTimTenSanPham" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="cbbKieu" min="-2" pref="111" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="cbbSize" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="640" max="-2" attributes="0"/>
@@ -71,7 +67,18 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane3" alignment="0" min="-2" pref="823" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jLabelSanPham2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="cbbKieu" min="-2" pref="111" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jLabelSanPham1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="cbbSize" min="-2" pref="125" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane3" min="-2" pref="823" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="0" pref="469" max="32767" attributes="0"/>
           </Group>
@@ -122,11 +129,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabelSanPham" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="cbbKieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbbSize" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelTenSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTk" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonTimTenSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelSanPham1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbbSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbbKieu" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelSanPham2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -401,5 +410,15 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabelSanPham1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Size"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelSanPham2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ki&#x1ec3;u D&#xe1;ng"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

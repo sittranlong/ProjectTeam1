@@ -6,6 +6,7 @@ package GUI;
 
 import DAO.HoaDonDAO;
 import ENTITY.HoaDon;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,7 +27,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     }
     public void loadTable(){
         model.setRowCount(  0);
-        Arrylist<HoaDon> list = hdd.getHD();
+        List<HoaDon> list = hdd.getHD();
     }
 
     /**
@@ -289,7 +290,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     private javax.swing.JTextField tf_tongtien;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+//    private void loadTable() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 }
