@@ -23,11 +23,8 @@ public class HoaDonDAO {
                 hd.setMahd ( rs.getString ( "mahd" ) );
                 hd.setIdnv ( rs.getString ( "idnv" ) );
                 hd.setIdkh ( rs.getString ( "idkh" ) );
-<<<<<<< HEAD
                 hd.setNgayTao ( rs.getDate ("ngaytao" ) );
-=======
                 hd.setNgayTao ( rs.getDate("ngaytao" ) );
->>>>>>> b0d6ba7b7643d21bead46e026b2868e733c481b7
                 hd.setTenSP ( rs.getString ( "ten"));
                 hd.setTongTien ( rs.getInt ( "tongtien" ) );
                 list.add ( hd );

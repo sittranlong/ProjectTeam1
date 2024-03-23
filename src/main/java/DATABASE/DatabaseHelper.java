@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 public class DatabaseHelper {
 
     private static String user = "sa";
-    private static String pass = "123456789";
+    private static String pass = "123";
     private static String url = "jdbc:sqlserver://localhost:1433;databaseName=DuAnBanGiay;trustServerCertificate=true";
 
     public static Connection getConnection() throws Exception {
