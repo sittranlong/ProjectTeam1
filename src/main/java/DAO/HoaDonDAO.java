@@ -4,10 +4,33 @@
  */
 package DAO;
 
+import ENTITY.HoaDon;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 /**
  *
  * @author TieuLong
  */
 public class HoaDonDAO {
-    
+    public ArrayList<HoaDon> getHD () {
+        ArrayList<HoaDon> list = new ArrayList<> ();
+        String sql = "select * from hoadon hd join HOADONCHITIET ct on hd.Id = ct.Idhd";
+        ResultSet rs = JDBCHelper.excuteQuery ( sql );
+        try {
+            while ( rs.next () ) {
+                HoaDon hd = new HoaDon ();
+                hd.setMahd ( rs.getString ( "mahd" ) );
+                hd.setIdnv ( rs.getString ( "idnv" ) );
+                hd.setIdkh ( rs.getString ( "idkh" ) );
+                hd.setNgayTao ( rs.getString("ngaytao" ) );
+                hd.setTenSP ( rs.getString ( "ten"));
+                hd.setTongTien ( rs.getInt ( "tongtien" ) );
+                list.add ( hd );
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ();
+        }
+        return list;
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,49 +16,48 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pn_tb_hoadonchitiet" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lb_manhanvien" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lb_makhachhang" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lb_mahoadon" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lb_ngaytao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lb_tensanpham" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lb_tongtien" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tf_tensanpham" pref="107" max="32767" attributes="0"/>
-                                  <Component id="tf_ngaytao" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_tongtien" max="32767" attributes="0"/>
-                                  <Component id="tf_mahoadon" max="32767" attributes="0"/>
-                                  <Component id="tf_manhanvien" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tf_makhachhang" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btn_xuathoadon" max="32767" attributes="0"/>
-                                  <Component id="btn_timkiem" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btn_themhoadon" max="32767" attributes="0"/>
-                                  <Component id="btn_xoahoadon" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lb_manhanvien" min="-2" max="-2" attributes="0"/>
+                          <Component id="lb_makhachhang" min="-2" max="-2" attributes="0"/>
+                          <Component id="lb_mahoadon" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lb_ngaytao" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lb_tensanpham" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lb_tongtien" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="pn_tb_hoadon" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tf_tensanpham" pref="107" max="32767" attributes="0"/>
+                          <Component id="tf_ngaytao" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tf_tongtien" max="32767" attributes="0"/>
+                          <Component id="tf_mahoadon" max="32767" attributes="0"/>
+                          <Component id="tf_manhanvien" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tf_makhachhang" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btn_xuathoadon" max="32767" attributes="0"/>
+                          <Component id="btn_timkiem" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btn_themhoadon" max="32767" attributes="0"/>
+                          <Component id="btn_xoahoadon" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <Component id="pn_tb_hoadon" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="pn_tb_hoadonchitiet" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -304,12 +303,12 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="822" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="933" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -321,9 +320,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="19" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="366" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -339,7 +338,7 @@
             <Component class="javax.swing.JTable" name="tb_hoadonchitiet">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="4">
+                  <Table columnCount="8" rowCount="4">
                     <Column editable="true" title="M&#xe3; h&#xf3;a &#x111;&#x1a1;n chi ti&#x1ebf;t" type="java.lang.Object"/>
                     <Column editable="true" title="M&#xe3; nh&#xe2;n vi&#xea;n" type="java.lang.Object"/>
                     <Column editable="true" title="M&#xe3; kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
@@ -347,17 +346,11 @@
                     <Column editable="true" title="Ng&#xe0;y ch&#x1ec9;nh s&#x1eed;a" type="java.lang.Object"/>
                     <Column editable="true" title="T&#xea;n s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                     <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                     <Column editable="true" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
