@@ -268,6 +268,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jMenuItemQLHoaDonVaHDCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
 
     private void jMenuSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSanPhamActionPerformed

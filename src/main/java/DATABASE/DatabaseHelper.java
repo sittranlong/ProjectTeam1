@@ -22,4 +22,8 @@ public class DatabaseHelper {
         Connection conn = DriverManager.getConnection(url, user, pass);
         return conn;
     }
+
+    public static int excuteUpdate(String sql, String Mahd) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -8,26 +8,58 @@ import DAO.HoaDonDAO;
 import ENTITY.HoaDon;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 
 /**
  *
  * @author TieuLong
  */
 public class QuanLyHoaDon extends javax.swing.JPanel {
-    private  DefaultTableModel model = new DefaultTableModel();
+
+    private DefaultTableModel model = new DefaultTableModel();
     private HoaDonDAO hdd = new HoaDonDAO();
-    
+
     /**
      * Creates new form QuanLyHoaDon
      */
     public QuanLyHoaDon() {
         initComponents();
-        model = ( DefaultTableModel ) tb_hoadon.getModel();
-        loadTable ();
+        model = (DefaultTableModel) tb_hoadon.getModel();
+        loadTable();
     }
-    public void loadTable(){
-        model.setRowCount(  0);
+
+    public void loadTable() {
+        model.setRowCount(0);
         List<HoaDon> list = hdd.getHD();
+        for (HoaDon hd : list) {
+            model.addRow(new Object[]{
+                hd.getMahd(),
+                hd.getIdnv(),
+                hd.getIdkh(),
+                hd.getNgayTao(),
+                hd.getTenSP(),
+                hd.getTongTien()
+            });
+        }
+    }
+
+    public void fillTable() {
+        int row = tb_hoadon.getSelectedRow();
+        tf_makhachhang.setText(tb_hoadon.getValueAt(row, 0) + "");
+        tf_makhachhang.setText(tb_hoadon.getValueAt(row, 1) + "");
+        tf_manhanvien.setText(tb_hoadon.getValueAt(row, 2) + "");
+        tf_ngaytao.setText(tb_hoadon.getValueAt(row, 3) + "");
+        tf_tensanpham.setText(tb_hoadon.getValueAt(row, 4) + "");
+        tf_tongtien.setText(tb_hoadon.getValueAt(row, 5) + "");
+    }
+
+    public void clear() {
+        tf_makhachhang.setText("");
+        tf_makhachhang.setText("");
+        tf_manhanvien.setText("");
+        tf_ngaytao.setText("");
+        tf_tensanpham.setText("");
+        tf_tongtien.setText("");
     }
 
     /**
@@ -80,19 +112,25 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                 "Mã hóa đơn", "Mã nhân viên", "Mã khách hàng", "Ngày tạo", "Tên sản phẩm", "Thành tiền"
             }
         ));
+        tb_hoadon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_hoadonMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_hoadon);
 
         javax.swing.GroupLayout pn_tb_hoadonLayout = new javax.swing.GroupLayout(pn_tb_hoadon);
         pn_tb_hoadon.setLayout(pn_tb_hoadonLayout);
         pn_tb_hoadonLayout.setHorizontalGroup(
             pn_tb_hoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_tb_hoadonLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(293, 293, 293))
             .addGroup(pn_tb_hoadonLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pn_tb_hoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn_tb_hoadonLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pn_tb_hoadonLayout.createSequentialGroup()
+                        .addGap(268, 268, 268)
+                        .addComponent(jLabel1)))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
         pn_tb_hoadonLayout.setVerticalGroup(
@@ -126,10 +164,20 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         btn_timkiem.setText("Tìm kiếm");
 
         btn_themhoadon.setText("Thêm hóa đơn");
+        btn_themhoadon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themhoadonActionPerformed(evt);
+            }
+        });
 
         btn_xuathoadon.setText("Xuất hóa đơn");
 
         btn_xoahoadon.setText("Xóa hóa đơn");
+        btn_xoahoadon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoahoadonActionPerformed(evt);
+            }
+        });
 
         pn_tb_hoadonchitiet.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -198,9 +246,9 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                             .addComponent(tf_makhachhang))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_xuathoadon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_timkiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_xuathoadon)
+                            .addComponent(btn_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_themhoadon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -248,10 +296,10 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_themhoadon)
                             .addComponent(btn_timkiem))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_xuathoadon)
-                            .addComponent(btn_xoahoadon))))
+                            .addComponent(btn_xoahoadon)
+                            .addComponent(btn_xuathoadon))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(pn_tb_hoadonchitiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -261,6 +309,22 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     private void tf_ngaytaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ngaytaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ngaytaoActionPerformed
+
+    private void btn_themhoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themhoadonActionPerformed
+        // TODO add your handling code here:
+        String mahoadon = tf_mahoadon.getText();
+        String makhachhang = tf_makhachhang.getText();
+        String manhanvien = tf_manhanvien.getText();
+
+    }//GEN-LAST:event_btn_themhoadonActionPerformed
+
+    private void tb_hoadonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hoadonMouseClicked
+        fillTable();        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_hoadonMouseClicked
+
+    private void btn_xoahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoahoadonActionPerformed
+        clear();        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_xoahoadonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

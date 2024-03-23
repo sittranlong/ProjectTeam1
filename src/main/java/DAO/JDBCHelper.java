@@ -30,4 +30,8 @@ public class JDBCHelper {
         }
         return rs;
     }
+
+    static int excuteUpdate(String sql, String ID) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

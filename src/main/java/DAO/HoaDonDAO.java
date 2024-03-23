@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import DATABASE.DatabaseHelper;
 import ENTITY.HoaDon;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,25 +14,44 @@ import java.util.ArrayList;
  * @author TieuLong
  */
 public class HoaDonDAO {
-    public ArrayList<HoaDon> getHD () {
-        ArrayList<HoaDon> list = new ArrayList<> ();
+
+    public ArrayList<HoaDon> getHD() {
+        ArrayList<HoaDon> list = new ArrayList<>();
         String sql = "select * from hoadon hd join HOADONCHITIET ct on hd.Id = ct.Idhd";
-        ResultSet rs = JDBCHelper.excuteQuery ( sql );
+        ResultSet rs = JDBCHelper.excuteQuery(sql);
         try {
-            while ( rs.next () ) {
-                HoaDon hd = new HoaDon ();
-                hd.setMahd ( rs.getString ( "mahd" ) );
-                hd.setIdnv ( rs.getString ( "idnv" ) );
-                hd.setIdkh ( rs.getString ( "idkh" ) );
-                hd.setNgayTao ( rs.getDate ("ngaytao" ) );
-                hd.setNgayTao ( rs.getDate("ngaytao" ) );
-                hd.setTenSP ( rs.getString ( "ten"));
-                hd.setTongTien ( rs.getInt ( "tongtien" ) );
-                list.add ( hd );
+            while (rs.next()) {
+                HoaDon hd = new HoaDon();
+                hd.setMahd(rs.getString("mahd"));
+                hd.setIdnv(rs.getString("idnv"));
+                hd.setIdkh(rs.getString("idkh"));
+                hd.setNgayTao(rs.getDate("ngaytao"));
+                hd.setNgayTao(rs.getDate("ngaytao"));
+                hd.setTenSP(rs.getString("ten"));
+                hd.setTongTien(rs.getInt("tongtien"));
+                list.add(hd);
             }
-        } catch ( Exception e ) {
-            e.printStackTrace ();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return list;
     }
+
+    public Integer xoaHD(String Mahd) {
+        int row;
+        String sql = "delete from HoaDon\n"
+                + "where id = ?";
+        row = DatabaseHelper.excuteUpdate(sql, Mahd);
+        return row;
+    }
+
+    public Integer themHD(HoaDon hd) {
+        int row;
+        String sql = "insert into HOADON(idkh,idnv,mahd,ngaytao,TrangThai)\n"
+                + "values (?, ?, ?)";
+        row = DatabaseHelper.excuteUpdate(sql, hd.getIdkh(), hd.getIdnv(), hd.getMahd(),
+                hd.getNgayTao(), hd.getTrangThai());
+        return row;
+    }
+
 }
