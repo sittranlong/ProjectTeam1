@@ -6,6 +6,7 @@ package GUI;
 
 import ENTITY.TaiKhoan;
 import GUI.QuanLyBanHang;
+import javax.swing.JFrame;
 
 /**
  *
@@ -29,6 +30,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard(TaiKhoan tk) {
         this.taiKhoan = tk;
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Mở cửa sổ trong chế độ toàn màn hình
         setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -82,12 +84,6 @@ public class Dashboard extends javax.swing.JFrame {
         jTabbedPaneDashboard = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSanPham = new javax.swing.JMenu();
-        jMenuItemQLCTSP = new javax.swing.JMenuItem();
-        jMenuItemQLDeGiay = new javax.swing.JMenuItem();
-        jMenuItemQLKieuDang = new javax.swing.JMenuItem();
-        jMenuItemQLMauSac = new javax.swing.JMenuItem();
-        jMenuItemQLSanPham = new javax.swing.JMenuItem();
-        jMenuItemQLSize = new javax.swing.JMenuItem();
         jMenuHoaDon = new javax.swing.JMenu();
         jMenuItemTaoHoaDon = new javax.swing.JMenuItem();
         jMenuItemQLHoaDonVaHDCT = new javax.swing.JMenuItem();
@@ -111,25 +107,11 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jMenuSanPham.setText("Sản Phẩm");
-
-        jMenuItemQLCTSP.setText("Quản Lý Chi Tiết Sản Phẩm");
-        jMenuSanPham.add(jMenuItemQLCTSP);
-
-        jMenuItemQLDeGiay.setText("Quản Lý Đế Giày");
-        jMenuSanPham.add(jMenuItemQLDeGiay);
-
-        jMenuItemQLKieuDang.setText("Quản Lý Kiểu Dáng");
-        jMenuSanPham.add(jMenuItemQLKieuDang);
-
-        jMenuItemQLMauSac.setText("Quản Lý Màu Sắc");
-        jMenuSanPham.add(jMenuItemQLMauSac);
-
-        jMenuItemQLSanPham.setText("Quản Lý Sản Phẩm");
-        jMenuSanPham.add(jMenuItemQLSanPham);
-
-        jMenuItemQLSize.setText("Quản Lý Size");
-        jMenuSanPham.add(jMenuItemQLSize);
-
+        jMenuSanPham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSanPhamActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenuSanPham);
 
         jMenuHoaDon.setText("Hóa Đơn");
@@ -265,7 +247,11 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemQLNhanVienActionPerformed
 
     private void jMenuItemQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLKhachHangActionPerformed
-        // TODO add your handling code here:
+        if (quanLyKhachHang == null) {
+            quanLyKhachHang = new QuanLyKhachHang();
+            jTabbedPaneDashboard.add("Quản Lý Khách Hàng", quanLyKhachHang);
+            jTabbedPaneDashboard.setSelectedComponent(quanLyKhachHang);
+        }
     }//GEN-LAST:event_jMenuItemQLKhachHangActionPerformed
 
     private void jMenuItemQLBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLBanHangActionPerformed
@@ -283,6 +269,14 @@ public class Dashboard extends javax.swing.JFrame {
     private void jMenuItemQLHoaDonVaHDCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
+
+    private void jMenuSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSanPhamActionPerformed
+        if (quanLySanPham == null) {
+            quanLySanPham = new QuanLySanPham();
+            jTabbedPaneDashboard.add("Quản Lý CT Sản Phẩm", quanLySanPham);
+            jTabbedPaneDashboard.setSelectedComponent(quanLySanPham);
+        }
+    }//GEN-LAST:event_jMenuSanPhamActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,16 +320,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemDangXuat;
     private javax.swing.JMenuItem jMenuItemDoiMatKhau;
     private javax.swing.JMenuItem jMenuItemQLBanHang;
-    private javax.swing.JMenuItem jMenuItemQLCTSP;
-    private javax.swing.JMenuItem jMenuItemQLDeGiay;
     private javax.swing.JMenuItem jMenuItemQLDoiHang;
     private javax.swing.JMenuItem jMenuItemQLHoaDonVaHDCT;
     private javax.swing.JMenuItem jMenuItemQLKhachHang;
-    private javax.swing.JMenuItem jMenuItemQLKieuDang;
-    private javax.swing.JMenuItem jMenuItemQLMauSac;
     private javax.swing.JMenuItem jMenuItemQLNhanVien;
-    private javax.swing.JMenuItem jMenuItemQLSanPham;
-    private javax.swing.JMenuItem jMenuItemQLSize;
     private javax.swing.JMenuItem jMenuItemQLThongKe;
     private javax.swing.JMenuItem jMenuItemTaoHoaDon;
     private javax.swing.JMenu jMenuNguoiDung;
