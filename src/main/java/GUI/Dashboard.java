@@ -19,7 +19,7 @@ public class Dashboard extends javax.swing.JFrame {
     QuanLyBanHang quanLyBanHang;
     QuanLyDoiTra quanLyDoiTra;
     QuanLyHoaDon quanLyHoaDon;
-    QuanLyKhachHang quanLyKhachHang;
+    KhachHangGUI quanLyKhachHang;
     QuanLyNhanVien quanLyNhanVien;
     QuanLySanPham quanLySanPham;
     QuanLyThongKe quanLyThongKe;
@@ -248,7 +248,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jMenuItemQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLKhachHangActionPerformed
         if (quanLyKhachHang == null) {
-            quanLyKhachHang = new QuanLyKhachHang();
+            quanLyKhachHang = new KhachHangGUI();
             jTabbedPaneDashboard.add("Quản Lý Khách Hàng", quanLyKhachHang);
             jTabbedPaneDashboard.setSelectedComponent(quanLyKhachHang);
         }
