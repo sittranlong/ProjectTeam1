@@ -225,7 +225,6 @@ public class DangNhap extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
 
-
     /**
      * @param args the command line arguments
      */
