@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyBanHang extends javax.swing.JPanel {
 
+    private List<HoaDon> danhSachHoaDonCho ;
     private ChiTietSanPham ctsp = new ChiTietSanPham();
     private DefaultTableModel dtm = new DefaultTableModel();
     private BanHangDao ctspsi = new BanHangDao();
@@ -39,6 +40,20 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         LoadCbbLocS(ctspsi.getListSize1());
         list = ctspsi.getAll();
         showData(list);
+    }
+    
+    private void hienThiHoaDonCho(){
+        dtm.setRowCount ( 0);
+        // Thêm 4 hóa đơn chờ vào
+        for(HoaDon hoaDon : danhSachHoaDonCho){
+            Object[] row = new Object[]{
+                hoaDon.getMahd (),
+                hoaDon.getNgayTao (),
+                hoaDon.getTongTien (),
+                hoaDon.getTrangThai ()
+            };
+            dtm.addRow ( row );
+        }
     }
 
     private void showData(List<ChiTietSanPham> list) {
