@@ -45,13 +45,13 @@ public class HoaDonDAO {
         return row;
     }
 
-    public Integer themHD(HoaDon hd) {
-        int row;
-        String sql = "insert into HOADON(idkh,idnv,mahd,ngaytao,TrangThai)\n"
-                + "values (?, ?, ?)";
-        row = DatabaseHelper.excuteUpdate(sql, hd.getIdkh(), hd.getIdnv(), hd.getMahd(),
-                hd.getNgayTao(), hd.getTrangThai());
-        return row;
-    }
+//    public Integer themHD(HoaDon hd) {
+//        int row;
+//        String sql = "insert into HOADON(idkh,idnv,mahd,ngaytao,TrangThai)\n"
+//                + "values (?, ?, ?)";
+//        row = DatabaseHelper.excuteUpdate(sql, hd.getIdkh(), hd.getIdnv(), hd.getMahd(),
+//                hd.getNgayTao(), hd.getTrangThai());
+//        return row;
+//    }
 
 }
