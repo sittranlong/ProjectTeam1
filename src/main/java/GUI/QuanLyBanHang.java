@@ -168,7 +168,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Size", "Đơn giá", "Số lượng nhập"
+                "Mã sản phẩm", "Tên sản phẩm", "Size", "Đơn giá", "Số lượng"
             }
         ));
         jTableGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
