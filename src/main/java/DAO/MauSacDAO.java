@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class MauSacDAO {
     
-    public boolean Add(MauSac ms) {
+    public boolean Add1(MauSac ms) {
         String query = "INSERT INTO [dbo].[MAUSAC]\n"
                 + "           ([Mamau]\n"
                 + "           ,[Tenmau])\n"
@@ -35,7 +35,7 @@ public class MauSacDAO {
         return check > 0;
     }
 
-    public List<MauSac> getAll() {
+    public List<MauSac> getAll1() {
         String query = "SELECT "
                 + "[Tenmau]\n"
                 + "      ,[Mamau]\n"
@@ -53,7 +53,7 @@ public class MauSacDAO {
         return null;
     }
 
-    public boolean delete(String ma) {
+    public boolean delete1(String ma) {
         String query = "DELETE FROM [dbo].[MAUSAC]\n"
                 + "      WHERE Mamau = ?";
         int check = 0;

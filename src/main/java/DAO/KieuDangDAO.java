@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class KieuDangDAO {
     
-    public boolean Add(KieuDang kd) {
+    public boolean Add2(KieuDang kd) {
         String query = "INSERT INTO [dbo].[KIEUDANG]\n"
                 + "           ([Tenkieu]\n"
                 + "           ,[Makieu])\n"
@@ -35,7 +35,7 @@ public class KieuDangDAO {
         return check > 0;
     }
 
-    public List<KieuDang> getAll() {
+    public List<KieuDang> getAll2() {
         String query = "SELECT"
                 + "[Tenkieu]\n"
                 + "      ,[Makieu]\n"
@@ -53,7 +53,7 @@ public class KieuDangDAO {
         return null;
     }
 
-    public boolean delete(String ma) {
+    public boolean delete2(String ma) {
         String query = "DELETE FROM [dbo].[KIEUDANG]\n"
                 + "      WHERE Makieu = ?";
         int check = 0;

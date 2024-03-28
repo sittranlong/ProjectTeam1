@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class SizeDao {
     
-    public boolean Add(Size s) {
+    public boolean Add3(Size s) {
         String query = "INSERT INTO [dbo].[SIZE]\n"
                 + "           ([Tensize]\n"
                 + "           ,[Masize])\n"
@@ -35,7 +35,7 @@ public class SizeDao {
         return check > 0;
     }
 
-    public List<Size> getAll() {
+    public List<Size> getAll3() {
         String query = "SELECT [Tensize]\n"
                 + "      ,[Masize]\n"
                 + "  FROM [dbo].[SIZE]";
@@ -52,7 +52,7 @@ public class SizeDao {
         return null;
     }
 
-    public boolean delete(String ma) {
+    public boolean delete3(String ma) {
         String query = "DELETE FROM [dbo].[SIZE]\n"
                 + "      WHERE Masize = ?";
         int check = 0;

@@ -18,10 +18,12 @@ public class Dashboard extends javax.swing.JFrame {
     QuanLyBanHang quanLyBanHang;
     QuanLyDoiTra quanLyDoiTra;
     QuanLyHoaDon quanLyHoaDon;
-    KhachHangGUI quanLyKhachHang;
+    QuanLyKhachHang quanLyKhachHang;
     QuanLyNhanVien quanLyNhanVien;
     QuanLySanPham quanLySanPham;
     QuanLyThongKe quanLyThongKe;
+    SanPham sanPham;
+    ThuocTinhSanPham thuocTinhSanPham;
 
     /**
      * Creates new form Dashboard
@@ -63,6 +65,12 @@ public class Dashboard extends javax.swing.JFrame {
         if (quanLyThongKe != null) {
 
         }
+        if (sanPham != null) {
+
+        }
+        if (thuocTinhSanPham != null) {
+
+        }
     }
 
     /**
@@ -78,6 +86,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSanPham = new javax.swing.JMenu();
         jMenuItemQLSPCT = new javax.swing.JMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuHoaDon = new javax.swing.JMenu();
         jMenuItemQLHoaDonVaHDCT = new javax.swing.JMenuItem();
         jMenuItemQLThongKe = new javax.swing.JMenuItem();
@@ -99,15 +108,24 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jMenuSanPham.setText("Sản Phẩm");
+        jMenuSanPham.setText("Quản Lý Sản Phẩm");
 
-        jMenuItemQLSPCT.setText("Quản Lý Sản Phẩm Chi Tiết");
+        jMenuItemQLSPCT.setText("Chi Tiết Sản Phẩm");
         jMenuItemQLSPCT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemQLSPCTActionPerformed(evt);
             }
         });
         jMenuSanPham.add(jMenuItemQLSPCT);
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("Thuộc Tính Sản Phẩm");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuSanPham.add(jCheckBoxMenuItem1);
 
         jMenuBar1.add(jMenuSanPham);
 
@@ -234,7 +252,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jMenuItemQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLKhachHangActionPerformed
         if (quanLyKhachHang == null) {
-            quanLyKhachHang = new KhachHangGUI();
+            quanLyKhachHang = new QuanLyKhachHang();
             jTabbedPaneDashboard.add("Quản Lý Khách Hàng", quanLyKhachHang);
             jTabbedPaneDashboard.setSelectedComponent(quanLyKhachHang);
         }
@@ -285,6 +303,15 @@ public class Dashboard extends javax.swing.JFrame {
         new DangNhap();
     }//GEN-LAST:event_jMenuItemDangXuatActionPerformed
 
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        if (thuocTinhSanPham == null) {
+            thuocTinhSanPham = new ThuocTinhSanPham();
+            jTabbedPaneDashboard.add("Quản Lý CT Sản Phẩm", thuocTinhSanPham);
+            jTabbedPaneDashboard.setSelectedComponent(thuocTinhSanPham);
+        }
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -321,6 +348,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenuBanHang;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuHoaDon;

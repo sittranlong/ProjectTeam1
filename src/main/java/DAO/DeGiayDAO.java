@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class DeGiayDAO {
     
-    public boolean Add(DeGiay dg) {
+    public boolean Add4(DeGiay dg) {
         String query = "INSERT INTO [dbo].[DEGIAY]\n"
                 + "           ([Made]\n"
                 + "           ,[Chatlieude]\n"
@@ -37,7 +37,7 @@ public class DeGiayDAO {
         return check > 0;
     }
 
-    public List<DeGiay> getAll() {
+    public List<DeGiay> getAll4() {
         String query = "SELECT[Made]\n"
                 + "      ,[Chatlieude]\n"
                 + "      ,[Docaode]\n"
@@ -55,7 +55,7 @@ public class DeGiayDAO {
         return null;
     }
 
-    public boolean Update(DeGiay dg, String id) {
+    public boolean Update4(DeGiay dg, String id) {
         String query = "UPDATE [dbo].[DEGIAY]\n"
                 + "   SET [Made] = ?\n"
                 + "      ,[Chatlieude] = ?\n"
@@ -75,7 +75,7 @@ public class DeGiayDAO {
         return check > 0;
     }
 
-    public boolean delete(String ma) {
+    public boolean delete4(String ma) {
         String query = "DELETE FROM [dbo].[DEGIAY]\n"
                 + "      WHERE Made = ?";
         int check = 0;
