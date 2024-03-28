@@ -182,6 +182,11 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuTaiKhoan.add(jMenuItemDoiMatKhau);
 
         jMenuItemDangXuat.setText("Đăng Xuất");
+        jMenuItemDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDangXuatActionPerformed(evt);
+            }
+        });
         jMenuTaiKhoan.add(jMenuItemDangXuat);
 
         jMenuBar1.add(jMenuTaiKhoan);
@@ -274,6 +279,11 @@ public class Dashboard extends javax.swing.JFrame {
             jTabbedPaneDashboard.setSelectedComponent(quanLySanPham);
         }
     }//GEN-LAST:event_jMenuItemQLSPCTActionPerformed
+
+    private void jMenuItemDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDangXuatActionPerformed
+        this.setVisible(false);
+        new DangNhap();
+    }//GEN-LAST:event_jMenuItemDangXuatActionPerformed
 
     /**
      * @param args the command line arguments
