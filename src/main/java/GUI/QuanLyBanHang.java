@@ -454,10 +454,17 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void jButtonTimTenSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimTenSanPhamActionPerformed
         // TODO add your handling code here:
 
-        String tk = txtTk.getText();
+        
+        String tk = txtTk.getText(); // Lấy dữ liệu từ trường văn bản
+
+    // Kiểm tra xem trường văn bản có dữ liệu hay không
+    if (!tk.isEmpty()) { // Nếu có dữ liệu
         ctspsi.Tk(tk);
         list = ctspsi.Tk(tk);
         showData(list);
+    } else { // Nếu không có dữ liệu
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu để tìm"); // Hiển thị thông báo
+    }
     }//GEN-LAST:event_jButtonTimTenSanPhamActionPerformed
 
     private void txtTkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTkMouseClicked
@@ -477,10 +484,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
     private void cbbKieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbKieuActionPerformed
         // TODO add your handling code here:
-//        String ma = cbbKieu.getSelectedItem().toString();
-//        ctspsi.Loc1(ma);
-//        list = ctspsi.Loc1(ma);
-//        showData(list);
+        String ma = cbbKieu.getSelectedItem().toString();
+        ctspsi.Loc1(ma);
+        list = ctspsi.Loc1(ma);
+        showData(list);
     }//GEN-LAST:event_cbbKieuActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked

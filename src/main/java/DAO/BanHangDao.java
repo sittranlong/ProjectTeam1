@@ -17,7 +17,7 @@ import java.util.List;
  * @author Phan Loc
  */
 public class BanHangDao {
-    
+
     public List<ChiTietSanPham> getAll() {
         ArrayList<ChiTietSanPham> listLh = new ArrayList<>();
         String sql = "SELECT CTSP.MACTSP, SP.TEN, S.TENSIZE, KD.TENKIEU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.ID     \n"
@@ -45,7 +45,7 @@ public class BanHangDao {
         }
         return listLh;
     }
-    
+
     public List<ChiTietSanPham> Tk(String ten) {
         ArrayList<ChiTietSanPham> listLh = new ArrayList<>();
         String sql = "SELECT CTSP.MACTSP, SP.TEN, DG.DOCAODE, S.TENSIZE, KD.MAKIEU, MS.MAMAU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.MOTA, CTSP.TRANGTHAI, CTSP.HINHANH, CTSP.ID     \n"
@@ -82,13 +82,14 @@ public class BanHangDao {
 
     public List<ChiTietSanPham> Loc1(String ten) {
         ArrayList<ChiTietSanPham> listLh = new ArrayList<>();
-        String sql = "SELECT CTSP.MACTSP, SP.TEN, S.TENSIZE, KD.TENKIEU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.ID     \n"
-                + "FROM            CHITIETSANPHAM CTSP INNER JOIN\n"
-                + "                         DEGIAY DG ON CTSP.Idde = DG.Id INNER JOIN\n"
-                + "                         KIEUDANG KD ON CTSP.Idkieu = KD.Id INNER JOIN\n"
-                + "                         MAUSAC MS ON CTSP.Idms = MS.Id INNER JOIN\n"
-                + "                         SANPHAM SP ON CTSP.Idsp = SP.Id INNER JOIN\n"
-                + "                         SIZE S ON CTSP.Idsize = S.Id Where   KD.TENKIEU = ? OR S.TENSIZE = ?";
+        String sql = "SELECT CTSP.MACTSP, SP.TEN, CAST(S.TENSIZE AS NVARCHAR(100)) AS TENSIZE, KD.TENKIEU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.ID     \n"
+                + "FROM CHITIETSANPHAM CTSP \n"
+                + "INNER JOIN DEGIAY DG ON CTSP.Idde = DG.Id \n"
+                + "INNER JOIN KIEUDANG KD ON CTSP.Idkieu = KD.Id \n"
+                + "INNER JOIN MAUSAC MS ON CTSP.Idms = MS.Id \n"
+                + "INNER JOIN SANPHAM SP ON CTSP.Idsp = SP.Id \n"
+                + "INNER JOIN SIZE S ON CTSP.Idsize = S.Id \n"
+                + "WHERE KD.TENKIEU = ? OR CAST(S.TENSIZE AS NVARCHAR(100)) = ?";
         try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, ten);
             ps.setObject(2, ten);
@@ -114,7 +115,6 @@ public class BanHangDao {
         return listLh;
     }
 
-    
     public List<String> getListMauSac() {
         List<String> list = new ArrayList<>();
         String query = "Select MAUSAC.TENMAU from MAUSAC ";
@@ -128,7 +128,7 @@ public class BanHangDao {
         }
         return list;
     }
-    
+
     public List<String> getListSanPham() {
         List<String> list = new ArrayList<>();
         String query = "Select SANPHAM.TEN from SANPHAM ";
@@ -184,9 +184,8 @@ public class BanHangDao {
         }
         return list;
     }
-    
-    
-     public List<String> getListHoaDon() {
+
+    public List<String> getListHoaDon() {
         List<String> list = new ArrayList<>();
         String query = "select * from HOADON";
         try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
@@ -199,8 +198,8 @@ public class BanHangDao {
         }
         return list;
     }
-     
-     public List<String> getListHoaDonChiTiet() {
+
+    public List<String> getListHoaDonChiTiet() {
         List<String> list = new ArrayList<>();
         String query = "select * from HOADONCHITIET";
         try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
@@ -213,7 +212,7 @@ public class BanHangDao {
         }
         return list;
     }
-     
+
 //     public List<ChiTietSanPham> TkCTSP(String ten) {
 //        ArrayList<ChiTietSanPham> listLh = new ArrayList<>();
 //        String sql = "SELECT CTSP.MACTSP, SP.TEN, S.TENSIZE, KD.MAKIEU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.MOTA, CTSP.TRANGTHAI, CTSP.HINHANH, CTSP.ID     \n"
@@ -244,6 +243,4 @@ public class BanHangDao {
 //        }
 //        return listLh;
 //    }
-     
-     
 }
