@@ -27,13 +27,17 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard(TaiKhoan tk) {
-        this.taiKhoan = tk;
-        initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Mở cửa sổ trong chế độ toàn màn hình
-        setVisible(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        System.out.println(tk.toString());
+        if (tk != null) {
+            this.taiKhoan = tk;
+            initComponents();
+            setExtendedState(JFrame.MAXIMIZED_BOTH);
+            setVisible(true);
+            setResizable(false);
+            setLocationRelativeTo(null);
+            System.out.println(tk.toString());
+        } else {
+            System.err.println("Error: You need Login First!");
+        }
     }
 
     public static void DoiMatKhau(String pass) {
