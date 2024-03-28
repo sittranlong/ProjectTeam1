@@ -191,6 +191,11 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jButtonThemMoiKhachHang.setText("Thêm Mới");
 
         jButtonTreoHoaDon.setText("Treo Hóa Đơn");
+        jButtonTreoHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTreoHoaDonActionPerformed(evt);
+            }
+        });
 
         cbbKieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -526,7 +531,13 @@ if (rowIndex != -1) {
 
     private void jTableGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGioHangMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTableGioHangMouseClicked
+
+    private void jButtonTreoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreoHoaDonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonTreoHoaDonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

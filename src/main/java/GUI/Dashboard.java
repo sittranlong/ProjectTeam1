@@ -268,7 +268,11 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jMenuItemQLHoaDonVaHDCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
         // TODO add your handling code here:
-        
+        if(quanLyHoaDon==null){
+            quanLyHoaDon= new QuanLyHoaDon();
+            jTabbedPaneDashboard.add("Quản lý hóa đơn", quanLyHoaDon);
+            jTabbedPaneDashboard.setSelectedComponent(quanLyHoaDon);
+        }
     }//GEN-LAST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
 
     private void jMenuSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSanPhamActionPerformed
