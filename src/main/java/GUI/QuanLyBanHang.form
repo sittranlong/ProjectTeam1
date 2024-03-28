@@ -27,27 +27,29 @@
                                   <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelHoaDonCho" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelQUANLYBANHANG" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabelSDTKhachHang" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabelTenKhachHang" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTextFieldSDTKhachHang" max="32767" attributes="0"/>
-                                              <Component id="jTextFieldTenKhachHang" min="-2" pref="114" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelSDTKhachHang" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelTenKhachHang" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jTextFieldSDTKhachHang" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldTenKhachHang" min="-2" pref="114" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="jButtonTimKiemKhachHang" max="32767" attributes="0"/>
-                                              <Component id="jButtonThemMoiKhachHang" max="32767" attributes="0"/>
+                                              <Component id="jButtonThemMoiKhachHang" alignment="0" pref="103" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="jButtonTaoHoaDon" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <Component id="jButtonTreoHoaDon" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -60,14 +62,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButtonTimTenSanPham" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane2" min="-2" pref="640" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButtonTreoHoaDon" max="32767" attributes="0"/>
-                                  <Component id="jButtonTaoHoaDon" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jScrollPane2" alignment="0" min="-2" pref="640" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -85,39 +80,36 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelThongTinHoaDon" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelMaHoaDon" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="jLabelSoLuong" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="jLabelTenNhanVien" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="jLabel7" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel6" min="-2" pref="105" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextFieldTienKhachDua" min="-2" pref="205" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jLabelTongTien" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButtonThanhToan" max="32767" attributes="0"/>
-                          <Component id="jLabel8" max="32767" attributes="0"/>
-                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelTongTien" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelSoLuong" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelMaHoaDon" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelTenNhanVien" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButtonThanhToan" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButtonHuyThanhToan" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel8" min="-2" pref="92" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                              <Component id="jButtonHuyThanhToan" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jComboBoxHinhThucThanhToan" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldTienThua" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldTienKhachDua" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldTongTien" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldSoLuong" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldMaHoaDon" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldTenNhanVien" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jTextFieldTongTien" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTienThua" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="jComboBoxHinhThucThanhToan" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="jTextFieldSoLuong" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="jTextFieldMaHoaDon" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTenNhanVien" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jLabelThongTinHoaDon" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -130,106 +122,95 @@
               <Component id="jLabelHoaDonCho" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="jLabelGioHang" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="159" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="jButtonTreoHoaDon" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonTaoHoaDon" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelSanPham" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelSanPham1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabelTenSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTk" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonTimTenSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbbSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbbKieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelSanPham2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="159" max="-2" attributes="0"/>
-                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="159" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelThongTinHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabelSDTKhachHang" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabelTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButtonThemMoiKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabelSDTKhachHang" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabelTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButtonThemMoiKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jTextFieldSDTKhachHang" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButtonTimKiemKhachHang" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jTextFieldSDTKhachHang" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButtonTimKiemKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelTenNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextFieldTenNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelMaHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextFieldMaHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelTongTien" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTongTien" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTienKhachDua" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTienThua" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxHinhThucThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButtonThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButtonHuyThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="122" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonTreoHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonTaoHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelTongTien" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTongTien" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTienKhachDua" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTienThua" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxHinhThucThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonHuyThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelSanPham" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelSanPham1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelTenSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTk" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonTimTenSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbbSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbbKieu" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelSanPham2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="159" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -513,6 +494,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#x1ea1;o H&#xf3;a &#x110;&#x1a1;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTaoHoaDonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelMaHoaDon">
       <Properties>
@@ -549,7 +533,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="H&#xec;nh Th&#x1ee9;c Thanh To&#xe1;n"/>
+        <Property name="text" type="java.lang.String" value="H&#xec;nh Th&#x1ee9;c TT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxHinhThucThanhToan">
@@ -563,6 +547,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxHinhThucThanhToanActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -571,11 +558,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Thanh To&#xe1;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonThanhToanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonHuyThanhToan">
       <Properties>
         <Property name="text" type="java.lang.String" value="H&#x1ee7;y Thanh To&#xe1;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHuyThanhToanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldTenNhanVien">
     </Component>

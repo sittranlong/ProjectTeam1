@@ -5,7 +5,6 @@
 package GUI;
 
 import ENTITY.TaiKhoan;
-import GUI.QuanLyBanHang;
 import javax.swing.JFrame;
 
 /**
@@ -35,12 +34,6 @@ public class Dashboard extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         System.out.println(tk.toString());
-        if (!tk.getChucvu().equals("QUANLY")) {
-            jMenuItemQLThongKe.setEnabled(false);
-            jMenuItemQLNhanVien.setEnabled(false);
-        } else {
-            jMenuItemTaoHoaDon.setEnabled(rootPaneCheckingEnabled);
-        }
     }
 
     public static void DoiMatKhau(String pass) {
@@ -84,8 +77,8 @@ public class Dashboard extends javax.swing.JFrame {
         jTabbedPaneDashboard = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSanPham = new javax.swing.JMenu();
+        jMenuItemQLSPCT = new javax.swing.JMenuItem();
         jMenuHoaDon = new javax.swing.JMenu();
-        jMenuItemTaoHoaDon = new javax.swing.JMenuItem();
         jMenuItemQLHoaDonVaHDCT = new javax.swing.JMenuItem();
         jMenuItemQLThongKe = new javax.swing.JMenuItem();
         jMenuBanHang = new javax.swing.JMenu();
@@ -107,22 +100,18 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jMenuSanPham.setText("Sản Phẩm");
-        jMenuSanPham.addActionListener(new java.awt.event.ActionListener() {
+
+        jMenuItemQLSPCT.setText("Quản Lý Sản Phẩm Chi Tiết");
+        jMenuItemQLSPCT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSanPhamActionPerformed(evt);
+                jMenuItemQLSPCTActionPerformed(evt);
             }
         });
+        jMenuSanPham.add(jMenuItemQLSPCT);
+
         jMenuBar1.add(jMenuSanPham);
 
         jMenuHoaDon.setText("Hóa Đơn");
-
-        jMenuItemTaoHoaDon.setText("Tạo Hóa Đơn");
-        jMenuItemTaoHoaDon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemTaoHoaDonActionPerformed(evt);
-            }
-        });
-        jMenuHoaDon.add(jMenuItemTaoHoaDon);
 
         jMenuItemQLHoaDonVaHDCT.setText("Quản Lý Hóa Đơn & Hóa Đơn Chi Tiết");
         jMenuItemQLHoaDonVaHDCT.addActionListener(new java.awt.event.ActionListener() {
@@ -219,14 +208,6 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTaoHoaDonActionPerformed
-        if (quanLyBanHang == null) {
-            quanLyBanHang = new QuanLyBanHang();
-            jTabbedPaneDashboard.add("Quản Lý Bán Hàng", quanLyBanHang);
-            jTabbedPaneDashboard.setSelectedComponent(quanLyBanHang);
-        }
-    }//GEN-LAST:event_jMenuItemTaoHoaDonActionPerformed
-
     private void jTabbedPaneDashboardStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPaneDashboardStateChanged
         CapNhatDashboard();
     }//GEN-LAST:event_jTabbedPaneDashboardStateChanged
@@ -255,29 +236,44 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemQLKhachHangActionPerformed
 
     private void jMenuItemQLBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLBanHangActionPerformed
-        // TODO add your handling code here:
+        if (quanLyBanHang == null) {
+            quanLyBanHang = new QuanLyBanHang();
+            jTabbedPaneDashboard.add("Quản Lý Bán Hàng", quanLyBanHang);
+            jTabbedPaneDashboard.setSelectedComponent(quanLyBanHang);
+        }
     }//GEN-LAST:event_jMenuItemQLBanHangActionPerformed
 
-    private void jMenuItemQLThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLThongKeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemQLThongKeActionPerformed
-
     private void jMenuItemQLDoiHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLDoiHangActionPerformed
-        // TODO add your handling code here:
+        if (quanLyDoiTra == null) {
+            quanLyDoiTra = new QuanLyDoiTra(); // Tạo một đối tượng mới cho lớp quản lý đổi hàng
+            jTabbedPaneDashboard.add("Quản Lý Đổi Trả", quanLyDoiTra);
+            jTabbedPaneDashboard.setSelectedComponent(quanLyDoiTra);
+        }
     }//GEN-LAST:event_jMenuItemQLDoiHangActionPerformed
 
+    private void jMenuItemQLThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLThongKeActionPerformed
+        if (quanLyThongKe == null) {
+            quanLyThongKe = new QuanLyThongKe(); // Tạo một đối tượng mới cho lớp quản lý thống kê
+            jTabbedPaneDashboard.add("Quản Lý Thống Kê", quanLyThongKe);
+            jTabbedPaneDashboard.setSelectedComponent(quanLyThongKe);
+        }
+    }//GEN-LAST:event_jMenuItemQLThongKeActionPerformed
+
     private void jMenuItemQLHoaDonVaHDCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
-        // TODO add your handling code here:
-        
+        if (quanLyHoaDon == null) {
+            quanLyHoaDon = new QuanLyHoaDon(); // Tạo một đối tượng mới cho lớp quản lý hoá đơn
+            jTabbedPaneDashboard.add("Quản Lý Hoá Đơn", quanLyHoaDon);
+            jTabbedPaneDashboard.setSelectedComponent(quanLyHoaDon);
+        }
     }//GEN-LAST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
 
-    private void jMenuSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSanPhamActionPerformed
+    private void jMenuItemQLSPCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLSPCTActionPerformed
         if (quanLySanPham == null) {
             quanLySanPham = new QuanLySanPham();
             jTabbedPaneDashboard.add("Quản Lý CT Sản Phẩm", quanLySanPham);
             jTabbedPaneDashboard.setSelectedComponent(quanLySanPham);
         }
-    }//GEN-LAST:event_jMenuSanPhamActionPerformed
+    }//GEN-LAST:event_jMenuItemQLSPCTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,8 +321,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemQLHoaDonVaHDCT;
     private javax.swing.JMenuItem jMenuItemQLKhachHang;
     private javax.swing.JMenuItem jMenuItemQLNhanVien;
+    private javax.swing.JMenuItem jMenuItemQLSPCT;
     private javax.swing.JMenuItem jMenuItemQLThongKe;
-    private javax.swing.JMenuItem jMenuItemTaoHoaDon;
     private javax.swing.JMenu jMenuNguoiDung;
     private javax.swing.JMenu jMenuSanPham;
     private javax.swing.JMenu jMenuTaiKhoan;
