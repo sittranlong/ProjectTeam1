@@ -29,13 +29,17 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard(TaiKhoan tk) {
-        this.taiKhoan = tk;
-        initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Mở cửa sổ trong chế độ toàn màn hình
-        setVisible(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        System.out.println(tk.toString());
+        if (tk != null) {
+            this.taiKhoan = tk;
+            initComponents();
+            setExtendedState(JFrame.MAXIMIZED_BOTH);
+            setVisible(true);
+            setResizable(false);
+            setLocationRelativeTo(null);
+            System.out.println(tk.toString());
+        } else {
+            System.err.println("Error: You need Login First!");
+        }
     }
 
     public static void DoiMatKhau(String pass) {
@@ -283,19 +287,23 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemQLThongKeActionPerformed
 
     private void jMenuItemQLHoaDonVaHDCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
-        if (quanLyHoaDon == null) {
-            quanLyHoaDon = new QuanLyHoaDon(); // Tạo một đối tượng mới cho lớp quản lý hoá đơn
-            jTabbedPaneDashboard.add("Quản Lý Hoá Đơn", quanLyHoaDon);
-            jTabbedPaneDashboard.setSelectedComponent(quanLyHoaDon);
-        }
-    }//GEN-LAST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
 
+            if (quanLyHoaDon == null) {
+                quanLyHoaDon = new QuanLyHoaDon(); // Tạo một đối tượng mới cho lớp quản lý hoá đơn
+                jTabbedPaneDashboard.add("Quản Lý Hoá Đơn", quanLyHoaDon);
+                jTabbedPaneDashboard.setSelectedComponent(quanLyHoaDon);
+            }
+    }//GEN-LAST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
+ 
     private void jMenuItemQLSPCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLSPCTActionPerformed
-        if (quanLySanPham == null) {
-            quanLySanPham = new QuanLySanPham();
-            jTabbedPaneDashboard.add("Quản Lý CT Sản Phẩm", quanLySanPham);
-            jTabbedPaneDashboard.setSelectedComponent(quanLySanPham);
-        }
+
+
+
+            if (quanLySanPham == null) {
+                quanLySanPham = new QuanLySanPham();
+                jTabbedPaneDashboard.add("Quản Lý CT Sản Phẩm", quanLySanPham);
+                jTabbedPaneDashboard.setSelectedComponent(quanLySanPham);
+            }
     }//GEN-LAST:event_jMenuItemQLSPCTActionPerformed
 
     private void jMenuItemDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDangXuatActionPerformed
