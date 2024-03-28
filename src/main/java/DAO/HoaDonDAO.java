@@ -17,7 +17,10 @@ public class HoaDonDAO {
 
     public ArrayList<HoaDon> getHD() {
         ArrayList<HoaDon> list = new ArrayList<>();
-        String sql = "select * from hoadon hd join HOADONCHITIET ct on hd.Id = ct.Idhd";
+        String sql = "SELECT *\n"
+                + "FROM HoaDon AS hd\n"
+                + "JOIN HoaDonChiTiet AS hct ON hd.Id = hct.Idhd\n"
+                + "JOIN SanPham AS sp ON hct.Idctsp = sp.Id";
         ResultSet rs = JDBCHelper.excuteQuery(sql);
         try {
             while (rs.next()) {
@@ -26,9 +29,8 @@ public class HoaDonDAO {
                 hd.setIdnv(rs.getString("idnv"));
                 hd.setIdkh(rs.getString("idkh"));
                 hd.setNgayTao(rs.getDate("ngaytao"));
-                hd.setNgayTao(rs.getDate("ngaytao"));
                 hd.setTenSP(rs.getString("ten"));
-                hd.setTongTien(rs.getInt("tongtien"));
+                hd.setTongTien(rs.getInt("Tongtien"));
                 list.add(hd);
             }
         } catch (Exception e) {
@@ -53,5 +55,4 @@ public class HoaDonDAO {
 //                hd.getNgayTao(), hd.getTrangThai());
 //        return row;
 //    }
-
 }

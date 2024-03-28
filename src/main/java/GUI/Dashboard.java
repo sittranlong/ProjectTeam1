@@ -269,9 +269,16 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemQLThongKeActionPerformed
 
     private void jMenuItemQLHoaDonVaHDCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQLHoaDonVaHDCTActionPerformed
+<<<<<<< HEAD
+        // TODO add your handling code here:
+        if(quanLyHoaDon==null){
+            quanLyHoaDon= new QuanLyHoaDon();
+            jTabbedPaneDashboard.add("Quản lý hóa đơn", quanLyHoaDon);
+=======
         if (quanLyHoaDon == null) {
             quanLyHoaDon = new QuanLyHoaDon(); // Tạo một đối tượng mới cho lớp quản lý hoá đơn
             jTabbedPaneDashboard.add("Quản Lý Hoá Đơn", quanLyHoaDon);
+>>>>>>> c7fe7433d136b9fcd57e6c7f16f93e9b25ab7544
             jTabbedPaneDashboard.setSelectedComponent(quanLyHoaDon);
         }
     }//GEN-LAST:event_jMenuItemQLHoaDonVaHDCTActionPerformed

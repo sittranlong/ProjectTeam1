@@ -6,6 +6,7 @@ package DATABASE;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Date;
 
 /**
  *
@@ -24,6 +25,10 @@ public class DatabaseHelper {
     }
 
     public static int excuteUpdate(String sql, String Mahd) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static int excuteUpdate(String sql, String idkh, String idnv, String mahd, Date ngayTao, int trangThai) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
