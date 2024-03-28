@@ -29,7 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
- * @author 
+ * @author
  */
 public class QuanLySanPham extends javax.swing.JFrame {
 
@@ -40,12 +40,13 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private String strAnh = "C:\\";
 
     public static void main(String args[]) {
-                java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QuanLySanPham().setVisible(true);
             }
         });
     }
+
     /**
      * Creates new form
      */
@@ -73,7 +74,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         }
     }
 
-    public void reset(){
+    public void reset() {
         txtMa.setText("");
         txtGia.setText("");
         txtMota.setText("");
@@ -81,7 +82,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         cbbChieuCao.setSelectedIndex(0);
         cbbKieu.setSelectedIndex(0);
         cbbMau.setSelectedIndex(0);
-        cbbSize.setSelectedIndex(0);        
+        cbbSize.setSelectedIndex(0);
         cbbSanPham.setSelectedIndex(0);
         cbbSanPham.setSelectedIndex(0);
         buttonGroup1.clearSelection();
@@ -89,18 +90,19 @@ public class QuanLySanPham extends javax.swing.JFrame {
         lblAnh.setIcon(null);
         list = ctspsi.getAll();
     }
+
     private void fillData(int index) {
         ChiTietSanPham ctsp = list.get(index);
         txtMa.setText(ctsp.getMactsp());
-        txtGia.setText(ctsp.getDongia()+ "");
-        txtSoLuong.setText(ctsp.getSoluong()+ "");
+        txtGia.setText(ctsp.getDongia() + "");
+        txtSoLuong.setText(ctsp.getSoluong() + "");
         txtMota.setText(ctsp.getMota());
-        cbbChieuCao.setSelectedItem(ctsp.getIdde()+ "");
+        cbbChieuCao.setSelectedItem(ctsp.getIdde() + "");
         cbbSanPham.setSelectedItem(ctsp.getIdsp());
         cbbKieu.setSelectedItem(ctsp.getIdkieu());
-        cbbMau.setSelectedItem(ctsp.getIdms());        
+        cbbMau.setSelectedItem(ctsp.getIdms());
         cbbSanPham.setSelectedItem(ctsp.getIdsp());
-        cbbSize.setSelectedItem(ctsp.getIdsize()+ "");
+        cbbSize.setSelectedItem(ctsp.getIdsize() + "");
         lblAnh.setIcon(resizeImage(String.valueOf(ctsp.getHinhanh())));
         int trangThai = ctsp.getTrangThai();
         if (trangThai == 0) {
@@ -111,12 +113,15 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
     }
 
-    public ImageIcon resizeImage(String imagePath) {
-        ImageIcon myImage = new ImageIcon(imagePath);
-        Image img = myImage.getImage();
-        Image newImage = img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(newImage);
-        return image;
+    private ImageIcon resizeImage(String imagePath) {
+        ImageIcon myImage = null;
+        if (imagePath != null && !imagePath.isEmpty()) {
+            myImage = new ImageIcon(imagePath);
+            Image img = myImage.getImage();
+            Image newImage = img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_SMOOTH);
+            myImage = new ImageIcon(newImage);
+        }
+        return myImage;
     }
 
     private void LoadCbbMS(List<String> list) {
@@ -167,7 +172,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             dcbm.addElement(string);
         }
     }
-    
+
     private void LoadCbbSP(List<String> list) {
         dcbm = (DefaultComboBoxModel) cbbSanPham.getModel();
         for (String string : list) {
@@ -961,29 +966,49 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 lblAnh.setIcon(resizeImage(strAnh));
             } else {
                 JOptionPane.showMessageDialog(this, "Bạn Chưa Chọn Ảnh!"
-                    + "Nếu Chưa Chọn Thì Hệ Thống Sẽ Chọn Ảnh Mặc Định");
+                        + "Nếu Chưa Chọn Thì Hệ Thống Sẽ Chọn Ảnh Mặc Định");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Bạn Chưa Chọn Ảnh!"
-                + "Nếu Chưa Chọn Thì Hệ Thống Sẽ Chọn Ảnh Mặc Định");
+                    + "Nếu Chưa Chọn Thì Hệ Thống Sẽ Chọn Ảnh Mặc Định");
         }
     }//GEN-LAST:event_btChonAnhActionPerformed
 
     private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
-        //        try {
-            //            // TODO add your handling code here:
-            //            JFileChooser jfc = new JFileChooser("C:\\Users\\Phan Loc\\Downloads\\PRO1041_DUAN1_BLOCK2 (1)\\src\\main\\resources");
-            //            jfc.showOpenDialog(null);
-            //            File file = jfc.getSelectedFile();
-            //            strAnh = file.getName();
-            //            Image img = ImageIO.read(file);
-            //            lblAnh.setText("");
-            //            int width = lblAnh.getWidth();
-            //            int height = lblAnh.getHeight();
-            //            lblAnh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
-            //        } catch (IOException ex) {
-            //            System.out.println("Error: " + ex.toString());
-            //        }
+        try {
+            JFileChooser jfc = new JFileChooser(".");
+            jfc.showOpenDialog(null);
+            File file = jfc.getSelectedFile();
+            if (file != null) {
+                strAnh = file.getName();
+                Image img = ImageIO.read(file);
+                lblAnh.setText("");
+                int width = lblAnh.getWidth();
+                int height = lblAnh.getHeight();
+                if (width > 0 && height > 0) {
+                    lblAnh.setIcon(resizeImage(file.getAbsolutePath()));
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.toString());
+        }
+        try {
+            JFileChooser jfc = new JFileChooser(".");
+            jfc.showOpenDialog(null);
+            File file = jfc.getSelectedFile();
+            if (file != null) {
+                strAnh = file.getName();
+                Image img = ImageIO.read(file);
+                lblAnh.setText("");
+                int width = lblAnh.getWidth();
+                int height = lblAnh.getHeight();
+                if (width > 0 && height > 0) {
+                    lblAnh.setIcon(resizeImage(file.getAbsolutePath()));
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.toString());
+        }
     }//GEN-LAST:event_lblAnhMouseClicked
 
     private void txtMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaActionPerformed
@@ -1271,10 +1296,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbSizeActionPerformed
 
-    
 
-   
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddCC;
     private javax.swing.JButton btAddKD;
