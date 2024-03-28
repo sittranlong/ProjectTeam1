@@ -17,10 +17,22 @@ public class HoaDonDAO {
 
     public ArrayList<HoaDon> getHD() {
         ArrayList<HoaDon> list = new ArrayList<>();
-        String sql = "SELECT *\n"
-                + "FROM HoaDon AS hd\n"
-                + "JOIN HoaDonChiTiet AS hct ON hd.Id = hct.Idhd\n"
-                + "JOIN SanPham AS sp ON hct.Idctsp = sp.Id";
+        String sql = "SELECT \n" +   
+"    HD.Mahd AS MaHoaDon,\n" +
+"    NV.Manv AS MaNhanVien,\n" +
+"    KH.Makh AS MaKhachHang,\n" +
+"    HD.NgayTao AS NgayTao,\n" +
+"    SP.Ten AS TenSanPham,\n" +
+"    SUM(HDC.Tongtien) AS TongTien\n" +
+"FROM \n" +
+"    HOADON HD\n" +
+"    INNER JOIN NHANVIEN NV ON HD.Idnv = NV.Id\n" +
+"    INNER JOIN KHACHHANG KH ON HD.Idkh = KH.Id\n" +
+"    INNER JOIN HOADONCHITIET HDC ON HD.Id = HDC.Idhd\n" +
+"    INNER JOIN CHITIETSANPHAM CTSP ON HDC.Idctsp = CTSP.Id\n" +
+"    INNER JOIN SANPHAM SP ON CTSP.Idsp = SP.Id\n" +
+"GROUP BY \n" +
+"    HD.Mahd, NV.Manv, KH.Makh, HD.NgayTao, SP.Ten";
         ResultSet rs = JDBCHelper.excuteQuery(sql);
         try {
             while (rs.next()) {
@@ -46,13 +58,13 @@ public class HoaDonDAO {
         row = DatabaseHelper.excuteUpdate(sql, Mahd);
         return row;
     }
+        public Integer themHD(HoaDon hd) {
+        int row;
+        String sql = "insert into HOADON(idkh,idnv,mahd,ngaytao,TrangThai)\n"
+                + "values (?, ?, ?)";
+        row = DatabaseHelper.excuteUpdate(sql, hd.getIdkh(), hd.getIdnv(), hd.getMahd(),
+                hd.getNgayTao(), hd.getTrangThai());
+        return row;
+    }
 
-//    public Integer themHD(HoaDon hd) {
-//        int row;
-//        String sql = "insert into HOADON(idkh,idnv,mahd,ngaytao,TrangThai)\n"
-//                + "values (?, ?, ?)";
-//        row = DatabaseHelper.excuteUpdate(sql, hd.getIdkh(), hd.getIdnv(), hd.getMahd(),
-//                hd.getNgayTao(), hd.getTrangThai());
-//        return row;
-//    }
 }
