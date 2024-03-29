@@ -122,4 +122,44 @@ public class NhanVienDAO {
         }
     }
 
+    public static ArrayList<NhanVien> searchNhanVien(String keyword) {
+        try {
+            ArrayList<NhanVien> resultList = new ArrayList<>();
+            Connection connection = DatabaseHelper.getConnection();
+
+            String sql = "SELECT * FROM dbo.NHANVIEN WHERE TrangThai = 1 AND (Ten LIKE ? OR Sdt LIKE ? OR Manv LIKE ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, "%" + keyword + "%");
+            preparedStatement.setString(2, "%" + keyword + "%");
+            preparedStatement.setString(3, "%" + keyword + "%");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.setId(UUID.fromString(resultSet.getString("Id")));
+                nhanVien.setMataiKhoan(resultSet.getString("MataiKhoan"));
+                nhanVien.setManv(resultSet.getString("Manv"));
+                nhanVien.setTen(resultSet.getString("Ten"));
+                nhanVien.setDiachi(resultSet.getString("Diachi"));
+                nhanVien.setGioitinh(resultSet.getString("Gioitinh"));
+                nhanVien.setNgaysinh(resultSet.getDate("Ngaysinh"));
+                nhanVien.setEmail(resultSet.getString("Email"));
+                nhanVien.setSdt(resultSet.getString("Sdt"));
+                nhanVien.setLuong(resultSet.getInt("Luong"));
+                nhanVien.setNgayTao(resultSet.getDate("NgayTao"));
+                nhanVien.setNgayChinhSua(resultSet.getDate("NgayChinhSua"));
+                nhanVien.setTrangThai(resultSet.getInt("TrangThai"));
+
+                resultList.add(nhanVien);
+            }
+
+            connection.close();
+            return resultList;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 }

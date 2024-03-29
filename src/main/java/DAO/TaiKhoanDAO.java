@@ -4,10 +4,13 @@
  */
 package DAO;
 
+import DATABASE.DatabaseHelper;
 import ENTITY.TaiKhoan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +24,34 @@ public class TaiKhoanDAO {
         this.connection = connection;
     }
 
+    public static ArrayList<TaiKhoan> getList() {
+        try {
+            ArrayList<TaiKhoan> list = new ArrayList<>();
+            Connection conn = DatabaseHelper.getConnection();
+            String sql = "SELECT * FROM [TAIKHOAN]";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+             while (rs.next()) {
+            TaiKhoan taiKhoan = new TaiKhoan();
+            taiKhoan.setMataikhoan(rs.getString("mataikhoan"));
+            taiKhoan.setTentaikhoan(rs.getString("tentaikhoan"));
+            taiKhoan.setChucvu(rs.getString("chucvu"));
+            taiKhoan.setPass(rs.getString("pass"));
+            taiKhoan.setNgayTao(rs.getDate("ngayTao"));
+            taiKhoan.setNgayChinhSua(rs.getDate("ngayChinhSua"));
+            taiKhoan.setTrangThai(rs.getInt("trangThai"));
+            list.add(taiKhoan);
+        }
+
+            conn.close();
+            return list;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
     public void insertTaiKhoan(TaiKhoan taiKhoan) throws SQLException {
         String sql = "INSERT INTO TAIKHOAN (Mataikhoan, Tentaikhoan, Chucvu, Pass, NgayTao, NgayChinhSua, TrangThai) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -34,5 +65,4 @@ public class TaiKhoanDAO {
         statement.executeUpdate();
     }
 
-    // Add other methods for updating, deleting, and querying TaiKhoan table
 }
