@@ -101,7 +101,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jLabelHoaDonCho = new javax.swing.JLabel();
         jLabelGioHang = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableGioHang = new javax.swing.JTable();
+        tblGioHang = new javax.swing.JTable();
         jLabelSanPham = new javax.swing.JLabel();
         jLabelSDTKhachHang = new javax.swing.JLabel();
         jTextFieldSDTKhachHang = new javax.swing.JTextField();
@@ -159,7 +159,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
         jLabelGioHang.setText("Giỏ Hàng");
 
-        jTableGioHang.setModel(new javax.swing.table.DefaultTableModel(
+        tblGioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -170,12 +170,12 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 "Mã sản phẩm", "Tên sản phẩm", "Size", "Đơn giá", "Số lượng"
             }
         ));
-        jTableGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableGioHangMouseClicked(evt);
+                tblGioHangMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableGioHang);
+        jScrollPane2.setViewportView(tblGioHang);
 
         jLabelSanPham.setText("Sản Phẩm");
 
@@ -488,10 +488,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         int rowIndex = tblSanPham.getSelectedRow();
         DefaultTableModel model1 = (DefaultTableModel) tblSanPham.getModel();
 
-// Chỉ định chỉ số các cột bạn quan tâm
+        // Chỉ định chỉ số các cột bạn quan tâm
         int[] columnsOfInterest = {0, 1, 5, 4}; // Ví dụ: lấy cột 0, 1, 5 và 4
 
-// Kiểm tra xem có dòng được chọn không
+        // Kiểm tra xem có dòng được chọn không
         if (rowIndex != -1) {
             // Lấy dữ liệu từ các cột quan tâm
             Object[] rowData = new Object[columnsOfInterest.length];
@@ -506,9 +506,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 try {
                     int quantity = Integer.parseInt(quantityString);
                     int currentQuantity = (int) model1.getValueAt(rowIndex, columnsOfInterest[3]); // Lấy dữ liệu từ cột số lượng
-                    if (quantity <= currentQuantity) {
+                    if (quantity <= currentQuantity && quantity <= 30) { // Kiểm tra số lượng nhập vào không vượt quá 30
                         // Tạo DefaultTableModel cho jTableGioHang nếu chưa có
-                        DefaultTableModel model2 = (DefaultTableModel) jTableGioHang.getModel();
+                        DefaultTableModel model2 = (DefaultTableModel) tblGioHang.getModel();
                         if (model2.getRowCount() == 0) {
                             // Thêm các cột vào bảng jTableGioHang
                             for (int i = 0; i < columnsOfInterest.length; i++) {
@@ -525,7 +525,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                         newData[rowData.length] = quantity; // Thêm số lượng nhập vào cuối mảng newData
                         model2.insertRow(0, newData); // Thêm dữ liệu mới vào bảng
                     } else {
-                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải nhỏ hơn hoặc bằng số lượng hiện có của sản phẩm", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải nhỏ hơn hoặc bằng 30 và không vượt quá số lượng hiện có của sản phẩm", "Lỗi", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -536,14 +536,14 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
-    private void jTableGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGioHangMouseClicked
+    private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGioHangMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jTableGioHangMouseClicked
+
+    }//GEN-LAST:event_tblGioHangMouseClicked
 
     private void jButtonTreoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreoHoaDonActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButtonTreoHoaDonActionPerformed
 
     private void jComboBoxHinhThucThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHinhThucThanhToanActionPerformed
@@ -561,7 +561,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void jButtonTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaoHoaDonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonTaoHoaDonActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -596,7 +595,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTableGioHang;
     private javax.swing.JTable jTableHoaDonCho;
     private javax.swing.JTextField jTextFieldMaHoaDon;
     private javax.swing.JTextField jTextFieldSDTKhachHang;
@@ -606,6 +604,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldTienKhachDua;
     private javax.swing.JTextField jTextFieldTienThua;
     private javax.swing.JTextField jTextFieldTongTien;
+    private javax.swing.JTable tblGioHang;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtTk;
     // End of variables declaration//GEN-END:variables

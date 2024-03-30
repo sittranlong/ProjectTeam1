@@ -17,7 +17,7 @@ public class HoaDonDAO {
 
     public ArrayList<HoaDon> getHD() {
         ArrayList<HoaDon> list = new ArrayList<>();
-        String sql = "SELECT \n" +   
+        String sql = " SELECT \n" +
 "    HD.Mahd AS MaHoaDon,\n" +
 "    NV.Manv AS MaNhanVien,\n" +
 "    KH.Makh AS MaKhachHang,\n" +
@@ -32,7 +32,7 @@ public class HoaDonDAO {
 "    INNER JOIN CHITIETSANPHAM CTSP ON HDC.Idctsp = CTSP.Id\n" +
 "    INNER JOIN SANPHAM SP ON CTSP.Idsp = SP.Id\n" +
 "GROUP BY \n" +
-"    HD.Mahd, NV.Manv, KH.Makh, HD.NgayTao, SP.Ten";
+"     HD.Mahd, NV.Manv, KH.Makh, HD.NgayTao, SP.Ten";
         ResultSet rs = JDBCHelper.excuteQuery(sql);
         try {
             while (rs.next()) {
