@@ -45,10 +45,10 @@ public class Dashboard extends javax.swing.JFrame {
 
     public void CapNhatDashboard() {
         if (quanLyBanHang != null) {
-
+            
         }
         if (quanLyDoiTra != null) {
-
+            
         }
         if (quanLyHoaDon != null) {
 
@@ -57,7 +57,10 @@ public class Dashboard extends javax.swing.JFrame {
 
         }
         if (quanLyNhanVien != null) {
-
+            quanLyNhanVien.LoadList();
+            quanLyNhanVien.ClearForm();
+            quanLyNhanVien.FillTable();
+            quanLyNhanVien.selectFirstRow();
         }
         if (quanLySanPham != null) {
 

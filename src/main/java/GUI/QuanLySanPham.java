@@ -235,7 +235,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         jLabel7.setText("Ảnh Sản Phẩm");
 
-        jLabel8.setText("�?ế Giày");
+        jLabel8.setText("�?ế Giày");
 
         jLabel9.setText("Size");
 
@@ -280,7 +280,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
             }
         });
 
-        btChonAnh.setText("Ch�?n Ảnh");
+        btChonAnh.setText("Ch�?n Ảnh");
         btChonAnh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btChonAnhActionPerformed(evt);
@@ -541,7 +541,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã CTSP", "Tên Sản Phẩm", "Kiểu Dáng", "Size", "Màu Sắc", "Chi�?u Cao �?ế", "Giá", "Số Lượng", "Mô Tả", "Trạng Thái"
+                "Mã CTSP", "Tên Sản Phẩm", "Kiểu Dáng", "Size", "Màu Sắc", "Chi�?u Cao �?ế", "Giá", "Số Lượng", "Mô Tả", "Trạng Thái"
             }
         ));
         tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -593,19 +593,19 @@ public class QuanLySanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             JFileChooser jfc = new JFileChooser("C:\\");
-            jfc.setDialogTitle("Ch�?n Ảnh :");
+            jfc.setDialogTitle("Ch�?n Ảnh :");
             jfc.showOpenDialog(null);
             File fl = jfc.getSelectedFile();
             strAnh = fl.getAbsolutePath();
             if (strAnh != null) {
                 lblAnh.setIcon(resizeImage(strAnh));
             } else {
-                JOptionPane.showMessageDialog(this, "Bạn Chưa Ch�?n Ảnh!"
-                    + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
+                JOptionPane.showMessageDialog(this, "Bạn Chưa Ch�?n Ảnh!"
+                    + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Bạn Chưa Ch�?n Ảnh!"
-                + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
+            JOptionPane.showMessageDialog(this, "Bạn Chưa Ch�?n Ảnh!"
+                + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
         }
     }//GEN-LAST:event_btChonAnhActionPerformed
 
@@ -626,21 +626,21 @@ public class QuanLySanPham extends javax.swing.JPanel {
         }
 
         if (ma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã không được b�? trống");
+            JOptionPane.showMessageDialog(this, "Mã không được b�? trống");
 //        } else if (sanPham.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Tên không được b�? trống");
+//            JOptionPane.showMessageDialog(this, "Tên không được b�? trống");
 //        } else if (!sanPham.matches("[A-Z a-z]+")) {
 //            JOptionPane.showMessageDialog(this, "Tên phải là chữ");
         } else if (soLuong.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Số lượng không được b�? trống");
+            JOptionPane.showMessageDialog(this, "Số lượng không được b�? trống");
         } else if (!soLuong.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Số lượng phải là số");
         } else if (donGia.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "�?ơn giá không được b�? trống");
+            JOptionPane.showMessageDialog(this, "�?ơn giá không được b�? trống");
         } else if (!donGia.matches("\\d+")) {
-            JOptionPane.showMessageDialog(this, "�?ơn giá phải là số");
+            JOptionPane.showMessageDialog(this, "�?ơn giá phải là số");
         } else if (moTa.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mô tả không được b�? trống");
+            JOptionPane.showMessageDialog(this, "Mô tả không được b�? trống");
         } else {
             ChiTietSanPham ctsp = new ChiTietSanPham(sanPham, mauSac, kieuDang, size, deGiay, ma, Integer.parseInt(donGia), Integer.parseInt(soLuong), moTa, Integer.parseInt(trangThai));
 
@@ -755,7 +755,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
             cell.setCellValue("Màu Sắc");
 
             cell = row.createCell(5, CellType.STRING);
-            cell.setCellValue("Chi�?u Cao �?ế");
+            cell.setCellValue("Chi�?u Cao �?ế");
 
             cell = row.createCell(6, CellType.STRING);
             cell.setCellValue("Giá");
@@ -834,10 +834,17 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void btTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTKActionPerformed
         // TODO add your handling code here:
-        String tk = txtTK.getText();
+        
+        String tk = txtTK.getText(); // Lấy dữ liệu từ trường văn bản
+
+    // Kiểm tra xem trường văn bản có dữ liệu hay không
+    if (!tk.isEmpty()) { // Nếu có dữ liệu
         ctspsi.Tk(tk);
         list = ctspsi.Tk(tk);
         showData(list);
+    } else { // Nếu không có dữ liệu
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu để tìm"); // Hiển thị thông báo
+    }
     }//GEN-LAST:event_btTKActionPerformed
 
     private void cbbKDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbKDActionPerformed

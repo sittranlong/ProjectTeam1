@@ -56,7 +56,7 @@ public class TaiKhoan {
         this.chucvu = chucvu;
     }
 
-    public String getPass() {
+        public String getPass() {
         return pass;
     }
 
