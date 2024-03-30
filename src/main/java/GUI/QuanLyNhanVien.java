@@ -28,13 +28,20 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         LoadList();
         FillTable();
     }
+    
+    public void selectFirstRow() {
+        if (jTableDanhSachNhanVien.getRowCount() > 0) {
+            jTableDanhSachNhanVien.setRowSelectionInterval(0, 0);
+            FillForm();
+        }
+    }
 
-    private void LoadList() {
+    void LoadList() {
         listN = NhanVienDAO.getList();
         listT = TaiKhoanDAO.getList();
     }
 
-    private void FillTable() {
+    void FillTable() {
         DefaultTableModel dtm = (DefaultTableModel) jTableDanhSachNhanVien.getModel();
         dtm.setRowCount(0);
         for (NhanVien l : listN) {
