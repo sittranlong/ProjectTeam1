@@ -6,6 +6,7 @@ package DAO;
 
 import DATABASE.DatabaseHelper;
 import ENTITY.ChiTietSanPham;
+import ENTITY.HoaDon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -214,6 +215,8 @@ public class BanHangDao {
         }
         return list;
     }
+    
+    
 
 //     public List<ChiTietSanPham> TkCTSP(String ten) {
 //        ArrayList<ChiTietSanPham> listLh = new ArrayList<>();
@@ -245,4 +248,23 @@ public class BanHangDao {
 //        }
 //        return listLh;
 //    }
+    
+    public ArrayList<HoaDon> getListTreoHD(){
+        ArrayList<HoaDon> list = new ArrayList<> ();
+        String sql = "select Mahd, hd.Ngaytao, ct.Tongtien, hd.TrangThai from hoadon hd join HOADONCHITIET ct on hd.Id = ct.Idhd";
+        ResultSet rs = JDBCHelper.excuteQuery ( sql );
+        try {
+            while ( rs.next ()) {                
+                HoaDon hd = new HoaDon ();
+                hd.setMahd (rs.getString ( "mahd"));
+                hd.setNgayTao ( rs.getDate ( "ngaytao"));
+                hd.setTongTien ( rs.getInt ( "tongtien"));
+                hd.setTrangThai ( rs.getInt ( "trangthai"));
+                list.add ( hd );
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ();
+        }
+        return list;
+}
 }
