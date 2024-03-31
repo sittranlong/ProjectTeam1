@@ -155,6 +155,11 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 "Mã Hóa Đơn", "Ngày Tạo Hóa Đơn", "Tổng Tiền", "Trạng Thái"
             }
         ));
+        jTableHoaDonCho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableHoaDonChoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableHoaDonCho);
 
         jLabelHoaDonCho.setText("Hóa Đơn Chờ");
@@ -604,6 +609,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void jButtonTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaoHoaDonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonTaoHoaDonActionPerformed
+
+    private void jTableHoaDonChoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHoaDonChoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableHoaDonChoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
