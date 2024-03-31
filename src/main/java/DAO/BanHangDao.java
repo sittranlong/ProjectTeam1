@@ -214,6 +214,8 @@ public class BanHangDao {
         }
         return list;
     }
+    
+    
 
 //     public List<ChiTietSanPham> TkCTSP(String ten) {
 //        ArrayList<ChiTietSanPham> listLh = new ArrayList<>();
