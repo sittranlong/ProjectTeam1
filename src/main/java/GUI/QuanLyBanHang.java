@@ -596,10 +596,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
-    private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {                                        
+    private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
 
-    }                                          
+    }
 
 
     private void jButtonTreoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreoHoaDonActionPerformed
@@ -720,13 +720,14 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     }
 
     // Quản lý kết nối và tài nguyên một cách an toàn
-    private boolean createNewInvoice(String idHoaDon, String maHoaDon, Date ngayTao) throws Exception {
+    private boolean createNewInvoice(String idHoaDon, String maHoaDon, Date ngayTao, Integer trangThai) throws Exception {
         try (Connection connection = DatabaseHelper.getConnection()) {
-            String sql = "INSERT INTO HOADON (Id, Mahd, Ngaytao) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO HOADON (Id, Mahd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, idHoaDon);
                 preparedStatement.setString(2, maHoaDon);
                 preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
+                preparedStatement.setInt(4, trangThai);
                 int rowsAffected = preparedStatement.executeUpdate();
                 return rowsAffected > 0;
             }
@@ -736,13 +737,14 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         }
     }
 
-    public boolean createNewInvoiceDetail(String idHoaDonChiTiet, String idHoaDon, Date ngayTao) throws Exception {
+    public boolean createNewInvoiceDetail(String idHoaDonChiTiet, String idHoaDon, Date ngayTao, Integer trangThai) throws Exception {
         try (Connection connection = DatabaseHelper.getConnection()) {
-            String sql = "INSERT INTO HOADONCHITIET (Id, Idhd, Ngaytao) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO HOADONCHITIET (Id, Idhd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, idHoaDon);
                 preparedStatement.setString(2, idHoaDon);
                 preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
+                preparedStatement.setInt(4, trangThai);
                 int rowsAffected = preparedStatement.executeUpdate();
                 return rowsAffected > 0;
             }
@@ -762,14 +764,16 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             String idHoaDon = UUID.randomUUID().toString();
             String maHoaDon = "HD" + UUID.randomUUID().toString();
             Date ngayTao = new Date();
+            Integer trangThai = 0;
             // Tạo hóa đơn CT mới và lưu vào cơ sở dữ liệu
             String idHoaDonCT = UUID.randomUUID().toString();
             String idMaHoaDon = idHoaDon;
             Date ngayTaoCT = ngayTao;
-            boolean success1 = createNewInvoice(idHoaDon, maHoaDon, ngayTao);
-            boolean success2 = createNewInvoiceDetail(idHoaDonCT, idMaHoaDon, ngayTaoCT); // Sửa ở đây
+            Integer trangThaiCT = 0;
+            boolean success1 = createNewInvoice(idHoaDon, maHoaDon, ngayTao, trangThai);
+            boolean success2 = createNewInvoiceDetail(idHoaDonCT, idMaHoaDon, ngayTaoCT, trangThaiCT); // Sửa ở đây
             if (success1 && success2) {
-                JOptionPane.showMessageDialog(this, "Hóa đơn mới đã được tạo thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//                JOptionPane.showMessageDialog(this, "Hóa đơn mới đã được tạo thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 jTextFieldMaHoaDon.setText(maHoaDon);
                 jTextFieldTenNhanVien.setText("");
                 jTextFieldTongTien.setText("");
