@@ -54,7 +54,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         tblSanPham.setEnabled(false);
         banHangDao = new BanHangDao();
         dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
-        dtmGioHang = (DefaultTableModel) jTableGioHang.getModel();
+        dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
         dtmHoaDonCho = (DefaultTableModel) jTableHoaDonCho.getModel();
         loadSanPham();
         tblSanPham.setEnabled(false);
@@ -88,7 +88,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jLabelHoaDonCho = new javax.swing.JLabel();
         jLabelGioHang = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableGioHang = new javax.swing.JTable();
+        tblGioHang = new javax.swing.JTable();
         jLabelSanPham = new javax.swing.JLabel();
         jLabelSDTKhachHang = new javax.swing.JLabel();
         jTextFieldSDTKhachHang = new javax.swing.JTextField();
@@ -148,7 +148,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jLabelGioHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelGioHang.setText("Giỏ Hàng");
 
-        jTableGioHang.setModel(new javax.swing.table.DefaultTableModel(
+        tblGioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -159,12 +159,12 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 "Mã hóa đơn", "Tên sản phẩm", "Size", "Đơn giá", "Số lượng"
             }
         ));
-        jTableGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableGioHangMouseClicked(evt);
+                tblGioHangMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableGioHang);
+        jScrollPane2.setViewportView(tblGioHang);
 
         jLabelSanPham.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelSanPham.setText("Sản Phẩm");
@@ -548,10 +548,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         int rowIndex = tblSanPham.getSelectedRow();
         DefaultTableModel model1 = (DefaultTableModel) tblSanPham.getModel();
 
-// Chỉ định chỉ số các cột bạn quan tâm
+        // Chỉ định chỉ số các cột bạn quan tâm
         int[] columnsOfInterest = {0, 1, 5, 4}; // Ví dụ: lấy cột 0, 1, 5 và 4
 
-// Kiểm tra xem có dòng được chọn không
+        // Kiểm tra xem có dòng được chọn không
         if (rowIndex != -1) {
             // Lấy dữ liệu từ các cột quan tâm
             Object[] rowData = new Object[columnsOfInterest.length];
@@ -566,9 +566,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 try {
                     int quantity = Integer.parseInt(quantityString);
                     int currentQuantity = (int) model1.getValueAt(rowIndex, columnsOfInterest[3]); // Lấy dữ liệu từ cột số lượng
-                    if (quantity <= currentQuantity) {
+                    if (quantity <= currentQuantity && quantity <= 30) { // Kiểm tra số lượng nhập vào không vượt quá 30
                         // Tạo DefaultTableModel cho jTableGioHang nếu chưa có
-                        DefaultTableModel model2 = (DefaultTableModel) jTableGioHang.getModel();
+                        DefaultTableModel model2 = (DefaultTableModel) tblGioHang.getModel();
                         if (model2.getRowCount() == 0) {
                             // Thêm các cột vào bảng jTableGioHang
                             for (int i = 0; i < columnsOfInterest.length; i++) {
@@ -585,7 +585,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                         newData[rowData.length] = quantity; // Thêm số lượng nhập vào cuối mảng newData
                         model2.insertRow(0, newData); // Thêm dữ liệu mới vào bảng
                     } else {
-                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải nhỏ hơn hoặc bằng số lượng hiện có của sản phẩm", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải nhỏ hơn hoặc bằng 30 và không vượt quá số lượng hiện có của sản phẩm", "Lỗi", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -596,36 +596,15 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
-    private void jTableGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGioHangMouseClicked
+    private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {                                        
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jTableGioHangMouseClicked
+    }                                          
+
 
     private void jButtonTreoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreoHoaDonActionPerformed
         // TODO add your handling code here:
-        int row = jTableGioHang.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng nào để treo hóa đơn");
-            return;
-        }
 
-        // Lấy dữ liệu từ dòng đã chọn
-        DefaultTableModel gioHangModel = (DefaultTableModel) jTableGioHang.getModel();
-        Object[] rowData = new Object[gioHangModel.getColumnCount()];
-        for (int i = 0; i < rowData.length; i++) {
-            rowData[i] = gioHangModel.getValueAt(row, i);
-        }
-
-        // Thêm dữ liệu vào bảng hóa đơn chờ ở vị trí đầu tiên
-        DefaultTableModel hoaDonModel = (DefaultTableModel) jTableHoaDonCho.getModel();
-        hoaDonModel.insertRow(0, rowData);
-
-        // Xóa dòng đã chọn từ bảng giỏ hàng
-        gioHangModel.removeRow(row);
-        List<ChiTietSanPham> gioHang = new ArrayList<>();
-
-        loadHoaDonCho(gioHang);
-        dtmGioHang.setRowCount(0);
     }//GEN-LAST:event_jButtonTreoHoaDonActionPerformed
 
     private void jComboBoxHinhThucThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHinhThucThanhToanActionPerformed
@@ -654,10 +633,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             PreparedStatement preparedStatementHoaDonChiTiet = connection.prepareStatement(sqlHoaDonChiTiet);
 
             // Lưu từng dòng trong jTableGioHang vào cơ sở dữ liệu
-            for (int i = 0; i < jTableGioHang.getRowCount(); i++) {
-                String maSanPham = jTableGioHang.getValueAt(i, 0).toString();
-                int soLuong = Integer.parseInt(jTableGioHang.getValueAt(i, 2).toString());
-                double donGia = Double.parseDouble(jTableGioHang.getValueAt(i, 3).toString());
+            for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+                String maSanPham = tblGioHang.getValueAt(i, 0).toString();
+                int soLuong = Integer.parseInt(tblGioHang.getValueAt(i, 2).toString());
+                double donGia = Double.parseDouble(tblGioHang.getValueAt(i, 3).toString());
                 preparedStatementHoaDonChiTiet.setString(1, jTextFieldMaHoaDon.getText()); // Mã hóa đơn
                 preparedStatementHoaDonChiTiet.setString(2, maSanPham); // Mã sản phẩm
                 preparedStatementHoaDonChiTiet.setInt(3, soLuong); // Số lượng
@@ -783,6 +762,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             String idHoaDon = UUID.randomUUID().toString();
             String maHoaDon = "HD" + UUID.randomUUID().toString();
             Date ngayTao = new Date();
+            // Tạo hóa đơn CT mới và lưu vào cơ sở dữ liệu
             String idHoaDonCT = UUID.randomUUID().toString();
             String idMaHoaDon = idHoaDon;
             Date ngayTaoCT = ngayTao;
@@ -852,7 +832,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTableGioHang;
     private javax.swing.JTable jTableHoaDonCho;
     private javax.swing.JTextField jTextFieldMaHoaDon;
     private javax.swing.JTextField jTextFieldSDTKhachHang;
@@ -861,6 +840,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldTienKhachDua;
     private javax.swing.JTextField jTextFieldTienThua;
     private javax.swing.JTextField jTextFieldTongTien;
+    private javax.swing.JTable tblGioHang;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtTk;
     // End of variables declaration//GEN-END:variables
