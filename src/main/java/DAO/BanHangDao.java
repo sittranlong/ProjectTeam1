@@ -6,6 +6,7 @@ package DAO;
 
 import DATABASE.DatabaseHelper;
 import ENTITY.ChiTietSanPham;
+import ENTITY.HoaDon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,8 +57,7 @@ public class BanHangDao {
                 + "                         SANPHAM SP ON CTSP.Idsp = SP.Id INNER JOIN\n"
                 + "                         SIZE S ON CTSP.Idsize = S.Id Where SP.TEN =? OR CTSP.MACTSP = ?";
         try (
-                Connection con = DatabaseHelper.getConnection ();  
-                PreparedStatement ps = con.prepareStatement ( sql ) ) {
+                Connection con = DatabaseHelper.getConnection ();  PreparedStatement ps = con.prepareStatement ( sql ) ) {
             ps.setObject ( 1 , ten );
             ps.setObject ( 2 , ten );
             ResultSet rs = ps.executeQuery ();
@@ -214,8 +214,6 @@ public class BanHangDao {
         }
         return list;
     }
-    
-    
 
 //     public List<ChiTietSanPham> TkCTSP(String ten) {
 //        ArrayList<ChiTietSanPham> listLh = new ArrayList<>();
@@ -247,4 +245,23 @@ public class BanHangDao {
 //        }
 //        return listLh;
 //    }
+    public ArrayList<HoaDon> getListTreoHD () {
+        ArrayList<HoaDon> list = new ArrayList<> ();
+        String sql = "select Mahd, hd.Ngaytao, ct.Tongtien, hd.TrangThai from hoadon hd join HOADONCHITIET ct on hd.Id = ct.Idhd\n"
+                + "where hd.TrangThai = 0";
+        ResultSet rs = JDBCHelper.excuteQuery ( sql );
+        try {
+            while ( rs.next () ) {
+                HoaDon hd = new HoaDon ();
+                hd.setMahd ( rs.getString ( "mahd" ) );
+                hd.setNgayTao ( rs.getDate ( "ngaytao" ) );
+                hd.setTongTien ( rs.getInt ( "tongtien" ) );
+                hd.setTrangThai ( rs.getInt ( "trangthai" ) );
+                list.add ( hd );
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ();
+        }
+        return list;
+    }
 }
