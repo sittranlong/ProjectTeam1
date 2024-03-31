@@ -608,6 +608,11 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
     private void jButtonTreoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreoHoaDonActionPerformed
         // TODO add your handling code here:
+        int row = tblGioHang.getSelectedRow ();
+        if ( row < 0) {
+            JOptionPane.showMessageDialog ( this, "Bạn chưa chọn dòng để treo hóa đơn");
+            return;
+        }
         dtmHoaDonCho.setRowCount ( 0);
         ArrayList<HoaDon> list = ctspsi.getListTreoHD ();
         for ( HoaDon hd : list ) {
@@ -615,9 +620,12 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 hd.getMahd (),
                 hd.getNgayTao (),
                 hd.getTongTien (),
-                hd.getTrangThai () == 0 ? "Đã thanh toán" : "Chưa thanh toán"
+                hd.getTrangThai () == 0 ? "Chưa thanh toán" : "Đã thanh toán"
             });
-        }
+        }        
+        // Xóa dòng đã chọn từ bảng giỏ hàng
+        DefaultTableModel gioHangModel = ( DefaultTableModel ) tblGioHang.getModel ();
+        gioHangModel.removeRow ( 0);
     }//GEN-LAST:event_jButtonTreoHoaDonActionPerformed
 
     private void jComboBoxHinhThucThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHinhThucThanhToanActionPerformed
