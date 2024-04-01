@@ -784,7 +784,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             String idHoaDon = UUID.randomUUID().toString();
             String maHoaDon = "HD" + UUID.randomUUID().toString();
             Date ngayTao = new Date();
-            Integer trangThai = 0;
+            Integer trangThai = 1;
             // Tạo hóa đơn CT mới và lưu vào cơ sở dữ liệu
             String idHoaDonCT = UUID.randomUUID().toString();
             String idMaHoaDon = idHoaDon;
