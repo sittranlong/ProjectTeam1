@@ -23,6 +23,11 @@ public class KhachHang {
 
     // Các phương thức getter và setter
 
+    public KhachHang(String ten, String sdt) {
+        this.ten = ten;
+        this.sdt = sdt;
+    }
+    
     public KhachHang() {
     }
 

@@ -32,20 +32,20 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabelTenKhachHang" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldTenKhachHang" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="txtTenKhachHang" min="-2" pref="114" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jButtonTreoHoaDon" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButtonThemMoiKhachHang" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <Component id="btnAddnew" min="-2" pref="103" max="-2" attributes="0"/>
                                           <Component id="jButtonTaoHoaDon" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabelSDTKhachHang" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldSDTKhachHang" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="txtSDTKhachHang" min="-2" pref="114" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButtonTimKiemKhachHang" min="-2" pref="103" max="-2" attributes="0"/>
+                                      <Component id="btnTimKiem" min="-2" pref="103" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -151,8 +151,8 @@
                           <Component id="jLabelTenNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldTenNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelSDTKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldSDTKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonTimKiemKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSDTKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -196,8 +196,8 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButtonThemMoiKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAddnew" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButtonTreoHoaDon" min="-2" max="-2" attributes="0"/>
@@ -385,16 +385,16 @@
         <Property name="text" type="java.lang.String" value="SDT Kh&#xe1;ch H&#xe0;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldSDTKhachHang">
+    <Component class="javax.swing.JTextField" name="txtSDTKhachHang">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTenKhachHang">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xea;n Kh&#xe1;ch H&#xe0;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTenKhachHang">
+    <Component class="javax.swing.JTextField" name="txtTenKhachHang">
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonTimKiemKhachHang">
+    <Component class="javax.swing.JButton" name="btnTimKiem">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
       </Properties>
@@ -407,10 +407,13 @@
         <Property name="text" type="java.lang.String" value="Kh&#xe1;ch H&#xe0;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonThemMoiKhachHang">
+    <Component class="javax.swing.JButton" name="btnAddnew">
       <Properties>
         <Property name="text" type="java.lang.String" value="Th&#xea;m M&#x1edb;i"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddnewActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonTreoHoaDon">
       <Properties>
