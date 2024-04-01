@@ -3,63 +3,62 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package GUI;
+
 import DAO.KhachHangDAO;
-import DAO.KieuDangDAO;
 import ENTITY.KhachHang;
-import ENTITY.KieuDang;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Phan Loc
  */
 public class QuanLyKhachHang extends javax.swing.JPanel {
 
-     private KhachHangDAO kds = new KhachHangDAO();
+    private KhachHangDAO kds = new KhachHangDAO();
     private DefaultTableModel dtm = new DefaultTableModel();
-   private List<KhachHang> listDg = new ArrayList<>();
+    private List<KhachHang> listDg = new ArrayList<>();
+
     /**
      * Creates new form QuanLyKhachHang
      */
     public QuanLyKhachHang() {
         initComponents();
         jTable1.setModel(dtm);
-        String[] tieuDe = {"Mã Khách Hàng","Tên Khách Hàng","Địa Chỉ","Số Điện Thoại"};
+        String[] tieuDe = {"Mã Khách Hàng", "Tên Khách Hàng", "Địa Chỉ", "Số Điện Thoại"};
         dtm.setColumnIdentifiers(tieuDe);
         listDg = kds.getAll();
         showData(listDg);
     }
 
-    
-    public void showData(List<KhachHang> list){
+    public void showData(List<KhachHang> list) {
         dtm.setRowCount(0);
         for (KhachHang deGiayJPN : list) {
-            dtm.addRow(new Object[] {deGiayJPN.getMakh(), deGiayJPN.getTen(),deGiayJPN.getDiachi(), deGiayJPN.getSdt()});
+            dtm.addRow(new Object[]{deGiayJPN.getMakh(), deGiayJPN.getTen(), deGiayJPN.getDiachi(), deGiayJPN.getSdt()});
         }
     }
-    
-    public void reset(){
+
+    public void reset() {
         txtMa.setText("");
         txtTen.setText("");
         txtDiaChi.setText("");
         txtSdt.setText("");
-                txtTK.setText("");
-                listDg = kds.getAll();
-                showData(listDg);
-
+        txtTK.setText("");
+        listDg = kds.getAll();
+        showData(listDg);
 
     }
-    
-    private void fill(int index){
+
+    private void fill(int index) {
         KhachHang kh = listDg.get(index);
         txtMa.setText(kh.getMakh());
         txtTen.setText(kh.getTen());
         txtDiaChi.setText(kh.getDiachi());
         txtSdt.setText(kh.getSdt());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -300,8 +299,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         } else if (sdt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Số điện thoại không được bỏ trống");
         } else {
-                KhachHang kh = new KhachHang(ma, ten, diaChi, sdt);
-         boolean result = kds.Add(kh);
+            KhachHang kh = new KhachHang(ma, ten, diaChi, sdt);
+            boolean result = kds.Add(kh);
             if (result) {
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
                 listDg = kds.getAll();
@@ -309,7 +308,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 reset();
             } else {
                 JOptionPane.showMessageDialog(this, "Thêm thất bại");
-            }}
+            }
+        }
     }//GEN-LAST:event_btAdd2ActionPerformed
 
     private void btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaActionPerformed
@@ -322,14 +322,14 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         KhachHang kd = new KhachHang(ten, ma, diaChi, sdt);
         boolean result = kds.Update(kd, ma);
-            if (result) {
-                JOptionPane.showMessageDialog(this, "Sửa thành công");
-                listDg = kds.getAll();
-                showData(listDg);
-                reset();
-            } else {
-                JOptionPane.showMessageDialog(this, "Sửa thất bại");
-            }
+        if (result) {
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+            listDg = kds.getAll();
+            showData(listDg);
+            reset();
+        } else {
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
+        }
     }//GEN-LAST:event_btSuaActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
@@ -338,15 +338,16 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, kds.delete(ma));
         listDg = kds.getAll();
         showData(listDg);
-        reset();boolean result = kds.delete(ma);
-            if (result) {
-                JOptionPane.showMessageDialog(this, "Xóa thành công");
-                listDg = kds.getAll();
-                showData(listDg);
-                reset();
-            } else {
-                JOptionPane.showMessageDialog(this, "Xóa thất bại");
-            }
+        reset();
+        boolean result = kds.delete(ma);
+        if (result) {
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            listDg = kds.getAll();
+            showData(listDg);
+            reset();
+        } else {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
     }//GEN-LAST:event_btXoaActionPerformed
 
     private void btBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBack1ActionPerformed
@@ -355,9 +356,9 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         txtTen.setText("");
         txtDiaChi.setText("");
         txtSdt.setText("");
-                txtTK.setText("");
-                listDg = kds.getAll();
-                showData(listDg);
+        txtTK.setText("");
+        listDg = kds.getAll();
+        showData(listDg);
     }//GEN-LAST:event_btBack1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
