@@ -7,6 +7,8 @@ package DAO;
 import DATABASE.DatabaseHelper;
 import ENTITY.ChiTietSanPham;
 import ENTITY.HoaDon;
+import ENTITY.HoaDonChiTiet;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -258,6 +260,37 @@ public class BanHangDao {
                 hd.setTongTien ( rs.getInt ( "tongtien" ) );
                 hd.setTrangThai ( rs.getInt ( "trangthai" ) );
                 list.add ( hd );
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ();
+        }
+        return list;
+    }
+
+    public ArrayList<HoaDonChiTiet> getHDCtoGH () {
+        ArrayList<HoaDonChiTiet> list = new ArrayList<> ();
+        String sql = "	SELECT\n"
+                + "    hd.Mahd ,\n"
+                + "    sp.Ten ,\n"
+                + "    sz.Tensize ,\n"
+                + "    ctsp.Dongia ,\n"
+                + "    ctsp.Soluong\n"
+                + "FROM\n"
+                + "    HOADON hd\n"
+                + "    JOIN HOADONCHITIET hct ON hd.Id = hct.Idhd\n"
+                + "    JOIN CHITIETSANPHAM ctsp ON hct.Idctsp = ctsp.Id\n"
+                + "    JOIN SANPHAM sp ON ctsp.Idsp = sp.Id\n"
+                + "    JOIN SIZE sz ON ctsp.Idsize = sz.Id;";
+        ResultSet rs = JDBCHelper.excuteQuery ( sql );
+        try {
+            while ( rs.next () ) {
+                HoaDonChiTiet ct = new HoaDonChiTiet ();
+                ct.setMahd ( rs.getString ( "mahd" ) );
+                ct.setTensp ( rs.getString ( "ten" ) );
+                ct.setSize ( rs.getInt ( "tensize" ) );
+                ct.setDonGia ( rs.getInt ( "dongia" ) );
+                ct.setSoluong ( rs.getInt ( "soluong" ) );
+                list.add ( ct );
             }
         } catch ( Exception e ) {
             e.printStackTrace ();

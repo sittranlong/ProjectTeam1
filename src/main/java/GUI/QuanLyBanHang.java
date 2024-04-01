@@ -8,6 +8,7 @@ import DAO.BanHangDao;
 import DATABASE.DatabaseHelper;
 import ENTITY.ChiTietSanPham;
 import ENTITY.HoaDon;
+import ENTITY.HoaDonChiTiet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,7 +63,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jTextFieldTenNhanVien.setEditable(false);
         jTextFieldMaHoaDon.setEditable(false);
         jTextFieldTongTien.setEditable(false);
-
+          
     }
 
 //    private void fillTableGioHang(List<HoaDonChiTiet> list) {
@@ -759,7 +760,20 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     }
 
     private void tblHoaDonChoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChoMouseClicked
-        // TODO add your handling code here:
+        // Xóa dòng đã chọn từ hóa đơn chờ
+        DefaultTableModel model = ( DefaultTableModel ) tblHoaDonCho.getModel ();
+        model.removeRow ( 0);        
+        //
+        ArrayList<HoaDonChiTiet> list = ctspsi.getHDCtoGH ();
+        for ( HoaDonChiTiet ct : list ) {
+            dtmGioHang.addRow ( new Object[]{
+                ct.getMahd (),
+                ct.getTensp (),
+                ct.getSize (),
+                ct.getDonGia (),
+                ct.getSoluong ()
+            });
+        }      
     }//GEN-LAST:event_tblHoaDonChoMouseClicked
 
     // Quản lý kết nối và tài nguyên một cách an toàn

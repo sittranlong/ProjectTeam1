@@ -24,8 +24,13 @@ public class HoaDonChiTiet {
     private String makh;
     private String tensp;
     private String mahd;
+    private int size;
+    private int donGia;
 
-    public HoaDonChiTiet(String id, String idhd, String idctsp, int soluong, String thanhtien, String ngayTao, String ngayChinhSua, String trangThai, String manv, String makh, String tensp, String mahd) {
+    public HoaDonChiTiet () {
+    }
+
+    public HoaDonChiTiet ( String id , String idhd , String idctsp , int soluong , String thanhtien , String ngayTao , String ngayChinhSua , String trangThai , String manv , String makh , String tensp , String mahd , int size , int donGia ) {
         this.id = id;
         this.idhd = idhd;
         this.idctsp = idctsp;
@@ -38,111 +43,127 @@ public class HoaDonChiTiet {
         this.makh = makh;
         this.tensp = tensp;
         this.mahd = mahd;
+        this.size = size;
+        this.donGia = donGia;
     }
 
-    public HoaDonChiTiet() {
-    }
-
-    public String getId() {
+    public String getId () {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId ( String id ) {
         this.id = id;
     }
 
-    public String getIdhd() {
+    public String getIdhd () {
         return idhd;
     }
 
-    public void setIdhd(String idhd) {
+    public void setIdhd ( String idhd ) {
         this.idhd = idhd;
     }
 
-    public String getIdctsp() {
+    public String getIdctsp () {
         return idctsp;
     }
 
-    public void setIdctsp(String idctsp) {
+    public void setIdctsp ( String idctsp ) {
         this.idctsp = idctsp;
     }
 
-    public int getSoluong() {
+    public int getSoluong () {
         return soluong;
     }
 
-    public void setSoluong(int soluong) {
+    public void setSoluong ( int soluong ) {
         this.soluong = soluong;
     }
 
-    public String getThanhtien() {
+    public String getThanhtien () {
         return thanhtien;
     }
 
-    public void setThanhtien(String thanhtien) {
+    public void setThanhtien ( String thanhtien ) {
         this.thanhtien = thanhtien;
     }
 
-    public String getNgayTao() {
+    public String getNgayTao () {
         return ngayTao;
     }
 
-    public void setNgayTao(String ngayTao) {
+    public void setNgayTao ( String ngayTao ) {
         this.ngayTao = ngayTao;
     }
 
-    public String getNgayChinhSua() {
+    public String getNgayChinhSua () {
         return ngayChinhSua;
     }
 
-    public void setNgayChinhSua(String ngayChinhSua) {
+    public void setNgayChinhSua ( String ngayChinhSua ) {
         this.ngayChinhSua = ngayChinhSua;
     }
 
-    public String getTrangThai() {
+    public String getTrangThai () {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai ( String trangThai ) {
         this.trangThai = trangThai;
     }
 
-    public String getManv() {
+    public String getManv () {
         return manv;
     }
 
-    public void setManv(String manv) {
+    public void setManv ( String manv ) {
         this.manv = manv;
     }
 
-    public String getMakh() {
+    public String getMakh () {
         return makh;
     }
 
-    public void setMakh(String makh) {
+    public void setMakh ( String makh ) {
         this.makh = makh;
     }
 
-    public String getTensp() {
+    public String getTensp () {
         return tensp;
     }
 
-    public void setTensp(String tensp) {
+    public void setTensp ( String tensp ) {
         this.tensp = tensp;
     }
 
-    public String getMahd() {
+    public String getMahd () {
         return mahd;
     }
 
-    public void setMahd(String mahd) {
+    public void setMahd ( String mahd ) {
         this.mahd = mahd;
     }
 
-    @Override
-    public String toString() {
-        return "HoaDonChiTiet{" + "id=" + id + ", idhd=" + idhd + ", idctsp=" + idctsp + ", soluong=" + soluong + ", thanhtien=" + thanhtien + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + ", manv=" + manv + ", makh=" + makh + ", tensp=" + tensp + ", mahd=" + mahd + '}';
+    public int getSize () {
+        return size;
     }
 
+    public void setSize ( int size ) {
+        this.size = size;
+    }
+
+    public int getDonGia () {
+        return donGia;
+    }
+
+    public void setDonGia ( int donGia ) {
+        this.donGia = donGia;
+    }
+
+    @Override
+    public String toString () {
+        return "HoaDonChiTiet{" + "id=" + id + ", idhd=" + idhd + ", idctsp=" + idctsp + ", soluong=" + soluong + ", thanhtien=" + thanhtien + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + ", manv=" + manv + ", makh=" + makh + ", tensp=" + tensp + ", mahd=" + mahd + ", size=" + size + ", donGia=" + donGia + '}';
+    }
+
+    
     
 }
