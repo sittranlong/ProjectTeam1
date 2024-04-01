@@ -95,12 +95,12 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabelTenKhachHang" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jComboBox1" min="-2" pref="122" max="-2" attributes="0"/>
+                                              <Component id="jComboBoxTenKhachHang" min="-2" pref="122" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="btnAddnew" max="32767" attributes="0"/>
+                                          <Component id="jButtonThemMoiKhachHang" max="32767" attributes="0"/>
                                           <Component id="jButtonTaoHoaDon" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -161,8 +161,8 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnAddnew" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonThemMoiKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButtonTaoHoaDon" min="-2" max="-2" attributes="0"/>
@@ -347,12 +347,12 @@
         <Property name="text" type="java.lang.String" value="Kh&#xe1;ch H&#xe0;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAddnew">
+    <Component class="javax.swing.JButton" name="jButtonThemMoiKhachHang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Th&#xea;m M&#x1edb;i Kh&#xe1;ch H&#xe0;ng"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddnewActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonThemMoiKhachHangActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbbKieu">
@@ -591,7 +591,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="jComboBoxTenKhachHang">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
