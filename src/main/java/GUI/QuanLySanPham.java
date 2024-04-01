@@ -4,7 +4,6 @@
  */
 package GUI;
 
-
 import DAO.ChiTietSanPhamDAO;
 import ENTITY.ChiTietSanPham;
 import java.awt.Image;
@@ -25,6 +24,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author Phan Loc
@@ -36,12 +36,13 @@ public class QuanLySanPham extends javax.swing.JPanel {
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
     List<ChiTietSanPham> list = new ArrayList<>();
     private String strAnh = "C:\\";
+
     /**
      * Creates new form NewJPanel
      */
     public QuanLySanPham() {
         initComponents();
-        
+
         dtm = (DefaultTableModel) tblSanPham.getModel();
 
         LoadCbbMS(ctspsi.getListMauSac());
@@ -56,7 +57,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         showData(list);
     }
 
-    
     private void showData(List<ChiTietSanPham> list) {
         dtm.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
@@ -64,7 +64,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         }
     }
 
-    public void reset(){
+    public void reset() {
         txtMa.setText("");
         txtGia.setText("");
         txtMota.setText("");
@@ -72,7 +72,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         cbbChieuCao.setSelectedIndex(0);
         cbbKieu.setSelectedIndex(0);
         cbbMau.setSelectedIndex(0);
-        cbbSize.setSelectedIndex(0);        
+        cbbSize.setSelectedIndex(0);
         cbbSanPham.setSelectedIndex(0);
         cbbSanPham.setSelectedIndex(0);
         buttonGroup1.clearSelection();
@@ -80,18 +80,19 @@ public class QuanLySanPham extends javax.swing.JPanel {
         lblAnh.setIcon(null);
         list = ctspsi.getAll();
     }
+
     private void fillData(int index) {
         ChiTietSanPham ctsp = list.get(index);
         txtMa.setText(ctsp.getMactsp());
-        txtGia.setText(ctsp.getDongia()+ "");
-        txtSoLuong.setText(ctsp.getSoluong()+ "");
+        txtGia.setText(ctsp.getDongia() + "");
+        txtSoLuong.setText(ctsp.getSoluong() + "");
         txtMota.setText(ctsp.getMota());
-        cbbChieuCao.setSelectedItem(ctsp.getIdde()+ "");
+        cbbChieuCao.setSelectedItem(ctsp.getIdde() + "");
         cbbSanPham.setSelectedItem(ctsp.getIdsp());
         cbbKieu.setSelectedItem(ctsp.getIdkieu());
-        cbbMau.setSelectedItem(ctsp.getIdms());        
+        cbbMau.setSelectedItem(ctsp.getIdms());
         cbbSanPham.setSelectedItem(ctsp.getIdsp());
-        cbbSize.setSelectedItem(ctsp.getIdsize()+ "");
+        cbbSize.setSelectedItem(ctsp.getIdsize() + "");
         lblAnh.setIcon(resizeImage(String.valueOf(ctsp.getHinhanh())));
         int trangThai = ctsp.getTrangThai();
         if (trangThai == 0) {
@@ -158,13 +159,14 @@ public class QuanLySanPham extends javax.swing.JPanel {
             dcbm.addElement(string);
         }
     }
-    
+
     private void LoadCbbSP(List<String> list) {
         dcbm = (DefaultComboBoxModel) cbbSanPham.getModel();
         for (String string : list) {
             dcbm.addElement(string);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -601,11 +603,11 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 lblAnh.setIcon(resizeImage(strAnh));
             } else {
                 JOptionPane.showMessageDialog(this, "Bạn Chưa Ch�?n Ảnh!"
-                    + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
+                        + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Bạn Chưa Ch�?n Ảnh!"
-                + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
+                    + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
         }
     }//GEN-LAST:event_btChonAnhActionPerformed
 
@@ -626,30 +628,35 @@ public class QuanLySanPham extends javax.swing.JPanel {
         }
 
         if (ma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã không được b�? trống");
+            JOptionPane.showMessageDialog(this, "Mã không được bỏ? trống");
 //        } else if (sanPham.isEmpty()) {
 //            JOptionPane.showMessageDialog(this, "Tên không được b�? trống");
 //        } else if (!sanPham.matches("[A-Z a-z]+")) {
 //            JOptionPane.showMessageDialog(this, "Tên phải là chữ");
         } else if (soLuong.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Số lượng không được b�? trống");
+            JOptionPane.showMessageDialog(this, "Số lượng không được bỏ? trống");
         } else if (!soLuong.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Số lượng phải là số");
         } else if (donGia.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "�?ơn giá không được b�? trống");
+            JOptionPane.showMessageDialog(this, "�?ơn giá không được bỏ? trống");
         } else if (!donGia.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "�?ơn giá phải là số");
         } else if (moTa.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mô tả không được b�? trống");
+            JOptionPane.showMessageDialog(this, "Mô tả không được bỏ? trống");
         } else {
             ChiTietSanPham ctsp = new ChiTietSanPham(sanPham, mauSac, kieuDang, size, deGiay, ma, Integer.parseInt(donGia), Integer.parseInt(soLuong), moTa, Integer.parseInt(trangThai));
 
             ctsp.setHinhanh(strAnh);
 
-            JOptionPane.showMessageDialog(this, ctspsi.add(ctsp));
-            list = ctspsi.getAll();
-            showData(list);
-            reset();
+            boolean result = ctspsi.add(ctsp);
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công");
+                list = ctspsi.getAll();
+                showData(list);
+                reset();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+            }
         }
     }//GEN-LAST:event_btThemActionPerformed
 
@@ -668,12 +675,33 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String trangThai = "0";
         if (rdCon.isSelected()) {
             trangThai = "1";
-        }
+        }if (mactsp.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
+//        } else if (sanPham.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Tên không được b�? trống");
+//        } else if (!sanPham.matches("[A-Z a-z]+")) {
+//            JOptionPane.showMessageDialog(this, "Tên phải là chữ");
+        } else if (soLuong.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Số lượng không được bỏ trống");
+        } else if (!soLuong.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Số lượng phải là số");
+        } else if (donGia.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Đơn giá không được bỏ trống");
+        } else if (!donGia.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Đơn giá phải là số");
+        } else if (moTa.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mô tả không được bỏ trống");
+        } else {
         ChiTietSanPham ctsp = new ChiTietSanPham(idsp, idms, idkieu, idsize, idde, mactsp, Integer.parseInt(donGia), Integer.parseInt(soLuong), moTa, Integer.parseInt(trangThai));
         ctsp.setHinhanh(strAnh);
-        JOptionPane.showMessageDialog(this, ctspsi.update(ctsp, id));
-        list = ctspsi.getAll();
-        showData(list);
+        boolean result = ctspsi.update(ctsp, id);
+        if (result) {
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+            list = ctspsi.getAll();
+            showData(list);
+        } else {
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
+        }
         txtMa.setText("");
         txtGia.setText("");
         txtMota.setText("");
@@ -687,6 +715,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         lblAnh.setText("HINH ANH");
         lblAnh.setIcon(null);
         reset();
+        }
     }//GEN-LAST:event_btSuaActionPerformed
 
     private void btLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLamMoiActionPerformed
@@ -710,9 +739,15 @@ public class QuanLySanPham extends javax.swing.JPanel {
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
         String id = list.get(tblSanPham.getSelectedRow()).getId();
-        JOptionPane.showMessageDialog(this, ctspsi.delete(id));
-        list = ctspsi.getAll();
-        showData(list);
+        boolean result = ctspsi.delete(id);
+        if (result) {
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            list = ctspsi.getAll();
+            showData(list);
+            reset();
+        } else {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
         txtMa.setText("");
         txtGia.setText("");
         txtMota.setText("");
@@ -834,17 +869,17 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void btTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTKActionPerformed
         // TODO add your handling code here:
-        
+
         String tk = txtTK.getText(); // Lấy dữ liệu từ trường văn bản
 
-    // Kiểm tra xem trường văn bản có dữ liệu hay không
-    if (!tk.isEmpty()) { // Nếu có dữ liệu
-        ctspsi.Tk(tk);
-        list = ctspsi.Tk(tk);
-        showData(list);
-    } else { // Nếu không có dữ liệu
-        JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu để tìm"); // Hiển thị thông báo
-    }
+        // Kiểm tra xem trường văn bản có dữ liệu hay không
+        if (!tk.isEmpty()) { // Nếu có dữ liệu
+            ctspsi.Tk(tk);
+            list = ctspsi.Tk(tk);
+            showData(list);
+        } else { // Nếu không có dữ liệu
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu để tìm"); // Hiển thị thông báo
+        }
     }//GEN-LAST:event_btTKActionPerformed
 
     private void cbbKDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbKDActionPerformed
@@ -874,19 +909,19 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
         //        try {
-            //            // TODO add your handling code here:
-            //            JFileChooser jfc = new JFileChooser("C:\\Users\\Phan Loc\\Downloads\\PRO1041_DUAN1_BLOCK2 (1)\\src\\main\\resources");
-            //            jfc.showOpenDialog(null);
-            //            File file = jfc.getSelectedFile();
-            //            strAnh = file.getName();
-            //            Image img = ImageIO.read(file);
-            //            lblAnh.setText("");
-            //            int width = lblAnh.getWidth();
-            //            int height = lblAnh.getHeight();
-            //            lblAnh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
-            //        } catch (IOException ex) {
-            //            System.out.println("Error: " + ex.toString());
-            //        }
+        //            // TODO add your handling code here:
+        //            JFileChooser jfc = new JFileChooser("C:\\Users\\Phan Loc\\Downloads\\PRO1041_DUAN1_BLOCK2 (1)\\src\\main\\resources");
+        //            jfc.showOpenDialog(null);
+        //            File file = jfc.getSelectedFile();
+        //            strAnh = file.getName();
+        //            Image img = ImageIO.read(file);
+        //            lblAnh.setText("");
+        //            int width = lblAnh.getWidth();
+        //            int height = lblAnh.getHeight();
+        //            lblAnh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
+        //        } catch (IOException ex) {
+        //            System.out.println("Error: " + ex.toString());
+        //        }
     }//GEN-LAST:event_lblAnhMouseClicked
 
 

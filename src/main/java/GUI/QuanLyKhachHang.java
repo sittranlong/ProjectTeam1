@@ -285,12 +285,31 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String ten = txtTen.getText();
         String diaChi = txtDiaChi.getText();
         String sdt = txtSdt.getText();
-
-        KhachHang kd = new KhachHang(ma,ten, diaChi, sdt);
-        JOptionPane.showMessageDialog(this, kds.Add(kd));
-        listDg.add(kd);
-        showData(listDg);
-        reset();
+        if (ma.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
+//        } else if (sanPham.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Tên không được b�? trống");
+//        } else if (!sanPham.matches("[A-Z a-z]+")) {
+//            JOptionPane.showMessageDialog(this, "Tên phải là chữ");
+        } else if (ten.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Số lượng không được bỏ? trống");
+        } else if (!sdt.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại phải là số");
+        } else if (diaChi.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Địa chỉ không được bỏ trống");
+        } else if (sdt.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không được bỏ trống");
+        } else {
+                KhachHang kh = new KhachHang(ma, ten, diaChi, sdt);
+         boolean result = kds.Add(kh);
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công");
+                listDg = kds.getAll();
+                showData(listDg);
+                reset();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+            }}
     }//GEN-LAST:event_btAdd2ActionPerformed
 
     private void btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaActionPerformed
@@ -302,9 +321,15 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String sdt = txtSdt.getText();
 
         KhachHang kd = new KhachHang(ten, ma, diaChi, sdt);
-        JOptionPane.showMessageDialog(this, kds.Update(kd, ma));
-        listDg.add(kd);
-        showData(listDg);
+        boolean result = kds.Update(kd, ma);
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công");
+                listDg = kds.getAll();
+                showData(listDg);
+                reset();
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+            }
     }//GEN-LAST:event_btSuaActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
@@ -313,7 +338,15 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, kds.delete(ma));
         listDg = kds.getAll();
         showData(listDg);
-        reset();
+        reset();boolean result = kds.delete(ma);
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
+                listDg = kds.getAll();
+                showData(listDg);
+                reset();
+            } else {
+                JOptionPane.showMessageDialog(this, "Xóa thất bại");
+            }
     }//GEN-LAST:event_btXoaActionPerformed
 
     private void btBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBack1ActionPerformed

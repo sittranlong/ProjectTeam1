@@ -711,10 +711,21 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
         String ma = txtMa.getText();
         String ten = txtTen.getText();
         //        String soLuong = txtSL.getText() + "";
+        if (ma.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
+        } else if (ten.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tên không được bỏ trống");
+        }else{
         SanPham sp = new SanPham(ma, ten);
-        JOptionPane.showMessageDialog(this, spsi.add(sp));
-        list.add(sp);
-        showData(list);
+        boolean result = spsi.add(sp);
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công");
+                list = spsi.getAll();
+                showData(list);
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+            }}
+        
     }//GEN-LAST:event_btAddActionPerformed
 
     private void btAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdd1ActionPerformed
