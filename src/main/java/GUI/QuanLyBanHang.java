@@ -39,6 +39,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private String tenKhachHang;
     private KhachHangDAO khs = new KhachHangDAO();
     private List<KhachHang> listDg = new ArrayList<>();
+    String idHoaDonCT;
 
     /**
      * Creates new form QuanLyBanHang
@@ -569,18 +570,24 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             int rowsAffectedHoaDon = preparedStatementHoaDon.executeUpdate();
 
             // Lưu thông tin hóa đơn chi tiết
-            String sqlHoaDonChiTiet = "INSERT INTO HOADONCHITIET (Mahd, Masanpham, Soluong, Dongia) VALUES (?, ?, ?, ?)";
+            String sqlHoaDonChiTiet = "UPDATE HOADONCHITIET\n"
+                    + "SET Soluong = ?,\n"
+                    + "    Tongtien = ?,\n"
+                    + "    NgayChinhSua = GETDATE(),\n"
+                    + "    TrangThai = ?\n"
+                    + "WHERE Id = ?;";
             PreparedStatement preparedStatementHoaDonChiTiet = connection.prepareStatement(sqlHoaDonChiTiet);
 
             // Lưu từng dòng trong jTableGioHang vào cơ sở dữ liệu
             for (int i = 0; i < tblGioHang.getRowCount(); i++) {
-                String maSanPham = tblGioHang.getValueAt(i, 0).toString();
-                int soLuong = Integer.parseInt(tblGioHang.getValueAt(i, 2).toString());
-                double donGia = Double.parseDouble(tblGioHang.getValueAt(i, 3).toString());
-                preparedStatementHoaDonChiTiet.setString(1, jTextFieldMaHoaDon.getText()); // Mã hóa đơn
-                preparedStatementHoaDonChiTiet.setString(2, maSanPham); // Mã sản phẩm
-                preparedStatementHoaDonChiTiet.setInt(3, soLuong); // Số lượng
-                preparedStatementHoaDonChiTiet.setDouble(4, donGia); // Đơn giá
+                String tenSanPham = tblGioHang.getValueAt(i, 1).toString();
+                int soLuong = Integer.parseInt(tblGioHang.getValueAt(i, 6).toString());
+                double donGia = Double.parseDouble(tblGioHang.getValueAt(i, 7).toString());
+                preparedStatementHoaDonChiTiet.setInt(1, soLuong);
+                preparedStatementHoaDonChiTiet.setDouble(2, soLuong*donGia); 
+                preparedStatementHoaDonChiTiet.setDate(3, new java.sql.Date(new Date().getTime()));
+                preparedStatementHoaDonChiTiet.setInt(4, 1);
+                preparedStatementHoaDonChiTiet.setString(5, idHoaDonCT); 
                 preparedStatementHoaDonChiTiet.executeUpdate();
             }
 
@@ -733,7 +740,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             Date ngayTao = new Date();
             Integer trangThai = 1;
             // Tạo hóa đơn CT mới và lưu vào cơ sở dữ liệu
-            String idHoaDonCT = UUID.randomUUID().toString();
+            idHoaDonCT = UUID.randomUUID().toString();
             String idMaHoaDon = idHoaDon;
             Date ngayTaoCT = ngayTao;
             Integer trangThaiCT = 0;
