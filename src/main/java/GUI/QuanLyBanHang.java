@@ -679,34 +679,57 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void jButtonHuyThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHuyThanhToanActionPerformed
         try {
             // Xóa thông tin hóa đơn, hóa đơn chi tiết tương ứng với hóa đơn
-            Connection connection = DatabaseHelper.getConnection();
-            // Xóa thông tin hóa đơn
-            String sqlHoaDon = "DELETE FROM HOADON WHERE Mahd = ?";
-            PreparedStatement preparedStatementHoaDon = connection.prepareStatement(sqlHoaDon);
-            preparedStatementHoaDon.setString(1, jTextFieldMaHoaDon.getText());
-            preparedStatementHoaDon.executeUpdate();
+            Connection connection = null;
+            PreparedStatement preparedStatementHoaDon = null;
+            PreparedStatement preparedStatementHoaDonChiTiet = null;
 
-            // Xóa thông tin hóa đơn chi tiết
-            String sqlHoaDonChiTiet = "DELETE FROM HOADONCHITIET WHERE Idhd = ?";
-            PreparedStatement preparedStatementHoaDonChiTiet = connection.prepareStatement(sqlHoaDonChiTiet);
-            preparedStatementHoaDonChiTiet.setString(1, jTextFieldMaHoaDon.getText());
-            preparedStatementHoaDonChiTiet.executeUpdate();
+            try {
+                connection = DatabaseHelper.getConnection();
+                // Tắt chế độ tự động commit để có thể rollback nếu cần thiết
+                connection.setAutoCommit(false);
 
-            // Đóng kết nối và hiển thị thông báo cho người dùng
-            connection.close();
-            JOptionPane.showMessageDialog(this, "Hóa đơn đã được xóa khỏi cơ sở dữ liệu.");
-            // Làm sạch giao diện
-            jTextFieldTenNhanVien.setText("");
-            jTextFieldMaHoaDon.setText("");
-            jTextFieldTongTien.setText("");
-            dtmGioHang.setRowCount(0);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lỗi khi xóa hóa đơn từ cơ sở dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                // Xóa thông tin hóa đơn chi tiết
+                String sqlHoaDonChiTiet = "DELETE FROM HOADONCHITIET WHERE Idhd = ?";
+                preparedStatementHoaDonChiTiet = connection.prepareStatement(sqlHoaDonChiTiet);
+                preparedStatementHoaDonChiTiet.setString(1, jTextFieldMaHoaDon.getText());
+                preparedStatementHoaDonChiTiet.executeUpdate();
+
+                // Xóa thông tin hóa đơn
+                String sqlHoaDon = "DELETE FROM HOADON WHERE Mahd = ?";
+                preparedStatementHoaDon = connection.prepareStatement(sqlHoaDon);
+                preparedStatementHoaDon.setString(1, jTextFieldMaHoaDon.getText());
+                preparedStatementHoaDon.executeUpdate();
+
+                // Commit các thay đổi nếu không có vấn đề nào xảy ra
+                connection.commit();
+                JOptionPane.showMessageDialog(this, "Hóa đơn đã được xóa khỏi cơ sở dữ liệu.");
+                // Làm sạch giao diện
+                jTextFieldTenNhanVien.setText("");
+                jTextFieldMaHoaDon.setText("");
+                jTextFieldTongTien.setText("");
+                dtmGioHang.setRowCount(0);
+            } catch (SQLException ex) {
+                // Nếu có lỗi xảy ra, rollback lại các thay đổi đã thực hiện
+                if (connection != null) {
+                    connection.rollback();
+                }
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Lỗi khi xóa hóa đơn từ cơ sở dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                // Đóng tất cả các tài nguyên
+                if (preparedStatementHoaDonChiTiet != null) {
+                    preparedStatementHoaDonChiTiet.close();
+                }
+                if (preparedStatementHoaDon != null) {
+                    preparedStatementHoaDon.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
         } catch (Exception ex) {
             Logger.getLogger(QuanLyBanHang.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButtonHuyThanhToanActionPerformed
 
     private void displayEmployeeNameFromDatabase() throws Exception {
@@ -776,10 +799,13 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
 
     private void jButtonTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaoHoaDonActionPerformed
-        tblSanPham.setEnabled(true);
         try {
             // Hiển thị tên nhân viên từ cơ sở dữ liệu
             displayEmployeeNameFromDatabase();
+
+            // Lấy tên nhân viên từ cơ sở dữ liệu và hiển thị trên JTextFieldTenNhanVien
+            String tenNhanVien = jTextFieldTenNhanVien.getText();
+
             // Tạo hóa đơn mới và lưu vào cơ sở dữ liệu
             String idHoaDon = UUID.randomUUID().toString();
             String maHoaDon = "HD" + UUID.randomUUID().toString();
@@ -790,12 +816,14 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             String idMaHoaDon = idHoaDon;
             Date ngayTaoCT = ngayTao;
             Integer trangThaiCT = 0;
+
             boolean success1 = createNewInvoice(idHoaDon, maHoaDon, ngayTao, trangThai);
-            boolean success2 = createNewInvoiceDetail(idHoaDonCT, idMaHoaDon, ngayTaoCT, trangThaiCT); // Sửa ở đây
+            boolean success2 = createNewInvoiceDetail(idHoaDonCT, idMaHoaDon, ngayTaoCT, trangThaiCT);
+
             if (success1 && success2) {
-//                JOptionPane.showMessageDialog(this, "Hóa đơn mới đã được tạo thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Hóa đơn mới đã được tạo thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 jTextFieldMaHoaDon.setText(maHoaDon);
-                jTextFieldTenNhanVien.setText("");
+                jTextFieldTenNhanVien.setText(tenNhanVien);
                 jTextFieldTongTien.setText("");
                 dtmGioHang.setRowCount(0);
                 tblSanPham.setEnabled(true);
