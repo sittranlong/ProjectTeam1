@@ -113,6 +113,27 @@ public class KhachHangDAO {
         return check > 0;
     }
 
+    public List<KhachHang> Tknew(String sdt) {
+        ArrayList<KhachHang> listKH = new ArrayList<>();
+        String sql = "SELECT [Sdt]\n"
+                + "      ,[Ten]\n"
+                + "  FROM [dbo].[KHACHHANG] where Sdt = ? ";
+        try {
+            Connection cn = DatabaseHelper.getConnection();
+            PreparedStatement pstm = cn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                KhachHang KH = new KhachHang();
+                KH.setSdt(rs.getString("SDT"));
+               
+                listKH.add(KH);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return listKH;
+    }
+
     public List<KhachHang> Tk(String ten) {
         ArrayList<KhachHang> listLh = new ArrayList<>();
         String sql = "SELECT [Makh]\n"
