@@ -208,6 +208,11 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jLabelMaHoaDon.setText("Mã Hóa Đơn");
 
         jTextFieldTongTien.setEditable(false);
+        jTextFieldTongTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTongTienActionPerformed(evt);
+            }
+        });
 
         jLabelTongTien.setText("Tổng Tiền");
 
@@ -534,6 +539,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                         System.arraycopy(rowData, 0, newData, 0, rowData.length); // Sao chép dữ liệu từ rowData
                         newData[rowData.length] = quantity; // Thêm số lượng nhập vào cuối mảng newData
                         model2.insertRow(0, newData); // Thêm dữ liệu mới vào bảng
+                        tinhTongTien();
                     } else {
                         JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải nhỏ hơn hoặc bằng 30 và không vượt quá số lượng hiện có của sản phẩm", "Lỗi", JOptionPane.ERROR_MESSAGE);
                     }
@@ -584,10 +590,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 int soLuong = Integer.parseInt(tblGioHang.getValueAt(i, 6).toString());
                 double donGia = Double.parseDouble(tblGioHang.getValueAt(i, 7).toString());
                 preparedStatementHoaDonChiTiet.setInt(1, soLuong);
-                preparedStatementHoaDonChiTiet.setDouble(2, soLuong*donGia); 
+                preparedStatementHoaDonChiTiet.setDouble(2, soLuong * donGia);
                 preparedStatementHoaDonChiTiet.setDate(3, new java.sql.Date(new Date().getTime()));
                 preparedStatementHoaDonChiTiet.setInt(4, 1);
-                preparedStatementHoaDonChiTiet.setString(5, idHoaDonCT); 
+                preparedStatementHoaDonChiTiet.setString(5, idHoaDonCT);
                 preparedStatementHoaDonChiTiet.executeUpdate();
             }
 
@@ -692,9 +698,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
     // Quản lý kết nối và tài nguyên một cách an toàn
     private boolean createNewInvoice(String idHoaDon, String maHoaDon, Date ngayTao, Integer trangThai) throws Exception {
-        try (Connection connection = DatabaseHelper.getConnection()) {
+        try ( Connection connection = DatabaseHelper.getConnection()) {
             String sql = "INSERT INTO HOADON (Id, Mahd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try ( PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, idHoaDon);
                 preparedStatement.setString(2, maHoaDon);
                 preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
@@ -709,9 +715,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     }
 
     public boolean createNewInvoiceDetail(String idHoaDonChiTiet, String idHoaDon, Date ngayTao, Integer trangThai) throws Exception {
-        try (Connection connection = DatabaseHelper.getConnection()) {
+        try ( Connection connection = DatabaseHelper.getConnection()) {
             String sql = "INSERT INTO HOADONCHITIET (Id, Idhd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try ( PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, idHoaDon);
                 preparedStatement.setString(2, idHoaDon);
                 preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
@@ -730,6 +736,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         try {
             // Hiển thị tên nhân viên từ cơ sở dữ liệu
             displayEmployeeNameFromDatabase();
+            tblSanPham.setEnabled(true);
 
             // Lấy tên nhân viên từ cơ sở dữ liệu và hiển thị trên JTextFieldTenNhanVien
             String tenNhanVien = jTextFieldTenNhanVien.getText();
@@ -768,6 +775,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void jTextFieldTienKhachDuaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTienKhachDuaFocusLost
         capNhatDuLieu();
     }//GEN-LAST:event_jTextFieldTienKhachDuaFocusLost
+
+    private void jTextFieldTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTongTienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTongTienActionPerformed
     private void loadSanPham() {
         List<ChiTietSanPham> listSanPham = banHangDao.getAll();
         dtmSanPham.setRowCount(0);
@@ -782,6 +793,11 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             double giaTriCotCuoi = Double.parseDouble(tblGioHang.getValueAt(i, tblGioHang.getColumnCount() - 1).toString());
             tongTien += giaTriCotCuoi;
         }
+        String tongTienString = String.valueOf(tongTien);
+        // hoặc: String tongTienString = Double.toString(tongTien);
+
+        // Set text cho jTextFieldTongTien
+        jTextFieldTongTien.setText(tongTienString);
         return tongTien;
     }
 
