@@ -20,10 +20,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author TieuLong
- */
 public class QuanLyBanHang extends javax.swing.JPanel {
 
     private List<HoaDon> danhSachHoaDonCho;
@@ -41,9 +37,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private List<KhachHang> listDg = new ArrayList<>();
     String idHoaDonCT;
 
-    /**
-     * Creates new form QuanLyBanHang
-     */
     public QuanLyBanHang() {
         initComponents();
         setVisible(true);
@@ -178,7 +171,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Sản Phẩm", "Tên sản phẩm", "Size", "Màu Sắc", "Độ Cao Đế", "Kiểu Dáng", "Số Lượng", "Đơn Giá"
+                "Mã Sản Phẩm", "Tên sản phẩm", "Size", "Màu Sắc", "Độ Cao Đế", "Kiểu Dáng", "Số Lượng Tồn", "Đơn Giá"
             }
         ));
         tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -422,7 +415,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void showData(List<ChiTietSanPham> list) {
         dtm.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
-            dtm.addRow(new Object[]{ctsp.getMactsp(), ctsp.getIdsp(), ctsp.getIdsize(), ctsp.getIdkieu(), ctsp.getDongia(), ctsp.getSoluong(), khs.getAllTenKhachHang()});
+            dtm.addRow(new Object[]{ctsp.getMactsp(), ctsp.getIdsp(),
+                ctsp.getIdsize(), ctsp.getIdkieu(), ctsp.getDongia(),
+                ctsp.getSoluong()});
         }
     }
 
@@ -453,8 +448,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             jComboBoxTenKhachHang.addItem(tenKhachHang);
         }
     }
-
-// Gọi phương thức này từ bất kỳ nơi nào bạn
 
     private void jButtonTimTenSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimTenSanPhamActionPerformed
         // TODO add your handling code here:
@@ -495,7 +488,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
 
         int rowIndex = tblSanPham.getSelectedRow();
-        DefaultTableModel model1 = (DefaultTableModel) tblSanPham.getModel();
+        dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
 
         // Chỉ định chỉ số các cột bạn quan tâm
         int[] columnsOfInterest = {0, 1, 2, 3, 4, 5, 6, 7}; // Ví dụ: lấy cột 0, 1, 5 và 4
@@ -506,7 +499,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             Object[] rowData = new Object[columnsOfInterest.length];
             for (int i = 0; i < columnsOfInterest.length; i++) {
                 int columnIndex = columnsOfInterest[i];
-                rowData[i] = model1.getValueAt(rowIndex, columnIndex);
+                rowData[i] = dtmSanPham.getValueAt(rowIndex, columnIndex);
             }
 
             // Yêu cầu người dùng nhập số lượng
@@ -514,25 +507,24 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             if (quantityString != null && !quantityString.isEmpty()) {
                 try {
                     int quantity = Integer.parseInt(quantityString);
-                    int currentQuantity = (int) model1.getValueAt(rowIndex, columnsOfInterest[3]); // Lấy dữ liệu từ cột số lượng
+                    int currentQuantity = (int) dtmSanPham.getValueAt(rowIndex, columnsOfInterest[3]); // Lấy dữ liệu từ cột số lượng
                     if (quantity <= currentQuantity && quantity <= 30) { // Kiểm tra số lượng nhập vào không vượt quá 30
-                        // Tạo DefaultTableModel cho jTableGioHang nếu chưa có
-                        DefaultTableModel model2 = (DefaultTableModel) tblGioHang.getModel();
-                        if (model2.getRowCount() == 0) {
+                        dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
+                        if (dtmGioHang.getRowCount() == 0) {
                             // Thêm các cột vào bảng jTableGioHang
                             for (int i = 0; i < columnsOfInterest.length; i++) {
                                 int columnIndex = columnsOfInterest[i];
-                                model2.addColumn(model1.getColumnName(columnIndex));
+                                dtmGioHang.addColumn(dtmSanPham.getColumnName(columnIndex));
                             }
                             // Thêm cột mới để hiển thị số lượng nhập vào
-                            model2.addColumn("Số lượng nhập");
+                            dtmGioHang.addColumn("Số lượng nhập");
                         }
 
                         // Thêm dữ liệu vào jTableGioHang từ hàng đầu tiên
                         Object[] newData = new Object[rowData.length + 1];
                         System.arraycopy(rowData, 0, newData, 0, rowData.length); // Sao chép dữ liệu từ rowData
                         newData[rowData.length] = quantity; // Thêm số lượng nhập vào cuối mảng newData
-                        model2.insertRow(0, newData); // Thêm dữ liệu mới vào bảng
+                        dtmGioHang.insertRow(0, newData); // Thêm dữ liệu mới vào bảng
                         tinhTongTien();
                     } else {
                         JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải nhỏ hơn hoặc bằng 30 và không vượt quá số lượng hiện có của sản phẩm", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -547,7 +539,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
 
     }
 
@@ -690,11 +681,10 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         }
     }
 
-    // Quản lý kết nối và tài nguyên một cách an toàn
     private boolean createNewInvoice(String idHoaDon, String maHoaDon, Date ngayTao, Integer trangThai) throws Exception {
-        try ( Connection connection = DatabaseHelper.getConnection()) {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             String sql = "INSERT INTO HOADON (Id, Mahd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try ( PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, idHoaDon);
                 preparedStatement.setString(2, maHoaDon);
                 preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
@@ -709,9 +699,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     }
 
     public boolean createNewInvoiceDetail(String idHoaDonChiTiet, String idHoaDon, Date ngayTao, Integer trangThai) throws Exception {
-        try ( Connection connection = DatabaseHelper.getConnection()) {
+        try (Connection connection = DatabaseHelper.getConnection()) {
             String sql = "INSERT INTO HOADONCHITIET (Id, Idhd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try ( PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, idHoaDon);
                 preparedStatement.setString(2, idHoaDon);
                 preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
@@ -777,7 +767,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         List<ChiTietSanPham> listSanPham = banHangDao.getAll();
         dtmSanPham.setRowCount(0);
         for (ChiTietSanPham ctsp : listSanPham) {
-            dtmSanPham.addRow(new Object[]{ctsp.getMactsp(), ctsp.getIdsp(), ctsp.getIdsize(), ctsp.getIdkieu(), ctsp.getDongia(), ctsp.getSoluong()});
+            dtmSanPham.addRow(new Object[]{ctsp.getMactsp(),
+                ctsp.getIdsp(), ctsp.getIdsize(),
+                ctsp.getIdkieu(), ctsp.getDongia(), ctsp.getSoluong()});
         }
     }
 

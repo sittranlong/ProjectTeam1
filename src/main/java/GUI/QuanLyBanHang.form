@@ -416,7 +416,7 @@
                 <Column editable="true" title="M&#xe0;u S&#x1eaf;c" type="java.lang.Object"/>
                 <Column editable="true" title="&#x110;&#x1ed9; Cao &#x110;&#x1ebf;" type="java.lang.Object"/>
                 <Column editable="true" title="Ki&#x1ec3;u D&#xe1;ng" type="java.lang.Object"/>
-                <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
+                <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng T&#x1ed3;n" type="java.lang.Object"/>
                 <Column editable="true" title="&#x110;&#x1a1;n Gi&#xe1;" type="java.lang.Object"/>
               </Table>
             </Property>

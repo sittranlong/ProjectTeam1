@@ -1,4 +1,4 @@
-CREATE DATABASE DuAnBanGiay
+﻿CREATE DATABASE DuAnBanGiay
 GO
 USE DuAnBanGiay
 GO
@@ -178,6 +178,28 @@ insert into KIEUDANG values
 insert into SIZE values 
 (NEWID(),1,'MS1',GETDATE(), GETDATE(), 1),
 (NEWID(),20,'MS2',GETDATE(), GETDATE(), 1)
+
+SELECT 
+    CTSP.MACTSP, 
+    SP.TENSANPHAM, 
+    S.SIZE, 
+    S.MAUSAC, 
+    DG.DOCAODE, 
+    KD.KIEUDANG, 
+    CTSP.SOLUONG, 
+    CTSP.DONGIA, 
+    CTSP.ID   
+FROM 
+    CHITIETSANPHAM CTSP 
+INNER JOIN 
+    KIEUDANG KD ON CTSP.Idkieu = KD.Id 
+INNER JOIN 
+    SANPHAM SP ON CTSP.Idsp = SP.Id 
+INNER JOIN 
+    SIZE S ON CTSP.Idsize = S.Id
+INNER JOIN 
+    DEGIAY DG ON CTSP.Idde = DG.Id; -- Thêm kết nối với bảng DEGIAY để lấy độ cao đế
+
 
 insert into CHITIETSANPHAM(Idsp,idms,idkieu,idsize,idde,Mactsp,hinhanh,soluong,dongia,mota,trangthai)
 select top 1  sp.id,ms.id,kd.id,sz.id,de.id,'CTSP1','Hoang',30,40000,'hang tot',1  from SANPHAM sp,MAUSAC ms,KIEUDANG kd, SIZE sz,DEGIAY de where sp.Masp='SP02' AND ms.Mamau='MM2' AND kd.Makieu= 'MK2'and sz.Masize = 'MS2'AND de.Made = 'MD02'
