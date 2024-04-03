@@ -121,7 +121,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã hóa đơn", "Tên sản phẩm", "Size", "Màu Sắc", "Độ cao đế", "Kiểu dáng", "Số lượng", "Đơn giá", "Thành tiền"
+                "STT", "Tên sản phẩm", "Size", "Màu Sắc", "Độ cao đế", "Kiểu dáng", "Số lượng", "Đơn giá", "Thành tiền"
             }
         ));
         tblGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,13 +178,13 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Sản Phẩm", "Tên sản phẩm", "Size", "Kiểu Dáng", "Đơn Giá", "Số Lượng"
+                "Mã Sản Phẩm", "Tên sản phẩm", "Size", "Màu Sắc", "Độ Cao Đế", "Kiểu Dáng", "Số Lượng", "Đơn Giá"
             }
         ));
         tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -504,7 +504,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         DefaultTableModel model1 = (DefaultTableModel) tblSanPham.getModel();
 
         // Chỉ định chỉ số các cột bạn quan tâm
-        int[] columnsOfInterest = {0, 1, 5, 4}; // Ví dụ: lấy cột 0, 1, 5 và 4
+        int[] columnsOfInterest = {0, 1, 2, 3, 4, 5, 6, 7}; // Ví dụ: lấy cột 0, 1, 5 và 4
 
         // Kiểm tra xem có dòng được chọn không
         if (rowIndex != -1) {
