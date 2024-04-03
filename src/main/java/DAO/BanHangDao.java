@@ -21,29 +21,35 @@ import java.util.List;
  */
 public class BanHangDao {
 
-    public List<ChiTietSanPham> getAll () {
+    public List<ChiTietSanPham>getAll() {
         ArrayList<ChiTietSanPham> listLh = new ArrayList<> ();
-        String sql = "SELECT CTSP.MACTSP, SP.TEN, S.TENSIZE, KD.TENKIEU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.ID     \n"
+        String sql = "SELECT CTSP.MACTSP, SP.TEN, S.TENSIZE, MS.TENMAU, DG.DOCAODE, KD.TENKIEU, CTSP.SOLUONG, CTSP.DONGIA, CTSP.ID     \n"
                 + "FROM            CHITIETSANPHAM CTSP INNER JOIN\n"
+                + "                         DEGIAY DG ON CTSP.Idde = DG.Id INNER JOIN\n"
                 + "                         KIEUDANG KD ON CTSP.Idkieu = KD.Id INNER JOIN\n"
+                + "                         MAUSAC MS ON CTSP.Idms = MS.Id INNER JOIN\n"
                 + "                         SANPHAM SP ON CTSP.Idsp = SP.Id INNER JOIN\n"
                 + "                         SIZE S ON CTSP.Idsize = S.Id";
-        try ( Connection con = DatabaseHelper.getConnection ();  PreparedStatement ps = con.prepareStatement ( sql ) ) {
-            ResultSet rs = ps.executeQuery ();
-            while ( rs.next () ) {
-                ChiTietSanPham ctsp = new ChiTietSanPham ();
-                ctsp.setMactsp ( rs.getString ( 1 ) );
-                ctsp.setIdsp ( rs.getString ( 2 ) );
-                ctsp.setIdsize ( rs.getString ( 3 ) );
-                ctsp.setIdkieu ( rs.getString ( 4 ) );
-
-                ctsp.setDongia ( rs.getInt ( 5 ) );
-                ctsp.setSoluong ( rs.getInt ( 6 ) );
-                ctsp.setId ( rs.getString ( 7 ) );
-                listLh.add ( ctsp );
+        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietSanPham ctsp = new ChiTietSanPham();
+                ctsp.setMactsp(rs.getString(1));
+                ctsp.setIdsp(rs.getString(2));
+                ctsp.setIdsize(rs.getString(3));
+                ctsp.setIdms(rs.getString(4));
+                ctsp.setIdde(rs.getString(5));
+                ctsp.setIdkieu(rs.getString(6));
+                ctsp.setSoluong(rs.getInt(7));
+                ctsp.setDongia(rs.getInt(8));
+//                ctsp.setMota(rs.getString(9));
+//                ctsp.setTrangThai(rs.getInt(10));
+//                ctsp.setHinhanh(rs.getString(11));
+                ctsp.setId(rs.getString(9));
+                listLh.add(ctsp);
             }
-        } catch ( Exception e ) {
-            e.printStackTrace ( System.out );
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
 
         }
         return listLh;

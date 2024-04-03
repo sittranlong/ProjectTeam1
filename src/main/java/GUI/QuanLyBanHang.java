@@ -28,7 +28,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private BanHangDao ctspsi = new BanHangDao();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
     private List<ChiTietSanPham> list = new ArrayList<>();
-    private DefaultTableModel dtmSanPham;
+//    private DefaultTableModel dtmSanPham;
     private DefaultTableModel dtmGioHang;
     private BanHangDao banHangDao;
     private String tenNhanVien;
@@ -40,16 +40,14 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     public QuanLyBanHang() {
         initComponents();
         setVisible(true);
-        dtm = (DefaultTableModel) tblSanPham.getModel();
         LoadCbbLocKD(ctspsi.getListKieuDang1());
         LoadCbbLocS(ctspsi.getListSize1());
         list = ctspsi.getAll();
         showData(list);
         tblSanPham.setEnabled(false);
         banHangDao = new BanHangDao();
-        dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
         dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
-        loadSanPham();
+//        loadSanPham();
         loadTenKhachHangToComboBox();
         tblSanPham.setEnabled(false);
         jButtonTaoHoaDon.setEnabled(true);
@@ -413,11 +411,13 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void showData(List<ChiTietSanPham> list) {
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm = (DefaultTableModel) tblSanPham.getModel();
         dtm.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             dtm.addRow(new Object[]{ctsp.getMactsp(), ctsp.getIdsp(),
-                ctsp.getIdsize(), ctsp.getIdkieu(), ctsp.getDongia(),
-                ctsp.getSoluong()});
+                ctsp.getIdsize(),ctsp.getIdms(),ctsp.getIdde(), ctsp.getIdkieu(), ctsp.getSoluong(),
+                ctsp.getDongia()});
         }
     }
 
@@ -488,7 +488,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
 
         int rowIndex = tblSanPham.getSelectedRow();
-        dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
+        dtm = (DefaultTableModel) tblSanPham.getModel();
 
         // Chỉ định chỉ số các cột bạn quan tâm
         int[] columnsOfInterest = {0, 1, 2, 3, 4, 5, 6, 7}; // Ví dụ: lấy cột 0, 1, 5 và 4
@@ -499,7 +499,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             Object[] rowData = new Object[columnsOfInterest.length];
             for (int i = 0; i < columnsOfInterest.length; i++) {
                 int columnIndex = columnsOfInterest[i];
-                rowData[i] = dtmSanPham.getValueAt(rowIndex, columnIndex);
+                rowData[i] = dtm.getValueAt(rowIndex, columnIndex);
             }
 
             // Yêu cầu người dùng nhập số lượng
@@ -507,14 +507,14 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             if (quantityString != null && !quantityString.isEmpty()) {
                 try {
                     int quantity = Integer.parseInt(quantityString);
-                    int currentQuantity = (int) dtmSanPham.getValueAt(rowIndex, columnsOfInterest[3]); // Lấy dữ liệu từ cột số lượng
+                    int currentQuantity = (int) dtm.getValueAt(rowIndex, columnsOfInterest[3]); // Lấy dữ liệu từ cột số lượng
                     if (quantity <= currentQuantity && quantity <= 30) { // Kiểm tra số lượng nhập vào không vượt quá 30
                         dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
                         if (dtmGioHang.getRowCount() == 0) {
                             // Thêm các cột vào bảng jTableGioHang
                             for (int i = 0; i < columnsOfInterest.length; i++) {
                                 int columnIndex = columnsOfInterest[i];
-                                dtmGioHang.addColumn(dtmSanPham.getColumnName(columnIndex));
+                                dtmGioHang.addColumn(dtm.getColumnName(columnIndex));
                             }
                             // Thêm cột mới để hiển thị số lượng nhập vào
                             dtmGioHang.addColumn("Số lượng nhập");
@@ -763,15 +763,15 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void jTextFieldTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTongTienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTongTienActionPerformed
-    private void loadSanPham() {
-        List<ChiTietSanPham> listSanPham = banHangDao.getAll();
-        dtmSanPham.setRowCount(0);
-        for (ChiTietSanPham ctsp : listSanPham) {
-            dtmSanPham.addRow(new Object[]{ctsp.getMactsp(),
-                ctsp.getIdsp(), ctsp.getIdsize(),
-                ctsp.getIdkieu(), ctsp.getDongia(), ctsp.getSoluong()});
-        }
-    }
+//    private void loadSanPham() {
+//        List<ChiTietSanPham> listSanPham = banHangDao.getAll();
+//        dtmSanPham.setRowCount(0);
+//        for (ChiTietSanPham ctsp : listSanPham) {
+//            dtmSanPham.addRow(new Object[]{ctsp.getMactsp(),
+//                ctsp.getIdsp(), ctsp.getIdsize(),
+//                ctsp.getIdkieu(), ctsp.getDongia(), ctsp.getSoluong()});
+//        }
+//    }
 
     private double tinhTongTien() {
         double tongTien = 0.0;
