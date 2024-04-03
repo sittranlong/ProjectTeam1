@@ -23,40 +23,40 @@ import javax.swing.table.DefaultTableModel;
 public class QuanLyBanHang extends javax.swing.JPanel {
 
     private List<HoaDon> danhSachHoaDonCho;
-    private ChiTietSanPham ctsp = new ChiTietSanPham();
-    private DefaultTableModel dtm = new DefaultTableModel();
-    private BanHangDao ctspsi = new BanHangDao();
-    private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
-    private List<ChiTietSanPham> list = new ArrayList<>();
+    private ChiTietSanPham ctsp = new ChiTietSanPham ();
+    private DefaultTableModel dtm = new DefaultTableModel ();
+    private BanHangDao ctspsi = new BanHangDao ();
+    private DefaultComboBoxModel dcbm = new DefaultComboBoxModel ();
+    private List<ChiTietSanPham> list = new ArrayList<> ();
 //    private DefaultTableModel dtmSanPham;
     private DefaultTableModel dtmGioHang;
     private BanHangDao banHangDao;
     private String tenNhanVien;
     private String tenKhachHang;
-    private KhachHangDAO khs = new KhachHangDAO();
-    private List<KhachHang> listDg = new ArrayList<>();
+    private KhachHangDAO khs = new KhachHangDAO ();
+    private List<KhachHang> listDg = new ArrayList<> ();
     String idHoaDonCT;
 
-    public QuanLyBanHang() {
-        initComponents();
-        setVisible(true);
-        LoadCbbLocKD(ctspsi.getListKieuDang1());
-        LoadCbbLocS(ctspsi.getListSize1());
-        list = ctspsi.getAll();
-        showData(list);
-        tblSanPham.setEnabled(false);
-        banHangDao = new BanHangDao();
-        dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
+    public QuanLyBanHang () {
+        initComponents ();
+        setVisible ( true );
+        LoadCbbLocKD ( ctspsi.getListKieuDang1 () );
+        LoadCbbLocS ( ctspsi.getListSize1 () );
+        list = ctspsi.getAll ();
+        showData ( list );
+        tblSanPham.setEnabled ( false );
+        banHangDao = new BanHangDao ();
+        dtmGioHang = ( DefaultTableModel ) tblGioHang.getModel ();
 //        loadSanPham();
-        loadTenKhachHangToComboBox();
-        tblSanPham.setEnabled(false);
-        jButtonTaoHoaDon.setEnabled(true);
-        jTextFieldTenNhanVien.setEditable(false);
-        jTextFieldMaHoaDon.setEditable(false);
-        jTextFieldTongTien.setEditable(false);
+        loadTenKhachHangToComboBox ();
+        tblSanPham.setEnabled ( false );
+        jButtonTaoHoaDon.setEnabled ( true );
+        jTextFieldTenNhanVien.setEditable ( false );
+        jTextFieldMaHoaDon.setEditable ( false );
+        jTextFieldTongTien.setEditable ( false );
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings ( "unchecked" )
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -109,7 +109,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Tên sản phẩm", "Size", "Màu Sắc", "Độ cao đế", "Kiểu dáng", "Số lượng", "Đơn giá", "Thành tiền"
+                "Tên sản phẩm", "Size", "Màu Sắc", "Độ cao đế", "Kiểu dáng", "Số lượng", "Đơn giá", "Thành tiền"
             }
         ));
         tblGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,7 +119,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblGioHang);
         if (tblGioHang.getColumnModel().getColumnCount() > 0) {
-            tblGioHang.getColumnModel().getColumn(3).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabelSanPham.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -272,12 +272,13 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                                 .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonXoaSPGioHang)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabelGioHang)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButtonXoaSPGioHang)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelGioHang)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -402,143 +403,133 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                             .addComponent(jButtonHuyThanhToan)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelGioHang)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonXoaSPGioHang)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void showData(List<ChiTietSanPham> list) {
-        DefaultTableModel dtm = new DefaultTableModel();
-        dtm = (DefaultTableModel) tblSanPham.getModel();
-        dtm.setRowCount(0);
-        for (ChiTietSanPham ctsp : list) {
-            dtm.addRow(new Object[]{ctsp.getMactsp(), ctsp.getIdsp(),
-                ctsp.getIdsize(),ctsp.getIdms(),ctsp.getIdde(), ctsp.getIdkieu(), ctsp.getSoluong(),
-                ctsp.getDongia()});
+    private void showData ( List<ChiTietSanPham> list ) {
+        DefaultTableModel dtm = new DefaultTableModel ();
+        dtm = ( DefaultTableModel ) tblSanPham.getModel ();
+        dtm.setRowCount ( 0 );
+        for ( ChiTietSanPham ctsp : list ) {
+            dtm.addRow ( new Object[] { ctsp.getMactsp () , ctsp.getIdsp () ,
+                ctsp.getIdsize () , ctsp.getIdms () , ctsp.getIdde () , ctsp.getIdkieu () , ctsp.getSoluong () ,
+                ctsp.getDongia () } );
         }
     }
 
-    private void LoadCbbLocKD(List<String> list) {
-        dcbm = (DefaultComboBoxModel) cbbKieu.getModel();
-        for (String string : list) {
-            dcbm.addElement(string);
+    private void LoadCbbLocKD ( List<String> list ) {
+        dcbm = ( DefaultComboBoxModel ) cbbKieu.getModel ();
+        for ( String string : list ) {
+            dcbm.addElement ( string );
         }
     }
 
-    private void LoadCbbLocS(List<String> list) {
-        dcbm = (DefaultComboBoxModel) cbbSize.getModel();
-        for (String string : list) {
-            dcbm.addElement(string);
+    private void LoadCbbLocS ( List<String> list ) {
+        dcbm = ( DefaultComboBoxModel ) cbbSize.getModel ();
+        for ( String string : list ) {
+            dcbm.addElement ( string );
         }
     }
 
-    private void loadTenKhachHangToComboBox() {
+    private void loadTenKhachHangToComboBox () {
         // Gọi phương thức từ KhachHangDAO để lấy danh sách tên khách hàng từ cơ sở dữ liệu
-        KhachHangDAO khachHangDAO = new KhachHangDAO();
-        List<String> tenKhachHangList = khachHangDAO.getAllTenKhachHang();
+        KhachHangDAO khachHangDAO = new KhachHangDAO ();
+        List<String> tenKhachHangList = khachHangDAO.getAllTenKhachHang ();
 
         // Xóa tất cả các mục khách hàng hiện có trong JComboBox để cập nhật danh sách mới
-        jComboBoxTenKhachHang.removeAllItems();
+        jComboBoxTenKhachHang.removeAllItems ();
 
         // Thêm các tên khách hàng từ danh sách vào JComboBox
-        for (String tenKhachHang : tenKhachHangList) {
-            jComboBoxTenKhachHang.addItem(tenKhachHang);
+        for ( String tenKhachHang : tenKhachHangList ) {
+            jComboBoxTenKhachHang.addItem ( tenKhachHang );
         }
     }
 
     private void jButtonTimTenSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimTenSanPhamActionPerformed
         // TODO add your handling code here:
-        String tk = txtTk.getText(); // Lấy dữ liệu từ trường văn bản
+        String tk = txtTk.getText (); // Lấy dữ liệu từ trường văn bản
         // Kiểm tra xem trường văn bản có dữ liệu hay không
-        if (!tk.isEmpty()) { // Nếu có dữ liệu
-            ctspsi.Tk(tk);
-            list = ctspsi.Tk(tk);
-            showData(list);
+        if (  ! tk.isEmpty () ) { // Nếu có dữ liệu
+            ctspsi.Tk ( tk );
+            list = ctspsi.Tk ( tk );
+            showData ( list );
         } else { // Nếu không có dữ liệu
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu để tìm"); // Hiển thị thông báo
+            JOptionPane.showMessageDialog ( null , "Vui lòng nhập dữ liệu để tìm" ); // Hiển thị thông báo
         }
     }//GEN-LAST:event_jButtonTimTenSanPhamActionPerformed
 
     private void txtTkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTkMouseClicked
         // TODO add your handling code here:
-        txtTk.setText("");
-        list = ctspsi.getAll();
-        showData(list);
+        txtTk.setText ( "" );
+        list = ctspsi.getAll ();
+        showData ( list );
     }//GEN-LAST:event_txtTkMouseClicked
 
     private void cbbSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSizeActionPerformed
         // TODO add your handling code here:
-        String ten = cbbSize.getSelectedItem().toString();
-        ctspsi.Loc1(ten);
-        list = ctspsi.Loc1(ten);
-        showData(list);
+        String ten = cbbSize.getSelectedItem ().toString ();
+        ctspsi.Loc1 ( ten );
+        list = ctspsi.Loc1 ( ten );
+        showData ( list );
     }//GEN-LAST:event_cbbSizeActionPerformed
 
     private void cbbKieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbKieuActionPerformed
         // TODO add your handling code here:
-        String ma = cbbKieu.getSelectedItem().toString();
-        ctspsi.Loc1(ma);
-        list = ctspsi.Loc1(ma);
-        showData(list);
+        String ma = cbbKieu.getSelectedItem ().toString ();
+        ctspsi.Loc1 ( ma );
+        list = ctspsi.Loc1 ( ma );
+        showData ( list );
     }//GEN-LAST:event_cbbKieuActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
-
-        int rowIndex = tblSanPham.getSelectedRow();
-        dtm = (DefaultTableModel) tblSanPham.getModel();
-
-        // Chỉ định chỉ số các cột bạn quan tâm
-        int[] columnsOfInterest = {0, 1, 2, 3, 4, 5, 6, 7}; // Ví dụ: lấy cột 0, 1, 5 và 4
-
-        // Kiểm tra xem có dòng được chọn không
-        if (rowIndex != -1) {
-            // Lấy dữ liệu từ các cột quan tâm
-            Object[] rowData = new Object[columnsOfInterest.length];
-            for (int i = 0; i < columnsOfInterest.length; i++) {
-                int columnIndex = columnsOfInterest[i];
-                rowData[i] = dtm.getValueAt(rowIndex, columnIndex);
-            }
+        int rowIndex = tblSanPham.getSelectedRow ();
+        if ( rowIndex != -1 ) {
+            // Lấy dữ liệu từ hàng được chọn trong bảng sản phẩm
+            String maSanPham = tblSanPham.getValueAt ( rowIndex , 0 ).toString ();
+            String tenSanPham = tblSanPham.getValueAt ( rowIndex , 1 ).toString ();
+            String size = tblSanPham.getValueAt ( rowIndex , 2 ).toString ();
+            String mauSac = tblSanPham.getValueAt ( rowIndex , 3 ).toString ();
+            String doCaoDe = tblSanPham.getValueAt ( rowIndex , 4 ).toString ();
+            String kieuDang = tblSanPham.getValueAt ( rowIndex , 5).toString ();
+            int soLuongTon = Integer.parseInt ( tblSanPham.getValueAt ( rowIndex , 6 ).toString () );
+            double donGia = Double.parseDouble ( tblSanPham.getValueAt ( rowIndex , 7 ).toString () );
 
             // Yêu cầu người dùng nhập số lượng
-            String quantityString = JOptionPane.showInputDialog(null, "Nhập số lượng:", "Nhập số lượng", JOptionPane.PLAIN_MESSAGE);
-            if (quantityString != null && !quantityString.isEmpty()) {
+            String quantityString = JOptionPane.showInputDialog ( null , "Nhập số lượng:" , "Nhập số lượng" , JOptionPane.PLAIN_MESSAGE );
+            if ( quantityString != null &&  ! quantityString.isEmpty () ) {
                 try {
-                    int quantity = Integer.parseInt(quantityString);
-                    int currentQuantity = (int) dtm.getValueAt(rowIndex, columnsOfInterest[3]); // Lấy dữ liệu từ cột số lượng
-                    if (quantity <= currentQuantity && quantity <= 30) { // Kiểm tra số lượng nhập vào không vượt quá 30
-                        dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
-                        if (dtmGioHang.getRowCount() == 0) {
-                            // Thêm các cột vào bảng jTableGioHang
-                            for (int i = 0; i < columnsOfInterest.length; i++) {
-                                int columnIndex = columnsOfInterest[i];
-                                dtmGioHang.addColumn(dtm.getColumnName(columnIndex));
-                            }
-                            // Thêm cột mới để hiển thị số lượng nhập vào
-                            dtmGioHang.addColumn("Số lượng nhập");
-                        }
+                    int soLuongMua = Integer.parseInt ( quantityString );
+                    if ( soLuongMua > 0 && soLuongMua <= soLuongTon ) {
+                        // Tính toán thành tiền
+                        double thanhTien = soLuongMua * donGia;
 
-                        // Thêm dữ liệu vào jTableGioHang từ hàng đầu tiên
-                        Object[] newData = new Object[rowData.length + 1];
-                        System.arraycopy(rowData, 0, newData, 0, rowData.length); // Sao chép dữ liệu từ rowData
-                        newData[rowData.length] = quantity; // Thêm số lượng nhập vào cuối mảng newData
-                        dtmGioHang.insertRow(0, newData); // Thêm dữ liệu mới vào bảng
-                        tinhTongTien();
+                        // Thêm dữ liệu vào bảng giỏ hàng
+                        dtmGioHang = ( DefaultTableModel ) tblGioHang.getModel ();
+                        Object[] rowData = { tenSanPham , size , mauSac , doCaoDe , kieuDang , soLuongMua , donGia , thanhTien };
+                        dtmGioHang.addRow ( rowData );
+                        
+
+                        // Cập nhật số lượng tồn trong bảng sản phẩm
+                        tblSanPham.setValueAt ( soLuongTon - soLuongMua , rowIndex , 6 );
+
+                        // Cập nhật bảng giỏ hàng
+                        tinhTongTien ();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải nhỏ hơn hoặc bằng 30 và không vượt quá số lượng hiện có của sản phẩm", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog ( null , "Số lượng nhập vào phải lớn hơn 0 và không vượt quá số lượng tồn" , "Lỗi" , JOptionPane.ERROR_MESSAGE );
                     }
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } catch ( NumberFormatException ex ) {
+                    JOptionPane.showMessageDialog ( null , "Vui lòng nhập số lượng hợp lệ" , "Lỗi" , JOptionPane.ERROR_MESSAGE );
                 }
             }
         }
-
-
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
-    private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {
+    private void tblGioHangMouseClicked ( java.awt.event.MouseEvent evt ) {
 
     }
 
@@ -550,15 +541,15 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             String sqlHoaDon = "UPDATE HOADON SET Ngaytao = ?, NgayChinhSua = ?, TrangThai = ? WHERE Mahd = ?";
             // Thực hiện câu lệnh SQL để cập nhật thông tin hóa đơn
             // Lưu thông tin hóa đơn
-            Connection connection = DatabaseHelper.getConnection();
-            PreparedStatement preparedStatementHoaDon = connection.prepareStatement(sqlHoaDon);
-            preparedStatementHoaDon.setDate(1, new java.sql.Date(new Date().getTime())); // Ngày tạo hóa đơn
-            preparedStatementHoaDon.setDate(2, new java.sql.Date(new Date().getTime())); // Ngày chỉnh sửa hóa đơn
-            preparedStatementHoaDon.setString(3, "Đã thanh toán"); // Trạng thái hóa đơn
-            preparedStatementHoaDon.setString(4, jTextFieldMaHoaDon.getText()); // Mã hóa đơn
+            Connection connection = DatabaseHelper.getConnection ();
+            PreparedStatement preparedStatementHoaDon = connection.prepareStatement ( sqlHoaDon );
+            preparedStatementHoaDon.setDate ( 1 , new java.sql.Date ( new Date ().getTime () ) ); // Ngày tạo hóa đơn
+            preparedStatementHoaDon.setDate ( 2 , new java.sql.Date ( new Date ().getTime () ) ); // Ngày chỉnh sửa hóa đơn
+            preparedStatementHoaDon.setString ( 3 , "Đã thanh toán" ); // Trạng thái hóa đơn
+            preparedStatementHoaDon.setString ( 4 , jTextFieldMaHoaDon.getText () ); // Mã hóa đơn
 
             // Thực hiện cập nhật thông tin hóa đơn
-            int rowsAffectedHoaDon = preparedStatementHoaDon.executeUpdate();
+            int rowsAffectedHoaDon = preparedStatementHoaDon.executeUpdate ();
 
             // Lưu thông tin hóa đơn chi tiết
             String sqlHoaDonChiTiet = "UPDATE HOADONCHITIET\n"
@@ -567,34 +558,34 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                     + "    NgayChinhSua = GETDATE(),\n"
                     + "    TrangThai = ?\n"
                     + "WHERE Id = ?;";
-            PreparedStatement preparedStatementHoaDonChiTiet = connection.prepareStatement(sqlHoaDonChiTiet);
+            PreparedStatement preparedStatementHoaDonChiTiet = connection.prepareStatement ( sqlHoaDonChiTiet );
 
             // Lưu từng dòng trong jTableGioHang vào cơ sở dữ liệu
-            for (int i = 0; i < tblGioHang.getRowCount(); i++) {
-                String tenSanPham = tblGioHang.getValueAt(i, 1).toString();
-                int soLuong = Integer.parseInt(tblGioHang.getValueAt(i, 6).toString());
-                double donGia = Double.parseDouble(tblGioHang.getValueAt(i, 7).toString());
-                preparedStatementHoaDonChiTiet.setInt(1, soLuong);
-                preparedStatementHoaDonChiTiet.setDouble(2, soLuong * donGia);
-                preparedStatementHoaDonChiTiet.setDate(3, new java.sql.Date(new Date().getTime()));
-                preparedStatementHoaDonChiTiet.setInt(4, 1);
-                preparedStatementHoaDonChiTiet.setString(5, idHoaDonCT);
-                preparedStatementHoaDonChiTiet.executeUpdate();
+            for ( int i = 0 ; i < tblGioHang.getRowCount () ; i ++ ) {
+                String tenSanPham = tblGioHang.getValueAt ( i , 1 ).toString ();
+                int soLuong = Integer.parseInt ( tblGioHang.getValueAt ( i , 6 ).toString () );
+                double donGia = Double.parseDouble ( tblGioHang.getValueAt ( i , 7 ).toString () );
+                preparedStatementHoaDonChiTiet.setInt ( 1 , soLuong );
+                preparedStatementHoaDonChiTiet.setDouble ( 2 , soLuong * donGia );
+                preparedStatementHoaDonChiTiet.setDate ( 3 , new java.sql.Date ( new Date ().getTime () ) );
+                preparedStatementHoaDonChiTiet.setInt ( 4 , 1 );
+                preparedStatementHoaDonChiTiet.setString ( 5 , idHoaDonCT );
+                preparedStatementHoaDonChiTiet.executeUpdate ();
             }
 
             // Đóng kết nối và hiển thị thông báo cho người dùng
-            connection.close();
-            JOptionPane.showMessageDialog(this, "Hóa đơn đã được lưu vào cơ sở dữ liệu.");
+            connection.close ();
+            JOptionPane.showMessageDialog ( this , "Hóa đơn đã được lưu vào cơ sở dữ liệu." );
             // Làm sạch giao diện
-            jTextFieldTenNhanVien.setText("");
-            jTextFieldMaHoaDon.setText("");
-            jTextFieldTongTien.setText("");
-            dtmGioHang.setRowCount(0);
-        } catch (SQLException | NumberFormatException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lỗi khi lưu hóa đơn vào cơ sở dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            Logger.getLogger(QuanLyBanHang.class.getName()).log(Level.SEVERE, null, ex);
+            jTextFieldTenNhanVien.setText ( "" );
+            jTextFieldMaHoaDon.setText ( "" );
+            jTextFieldTongTien.setText ( "" );
+            dtmGioHang.setRowCount ( 0 );
+        } catch ( SQLException | NumberFormatException ex ) {
+            ex.printStackTrace ();
+            JOptionPane.showMessageDialog ( this , "Lỗi khi lưu hóa đơn vào cơ sở dữ liệu." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
+        } catch ( Exception ex ) {
+            Logger.getLogger ( QuanLyBanHang.class.getName () ).log ( Level.SEVERE , null , ex );
         }
 
     }//GEN-LAST:event_jButtonThanhToanActionPerformed
@@ -607,110 +598,110 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             PreparedStatement preparedStatementHoaDonChiTiet = null;
 
             try {
-                connection = DatabaseHelper.getConnection();
+                connection = DatabaseHelper.getConnection ();
                 // Tắt chế độ tự động commit để có thể rollback nếu cần thiết
-                connection.setAutoCommit(false);
+                connection.setAutoCommit ( false );
 
                 // Xóa thông tin hóa đơn chi tiết
                 String sqlHoaDonChiTiet = "DELETE FROM HOADONCHITIET WHERE Idhd = ?";
-                preparedStatementHoaDonChiTiet = connection.prepareStatement(sqlHoaDonChiTiet);
-                preparedStatementHoaDonChiTiet.setString(1, jTextFieldMaHoaDon.getText());
-                preparedStatementHoaDonChiTiet.executeUpdate();
+                preparedStatementHoaDonChiTiet = connection.prepareStatement ( sqlHoaDonChiTiet );
+                preparedStatementHoaDonChiTiet.setString ( 1 , jTextFieldMaHoaDon.getText () );
+                preparedStatementHoaDonChiTiet.executeUpdate ();
 
                 // Xóa thông tin hóa đơn
                 String sqlHoaDon = "DELETE FROM HOADON WHERE Mahd = ?";
-                preparedStatementHoaDon = connection.prepareStatement(sqlHoaDon);
-                preparedStatementHoaDon.setString(1, jTextFieldMaHoaDon.getText());
-                preparedStatementHoaDon.executeUpdate();
+                preparedStatementHoaDon = connection.prepareStatement ( sqlHoaDon );
+                preparedStatementHoaDon.setString ( 1 , jTextFieldMaHoaDon.getText () );
+                preparedStatementHoaDon.executeUpdate ();
 
                 // Commit các thay đổi nếu không có vấn đề nào xảy ra
-                connection.commit();
-                JOptionPane.showMessageDialog(this, "Hóa đơn đã được xóa khỏi cơ sở dữ liệu.");
+                connection.commit ();
+                JOptionPane.showMessageDialog ( this , "Hóa đơn đã được xóa khỏi cơ sở dữ liệu." );
                 // Làm sạch giao diện
-                jTextFieldTenNhanVien.setText("");
-                jTextFieldMaHoaDon.setText("");
-                jTextFieldTongTien.setText("");
-                dtmGioHang.setRowCount(0);
-            } catch (SQLException ex) {
+                jTextFieldTenNhanVien.setText ( "" );
+                jTextFieldMaHoaDon.setText ( "" );
+                jTextFieldTongTien.setText ( "" );
+                dtmGioHang.setRowCount ( 0 );
+            } catch ( SQLException ex ) {
                 // Nếu có lỗi xảy ra, rollback lại các thay đổi đã thực hiện
-                if (connection != null) {
-                    connection.rollback();
+                if ( connection != null ) {
+                    connection.rollback ();
                 }
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Lỗi khi xóa hóa đơn từ cơ sở dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace ();
+                JOptionPane.showMessageDialog ( this , "Lỗi khi xóa hóa đơn từ cơ sở dữ liệu." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
             } finally {
                 // Đóng tất cả các tài nguyên
-                if (preparedStatementHoaDonChiTiet != null) {
-                    preparedStatementHoaDonChiTiet.close();
+                if ( preparedStatementHoaDonChiTiet != null ) {
+                    preparedStatementHoaDonChiTiet.close ();
                 }
-                if (preparedStatementHoaDon != null) {
-                    preparedStatementHoaDon.close();
+                if ( preparedStatementHoaDon != null ) {
+                    preparedStatementHoaDon.close ();
                 }
-                if (connection != null) {
-                    connection.close();
+                if ( connection != null ) {
+                    connection.close ();
                 }
             }
-        } catch (Exception ex) {
-            Logger.getLogger(QuanLyBanHang.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( Exception ex ) {
+            Logger.getLogger ( QuanLyBanHang.class.getName () ).log ( Level.SEVERE , null , ex );
         }
     }//GEN-LAST:event_jButtonHuyThanhToanActionPerformed
 
-    private void displayEmployeeNameFromDatabase() throws Exception {
+    private void displayEmployeeNameFromDatabase () throws Exception {
         try {
             // Kết nối đến cơ sở dữ liệu
-            Connection connection = DatabaseHelper.getConnection();
+            Connection connection = DatabaseHelper.getConnection ();
             // Tạo câu truy vấn SQL để lấy tên nhân viên từ bảng NHANVIEN dựa trên tên tài khoản từ bảng TAIKHOAN
             String sql = "SELECT NV.Ten FROM NHANVIEN NV JOIN TAIKHOAN TK ON NV.MataiKhoan = TK.Mataikhoan WHERE TK.Tentaikhoan = ?";
             // Tạo PreparedStatement
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement ( sql );
             // Đặt tham số cho câu truy vấn
-            preparedStatement.setString(1, Dashboard.taiKhoan.getTentaikhoan());
+            preparedStatement.setString ( 1 , Dashboard.taiKhoan.getTentaikhoan () );
             // Thực thi câu truy vấn
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery ();
             // Kiểm tra xem có kết quả trả về không
-            if (resultSet.next()) {
+            if ( resultSet.next () ) {
                 // Lấy tên nhân viên từ kết quả trả về và hiển thị trong JTextFieldTenNhanVien
-                String tenNhanVien = resultSet.getString("Ten");
-                jTextFieldTenNhanVien.setText(tenNhanVien);
+                String tenNhanVien = resultSet.getString ( "Ten" );
+                jTextFieldTenNhanVien.setText ( tenNhanVien );
             }
             // Đóng kết nối
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Lỗi khi lấy tên nhân viên từ cơ sở dữ liệu.");
+            connection.close ();
+        } catch ( SQLException e ) {
+            e.printStackTrace ();
+            throw new Exception ( "Lỗi khi lấy tên nhân viên từ cơ sở dữ liệu." );
         }
     }
 
-    private boolean createNewInvoice(String idHoaDon, String maHoaDon, Date ngayTao, Integer trangThai) throws Exception {
-        try (Connection connection = DatabaseHelper.getConnection()) {
+    private boolean createNewInvoice ( String idHoaDon , String maHoaDon , Date ngayTao , Integer trangThai ) throws Exception {
+        try ( Connection connection = DatabaseHelper.getConnection () ) {
             String sql = "INSERT INTO HOADON (Id, Mahd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, idHoaDon);
-                preparedStatement.setString(2, maHoaDon);
-                preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
-                preparedStatement.setInt(4, trangThai);
-                int rowsAffected = preparedStatement.executeUpdate();
+            try ( PreparedStatement preparedStatement = connection.prepareStatement ( sql ) ) {
+                preparedStatement.setString ( 1 , idHoaDon );
+                preparedStatement.setString ( 2 , maHoaDon );
+                preparedStatement.setDate ( 3 , new java.sql.Date ( ngayTao.getTime () ) );
+                preparedStatement.setInt ( 4 , trangThai );
+                int rowsAffected = preparedStatement.executeUpdate ();
                 return rowsAffected > 0;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch ( SQLException e ) {
+            e.printStackTrace ();
             return false;
         }
     }
 
-    public boolean createNewInvoiceDetail(String idHoaDonChiTiet, String idHoaDon, Date ngayTao, Integer trangThai) throws Exception {
-        try (Connection connection = DatabaseHelper.getConnection()) {
+    public boolean createNewInvoiceDetail ( String idHoaDonChiTiet , String idHoaDon , Date ngayTao , Integer trangThai ) throws Exception {
+        try ( Connection connection = DatabaseHelper.getConnection () ) {
             String sql = "INSERT INTO HOADONCHITIET (Id, Idhd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, idHoaDon);
-                preparedStatement.setString(2, idHoaDon);
-                preparedStatement.setDate(3, new java.sql.Date(ngayTao.getTime()));
-                preparedStatement.setInt(4, trangThai);
-                int rowsAffected = preparedStatement.executeUpdate();
+            try ( PreparedStatement preparedStatement = connection.prepareStatement ( sql ) ) {
+                preparedStatement.setString ( 1 , idHoaDon );
+                preparedStatement.setString ( 2 , idHoaDon );
+                preparedStatement.setDate ( 3 , new java.sql.Date ( ngayTao.getTime () ) );
+                preparedStatement.setInt ( 4 , trangThai );
+                int rowsAffected = preparedStatement.executeUpdate ();
                 return rowsAffected > 0;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch ( SQLException e ) {
+            e.printStackTrace ();
             return false;
         }
     }
@@ -719,45 +710,45 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private void jButtonTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaoHoaDonActionPerformed
         try {
             // Hiển thị tên nhân viên từ cơ sở dữ liệu
-            displayEmployeeNameFromDatabase();
-            tblSanPham.setEnabled(true);
+            displayEmployeeNameFromDatabase ();
+            tblSanPham.setEnabled ( true );
 
             // Lấy tên nhân viên từ cơ sở dữ liệu và hiển thị trên JTextFieldTenNhanVien
-            String tenNhanVien = jTextFieldTenNhanVien.getText();
+            String tenNhanVien = jTextFieldTenNhanVien.getText ();
 
             // Tạo hóa đơn mới và lưu vào cơ sở dữ liệu
-            String idHoaDon = UUID.randomUUID().toString();
-            String maHoaDon = "HD" + UUID.randomUUID().toString();
-            Date ngayTao = new Date();
+            String idHoaDon = UUID.randomUUID ().toString ();
+            String maHoaDon = "HD" + UUID.randomUUID ().toString ();
+            Date ngayTao = new Date ();
             Integer trangThai = 1;
             // Tạo hóa đơn CT mới và lưu vào cơ sở dữ liệu
-            idHoaDonCT = UUID.randomUUID().toString();
+            idHoaDonCT = UUID.randomUUID ().toString ();
             String idMaHoaDon = idHoaDon;
             Date ngayTaoCT = ngayTao;
             Integer trangThaiCT = 0;
 
-            boolean success1 = createNewInvoice(idHoaDon, maHoaDon, ngayTao, trangThai);
-            boolean success2 = createNewInvoiceDetail(idHoaDonCT, idMaHoaDon, ngayTaoCT, trangThaiCT);
+            boolean success1 = createNewInvoice ( idHoaDon , maHoaDon , ngayTao , trangThai );
+            boolean success2 = createNewInvoiceDetail ( idHoaDonCT , idMaHoaDon , ngayTaoCT , trangThaiCT );
 
-            if (success1 && success2) {
-                JOptionPane.showMessageDialog(this, "Hóa đơn mới đã được tạo thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                jTextFieldMaHoaDon.setText(maHoaDon);
-                jTextFieldTenNhanVien.setText(tenNhanVien);
+            if ( success1 && success2 ) {
+                JOptionPane.showMessageDialog ( this , "Hóa đơn mới đã được tạo thành công." , "Thông báo" , JOptionPane.INFORMATION_MESSAGE );
+                jTextFieldMaHoaDon.setText ( maHoaDon );
+                jTextFieldTenNhanVien.setText ( tenNhanVien );
             } else {
-                JOptionPane.showMessageDialog(this, "Không thể tạo hóa đơn mới.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog ( this , "Không thể tạo hóa đơn mới." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
             }
-        } catch (Exception ex) {
-            Logger.getLogger(QuanLyBanHang.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi tạo hóa đơn mới.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch ( Exception ex ) {
+            Logger.getLogger ( QuanLyBanHang.class.getName () ).log ( Level.SEVERE , null , ex );
+            JOptionPane.showMessageDialog ( this , "Có lỗi xảy ra khi tạo hóa đơn mới." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
         }
     }//GEN-LAST:event_jButtonTaoHoaDonActionPerformed
 
     private void jButtonThemMoiKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThemMoiKhachHangActionPerformed
-        JOptionPane.showMessageDialog(this, "Thêm Khách Hàng tại menu item trên thanh menu.", "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog ( this , "Thêm Khách Hàng tại menu item trên thanh menu." , "Thông Báo" , JOptionPane.INFORMATION_MESSAGE );
     }//GEN-LAST:event_jButtonThemMoiKhachHangActionPerformed
 
     private void jTextFieldTienKhachDuaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTienKhachDuaFocusLost
-        capNhatDuLieu();
+        capNhatDuLieu ();
     }//GEN-LAST:event_jTextFieldTienKhachDuaFocusLost
 
     private void jTextFieldTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTongTienActionPerformed
@@ -773,43 +764,42 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 //        }
 //    }
 
-    private double tinhTongTien() {
+    private double tinhTongTien () {
         double tongTien = 0.0;
-        for (int i = 0; i < tblGioHang.getRowCount(); i++) {
-            double giaTriCotCuoi = Double.parseDouble(tblGioHang.getValueAt(i, tblGioHang.getColumnCount() - 1).toString());
+        for ( int i = 0 ; i < tblGioHang.getRowCount () ; i ++ ) {
+            double giaTriCotCuoi = Double.parseDouble ( tblGioHang.getValueAt ( i , tblGioHang.getColumnCount () - 1 ).toString () );
             tongTien += giaTriCotCuoi;
         }
-        String tongTienString = String.valueOf(tongTien);
+        String tongTienString = String.valueOf ( tongTien );
         // hoặc: String tongTienString = Double.toString(tongTien);
 
         // Set text cho jTextFieldTongTien
-        jTextFieldTongTien.setText(tongTienString);
+        jTextFieldTongTien.setText ( tongTienString );
         return tongTien;
     }
 
-    private void capNhatDuLieu() {
+    private void capNhatDuLieu () {
         // Tính tổng tiền
-        double tongTien = tinhTongTien();
+        double tongTien = tinhTongTien ();
 
         // Lấy giá trị giảm giá từ jComboBoxGiamGia
-        double giamGia = Integer.parseInt(jComboBoxGiamGia.getSelectedItem().toString());
+        double giamGia = Integer.parseInt ( jComboBoxGiamGia.getSelectedItem ().toString () );
 
         // Tính tổng tiền sau khi giảm giá
-        double tongTienSauGiamGia = tongTien * (100 - giamGia) / 100.0;
+        double tongTienSauGiamGia = tongTien * ( 100 - giamGia ) / 100.0;
 
         // Hiển thị tổng tiền
-        jTextFieldTongTien.setText(String.valueOf(tongTienSauGiamGia));
+        jTextFieldTongTien.setText ( String.valueOf ( tongTienSauGiamGia ) );
 
         // Lấy giá trị tiền khách đưa từ jTextFieldTienKhachDua
-        int tienKhachDua = Integer.parseInt(jTextFieldTienKhachDua.getText());
+        int tienKhachDua = Integer.parseInt ( jTextFieldTienKhachDua.getText () );
 
         // Tính tiền thừa
         double tienThua = tienKhachDua - tongTienSauGiamGia;
 
         // Hiển thị tiền thừa
-        jTextFieldTienThua.setText(String.valueOf(tienThua));
+        jTextFieldTienThua.setText ( String.valueOf ( tienThua ) );
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbbKieu;
