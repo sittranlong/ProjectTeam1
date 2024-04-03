@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -23,40 +24,40 @@ import javax.swing.table.DefaultTableModel;
 public class QuanLyBanHang extends javax.swing.JPanel {
 
     private List<HoaDon> danhSachHoaDonCho;
-    private ChiTietSanPham ctsp = new ChiTietSanPham ();
-    private DefaultTableModel dtm = new DefaultTableModel ();
-    private BanHangDao ctspsi = new BanHangDao ();
-    private DefaultComboBoxModel dcbm = new DefaultComboBoxModel ();
-    private List<ChiTietSanPham> list = new ArrayList<> ();
-//    private DefaultTableModel dtmSanPham;
+    private ChiTietSanPham ctsp = new ChiTietSanPham();
+    private DefaultTableModel dtm = new DefaultTableModel();
+    private BanHangDao ctspsi = new BanHangDao();
+    private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+    private List<ChiTietSanPham> list = new ArrayList<>();
     private DefaultTableModel dtmGioHang;
     private BanHangDao banHangDao;
     private String tenNhanVien;
     private String tenKhachHang;
-    private KhachHangDAO khs = new KhachHangDAO ();
-    private List<KhachHang> listDg = new ArrayList<> ();
+    private KhachHangDAO khs = new KhachHangDAO();
+    private List<KhachHang> listDg = new ArrayList<>();
     String idHoaDonCT;
+    String idHoaDon;
+    String maHoaDon;
+    String idKhachHang;
+    String idNhanVien;
 
-    public QuanLyBanHang () {
-        initComponents ();
-        setVisible ( true );
-        LoadCbbLocKD ( ctspsi.getListKieuDang1 () );
-        LoadCbbLocS ( ctspsi.getListSize1 () );
-        list = ctspsi.getAll ();
-        showData ( list );
-        tblSanPham.setEnabled ( false );
-        banHangDao = new BanHangDao ();
-        dtmGioHang = ( DefaultTableModel ) tblGioHang.getModel ();
-//        loadSanPham();
-        loadTenKhachHangToComboBox ();
-        tblSanPham.setEnabled ( false );
-        jButtonTaoHoaDon.setEnabled ( true );
-        jTextFieldTenNhanVien.setEditable ( false );
-        jTextFieldMaHoaDon.setEditable ( false );
-        jTextFieldTongTien.setEditable ( false );
+    public QuanLyBanHang() {
+        initComponents();
+        setVisible(true);
+        LoadCbbLocKD(ctspsi.getListKieuDang1());
+        LoadCbbLocS(ctspsi.getListSize1());
+        list = ctspsi.getAll();
+        showData(list);
+        banHangDao = new BanHangDao();
+        dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
+        loadTenKhachHangToComboBox();
+        tblSanPham.setEnabled(false);
+        jButtonTaoHoaDon.setEnabled(true);
+        jTextFieldTenNhanVien.setEditable(false);
+        jTextFieldTongTien.setEditable(false);
     }
 
-    @SuppressWarnings ( "unchecked" )
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -78,19 +79,13 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jLabelSanPham1 = new javax.swing.JLabel();
         jLabelSanPham2 = new javax.swing.JLabel();
         jButtonTaoHoaDon = new javax.swing.JButton();
-        jLabelMaHoaDon = new javax.swing.JLabel();
         jTextFieldTongTien = new javax.swing.JTextField();
         jLabelTongTien = new javax.swing.JLabel();
-        jTextFieldTienKhachDua = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextFieldTienThua = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jComboBoxHinhThucThanhToan = new javax.swing.JComboBox<>();
         jButtonThanhToan = new javax.swing.JButton();
         jButtonHuyThanhToan = new javax.swing.JButton();
         jTextFieldTenNhanVien = new javax.swing.JTextField();
-        jTextFieldMaHoaDon = new javax.swing.JTextField();
         jLabelTenNhanVien = new javax.swing.JLabel();
         jLabelThongTinHoaDon = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -112,11 +107,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 "Tên sản phẩm", "Size", "Màu Sắc", "Độ cao đế", "Kiểu dáng", "Số lượng", "Đơn giá", "Thành tiền"
             }
         ));
-        tblGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblGioHangMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(tblGioHang);
         if (tblGioHang.getColumnModel().getColumnCount() > 0) {
             tblGioHang.getColumnModel().getColumn(2).setResizable(false);
@@ -190,8 +180,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             }
         });
 
-        jLabelMaHoaDon.setText("Mã Hóa Đơn");
-
         jTextFieldTongTien.setEditable(false);
         jTextFieldTongTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,16 +188,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         });
 
         jLabelTongTien.setText("Tổng Tiền");
-
-        jTextFieldTienKhachDua.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldTienKhachDuaFocusLost(evt);
-            }
-        });
-
-        jLabel6.setText("Tiền Khách Đưa");
-
-        jLabel7.setText("Tiền Thừa");
 
         jLabel8.setText("Hình Thức TT");
 
@@ -231,8 +209,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
 
         jTextFieldTenNhanVien.setEditable(false);
 
-        jTextFieldMaHoaDon.setEditable(false);
-
         jLabelTenNhanVien.setText("Tên Nhân Viên");
 
         jLabelThongTinHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -241,8 +217,18 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         jLabel2.setText("Giảm giá");
 
         jComboBoxGiamGia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "5%", "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%", "50%" }));
+        jComboBoxGiamGia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxGiamGiaActionPerformed(evt);
+            }
+        });
 
         jButtonXoaSPGioHang.setText("Xóa Sản Phẩm");
+        jButtonXoaSPGioHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonXoaSPGioHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -283,56 +269,41 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelMaHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabelTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTextFieldTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabelThongTinHoaDon)
+                                                    .addComponent(jLabel1))
+                                                .addGap(112, 112, 112)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabelTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(282, 282, 282))
+                                            .addComponent(jComboBoxGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelTenKhachHang)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBoxTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonThemMoiKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonTaoHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 90, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabelTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jTextFieldTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jLabelThongTinHoaDon)
-                                                            .addComponent(jLabel1))
-                                                        .addGap(112, 112, 112)))
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jComboBoxGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextFieldMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextFieldTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelTenKhachHang)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jComboBoxTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButtonThemMoiKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButtonTaoHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabelTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jComboBoxHinhThucThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldTienThua, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addGap(24, 24, 24)
-                                            .addComponent(jTextFieldTienKhachDua, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jButtonThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(45, 45, 45)
                                             .addComponent(jButtonHuyThanhToan))))
-                                .addGap(0, 90, Short.MAX_VALUE))))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +323,15 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                         .addComponent(jLabelTenSanPham)
                         .addComponent(jButtonTimTenSanPham)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelGioHang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonXoaSPGioHang))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel1)
@@ -372,27 +351,12 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                             .addComponent(jTextFieldTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelMaHoaDon)
-                            .addComponent(jTextFieldMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jComboBoxGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTongTien)
-                            .addComponent(jTextFieldTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldTienKhachDua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextFieldTienThua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -400,405 +364,362 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonThanhToan)
-                            .addComponent(jButtonHuyThanhToan)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelGioHang)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonXoaSPGioHang)
+                            .addComponent(jButtonHuyThanhToan))))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void showData ( List<ChiTietSanPham> list ) {
-        DefaultTableModel dtm = new DefaultTableModel ();
-        dtm = ( DefaultTableModel ) tblSanPham.getModel ();
-        dtm.setRowCount ( 0 );
-        for ( ChiTietSanPham ctsp : list ) {
-            dtm.addRow ( new Object[] { ctsp.getMactsp () , ctsp.getIdsp () ,
-                ctsp.getIdsize () , ctsp.getIdms () , ctsp.getIdde () , ctsp.getIdkieu () , ctsp.getSoluong () ,
-                ctsp.getDongia () } );
+    private void showData(List<ChiTietSanPham> list) {
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm = (DefaultTableModel) tblSanPham.getModel();
+        dtm.setRowCount(0);
+        for (ChiTietSanPham ctsp : list) {
+            dtm.addRow(new Object[]{ctsp.getMactsp(), ctsp.getIdsp(),
+                ctsp.getIdsize(), ctsp.getIdms(), ctsp.getIdde(), ctsp.getIdkieu(), ctsp.getSoluong(),
+                ctsp.getDongia()});
         }
     }
 
-    private void LoadCbbLocKD ( List<String> list ) {
-        dcbm = ( DefaultComboBoxModel ) cbbKieu.getModel ();
-        for ( String string : list ) {
-            dcbm.addElement ( string );
+    private void LoadCbbLocKD(List<String> list) {
+        dcbm = (DefaultComboBoxModel) cbbKieu.getModel();
+        for (String string : list) {
+            dcbm.addElement(string);
         }
     }
 
-    private void LoadCbbLocS ( List<String> list ) {
-        dcbm = ( DefaultComboBoxModel ) cbbSize.getModel ();
-        for ( String string : list ) {
-            dcbm.addElement ( string );
+    private void LoadCbbLocS(List<String> list) {
+        dcbm = (DefaultComboBoxModel) cbbSize.getModel();
+        for (String string : list) {
+            dcbm.addElement(string);
         }
     }
 
-    private void loadTenKhachHangToComboBox () {
+    private void loadTenKhachHangToComboBox() {
         // Gọi phương thức từ KhachHangDAO để lấy danh sách tên khách hàng từ cơ sở dữ liệu
-        KhachHangDAO khachHangDAO = new KhachHangDAO ();
-        List<String> tenKhachHangList = khachHangDAO.getAllTenKhachHang ();
+        KhachHangDAO khachHangDAO = new KhachHangDAO();
+        List<String> tenKhachHangList = khachHangDAO.getAllTenKhachHang();
 
         // Xóa tất cả các mục khách hàng hiện có trong JComboBox để cập nhật danh sách mới
-        jComboBoxTenKhachHang.removeAllItems ();
+        jComboBoxTenKhachHang.removeAllItems();
 
         // Thêm các tên khách hàng từ danh sách vào JComboBox
-        for ( String tenKhachHang : tenKhachHangList ) {
-            jComboBoxTenKhachHang.addItem ( tenKhachHang );
+        for (String tenKhachHang : tenKhachHangList) {
+            jComboBoxTenKhachHang.addItem(tenKhachHang);
         }
     }
 
     private void jButtonTimTenSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTimTenSanPhamActionPerformed
         // TODO add your handling code here:
-        String tk = txtTk.getText (); // Lấy dữ liệu từ trường văn bản
+        String tk = txtTk.getText(); // Lấy dữ liệu từ trường văn bản
         // Kiểm tra xem trường văn bản có dữ liệu hay không
-        if (  ! tk.isEmpty () ) { // Nếu có dữ liệu
-            ctspsi.Tk ( tk );
-            list = ctspsi.Tk ( tk );
-            showData ( list );
+        if (!tk.isEmpty()) { // Nếu có dữ liệu
+            ctspsi.Tk(tk);
+            list = ctspsi.Tk(tk);
+            showData(list);
         } else { // Nếu không có dữ liệu
-            JOptionPane.showMessageDialog ( null , "Vui lòng nhập dữ liệu để tìm" ); // Hiển thị thông báo
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu để tìm"); // Hiển thị thông báo
         }
     }//GEN-LAST:event_jButtonTimTenSanPhamActionPerformed
 
     private void txtTkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTkMouseClicked
         // TODO add your handling code here:
-        txtTk.setText ( "" );
-        list = ctspsi.getAll ();
-        showData ( list );
+        txtTk.setText("");
+        list = ctspsi.getAll();
+        showData(list);
     }//GEN-LAST:event_txtTkMouseClicked
 
     private void cbbSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSizeActionPerformed
         // TODO add your handling code here:
-        String ten = cbbSize.getSelectedItem ().toString ();
-        ctspsi.Loc1 ( ten );
-        list = ctspsi.Loc1 ( ten );
-        showData ( list );
+        String ten = cbbSize.getSelectedItem().toString();
+        ctspsi.Loc1(ten);
+        list = ctspsi.Loc1(ten);
+        showData(list);
     }//GEN-LAST:event_cbbSizeActionPerformed
 
     private void cbbKieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbKieuActionPerformed
         // TODO add your handling code here:
-        String ma = cbbKieu.getSelectedItem ().toString ();
-        ctspsi.Loc1 ( ma );
-        list = ctspsi.Loc1 ( ma );
-        showData ( list );
+        String ma = cbbKieu.getSelectedItem().toString();
+        ctspsi.Loc1(ma);
+        list = ctspsi.Loc1(ma);
+        showData(list);
     }//GEN-LAST:event_cbbKieuActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
-        int rowIndex = tblSanPham.getSelectedRow ();
-        if ( rowIndex != -1 ) {
+        int rowIndex = tblSanPham.getSelectedRow();
+        if (rowIndex != -1) {
             // Lấy dữ liệu từ hàng được chọn trong bảng sản phẩm
-            String maSanPham = tblSanPham.getValueAt ( rowIndex , 0 ).toString ();
-            String tenSanPham = tblSanPham.getValueAt ( rowIndex , 1 ).toString ();
-            String size = tblSanPham.getValueAt ( rowIndex , 2 ).toString ();
-            String mauSac = tblSanPham.getValueAt ( rowIndex , 3 ).toString ();
-            String doCaoDe = tblSanPham.getValueAt ( rowIndex , 4 ).toString ();
-            String kieuDang = tblSanPham.getValueAt ( rowIndex , 5).toString ();
-            int soLuongTon = Integer.parseInt ( tblSanPham.getValueAt ( rowIndex , 6 ).toString () );
-            double donGia = Double.parseDouble ( tblSanPham.getValueAt ( rowIndex , 7 ).toString () );
+            String maSanPham = tblSanPham.getValueAt(rowIndex, 0).toString();
+            String tenSanPham = tblSanPham.getValueAt(rowIndex, 1).toString();
+            String size = tblSanPham.getValueAt(rowIndex, 2).toString();
+            String mauSac = tblSanPham.getValueAt(rowIndex, 3).toString();
+            String doCaoDe = tblSanPham.getValueAt(rowIndex, 4).toString();
+            String kieuDang = tblSanPham.getValueAt(rowIndex, 5).toString();
+            int soLuongTon = Integer.parseInt(tblSanPham.getValueAt(rowIndex, 6).toString());
+            double donGia = Double.parseDouble(tblSanPham.getValueAt(rowIndex, 7).toString());
 
             // Yêu cầu người dùng nhập số lượng
-            String quantityString = JOptionPane.showInputDialog ( null , "Nhập số lượng:" , "Nhập số lượng" , JOptionPane.PLAIN_MESSAGE );
-            if ( quantityString != null &&  ! quantityString.isEmpty () ) {
+            String quantityString = JOptionPane.showInputDialog(null, "Nhập số lượng:", "Nhập số lượng", JOptionPane.PLAIN_MESSAGE);
+            if (quantityString != null && !quantityString.isEmpty()) {
                 try {
-                    int soLuongMua = Integer.parseInt ( quantityString );
-                    if ( soLuongMua > 0 && soLuongMua <= soLuongTon ) {
+                    int soLuongMua = Integer.parseInt(quantityString);
+                    if (soLuongMua > 0 && soLuongMua <= soLuongTon) {
                         // Tính toán thành tiền
                         double thanhTien = soLuongMua * donGia;
 
                         // Thêm dữ liệu vào bảng giỏ hàng
-                        dtmGioHang = ( DefaultTableModel ) tblGioHang.getModel ();
-                        Object[] rowData = { tenSanPham , size , mauSac , doCaoDe , kieuDang , soLuongMua , donGia , thanhTien };
-                        dtmGioHang.addRow ( rowData );
-                        
+                        dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
+                        Object[] rowData = {tenSanPham, size, mauSac, doCaoDe, kieuDang, soLuongMua, donGia, thanhTien};
+                        dtmGioHang.addRow(rowData);
 
                         // Cập nhật số lượng tồn trong bảng sản phẩm
-                        tblSanPham.setValueAt ( soLuongTon - soLuongMua , rowIndex , 6 );
+                        tblSanPham.setValueAt(soLuongTon - soLuongMua, rowIndex, 6);
 
                         // Cập nhật bảng giỏ hàng
-                        tinhTongTien ();
+                        tinhTongTien();
                     } else {
-                        JOptionPane.showMessageDialog ( null , "Số lượng nhập vào phải lớn hơn 0 và không vượt quá số lượng tồn" , "Lỗi" , JOptionPane.ERROR_MESSAGE );
+                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào phải lớn hơn 0 và không vượt quá số lượng tồn", "Lỗi", JOptionPane.ERROR_MESSAGE);
                     }
-                } catch ( NumberFormatException ex ) {
-                    JOptionPane.showMessageDialog ( null , "Vui lòng nhập số lượng hợp lệ" , "Lỗi" , JOptionPane.ERROR_MESSAGE );
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
-    private void tblGioHangMouseClicked ( java.awt.event.MouseEvent evt ) {
-
+    private String findIdctsp(String tenSanPham, String size, String mauSac, String doCaoDe, String kieuDang) throws Exception {
+        String idctsp = null;
+        try (Connection connection = DatabaseHelper.getConnection()) {
+            String sql = "SELECT CHITIETSANPHAM.Id \n"
+                    + "FROM CHITIETSANPHAM \n"
+                    + "INNER JOIN SANPHAM ON CHITIETSANPHAM.Idsp = SANPHAM.Id \n"
+                    + "INNER JOIN MAUSAC ON CHITIETSANPHAM.Idms = MAUSAC.Id \n"
+                    + "INNER JOIN KIEUDANG ON CHITIETSANPHAM.Idkieu = KIEUDANG.Id \n"
+                    + "INNER JOIN SIZE ON CHITIETSANPHAM.Idsize = SIZE.Id \n"
+                    + "INNER JOIN DEGIAY ON CHITIETSANPHAM.Idde = DEGIAY.Id \n"
+                    + "WHERE SANPHAM.Ten = ? \n"
+                    + "    AND SIZE.Tensize = ? \n"
+                    + "    AND MAUSAC.Tenmau = ? \n"
+                    + "    AND DEGIAY.Docaode = ? \n"
+                    + "    AND KIEUDANG.Tenkieu = ?;";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, tenSanPham);
+                preparedStatement.setString(2, size);
+                preparedStatement.setString(3, mauSac);
+                preparedStatement.setString(4, doCaoDe);
+                preparedStatement.setString(5, kieuDang);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        idctsp = resultSet.getString("Id");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idctsp;
     }
 
+    private boolean saveInvoiceDetail(String id, String idHoaDon, String tenSanPham, String size, String mauSac, String doCaoDe,
+            String kieuDang, int soLuong, double tongTien) throws SQLException, Exception {
+        try (Connection connection = DatabaseHelper.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(
+                "INSERT INTO HOADONCHITIET (Id, Idhd, Idctsp, SoLuong, TongTien, NgayTao, NgayChinhSua, TrangThai) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
 
-    private void jButtonThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThanhToanActionPerformed
-        try {
-            // Lưu thông tin hóa đơn và hóa đơn chi tiết vào cơ sở dữ liệu
-            // Cập nhật thông tin hóa đơn
-            String sqlHoaDon = "UPDATE HOADON SET Ngaytao = ?, NgayChinhSua = ?, TrangThai = ? WHERE Mahd = ?";
-            // Thực hiện câu lệnh SQL để cập nhật thông tin hóa đơn
-            // Lưu thông tin hóa đơn
-            Connection connection = DatabaseHelper.getConnection ();
-            PreparedStatement preparedStatementHoaDon = connection.prepareStatement ( sqlHoaDon );
-            preparedStatementHoaDon.setDate ( 1 , new java.sql.Date ( new Date ().getTime () ) ); // Ngày tạo hóa đơn
-            preparedStatementHoaDon.setDate ( 2 , new java.sql.Date ( new Date ().getTime () ) ); // Ngày chỉnh sửa hóa đơn
-            preparedStatementHoaDon.setString ( 3 , "Đã thanh toán" ); // Trạng thái hóa đơn
-            preparedStatementHoaDon.setString ( 4 , jTextFieldMaHoaDon.getText () ); // Mã hóa đơn
-
-            // Thực hiện cập nhật thông tin hóa đơn
-            int rowsAffectedHoaDon = preparedStatementHoaDon.executeUpdate ();
-
-            // Lưu thông tin hóa đơn chi tiết
-            String sqlHoaDonChiTiet = "UPDATE HOADONCHITIET\n"
-                    + "SET Soluong = ?,\n"
-                    + "    Tongtien = ?,\n"
-                    + "    NgayChinhSua = GETDATE(),\n"
-                    + "    TrangThai = ?\n"
-                    + "WHERE Id = ?;";
-            PreparedStatement preparedStatementHoaDonChiTiet = connection.prepareStatement ( sqlHoaDonChiTiet );
-
-            // Lưu từng dòng trong jTableGioHang vào cơ sở dữ liệu
-            for ( int i = 0 ; i < tblGioHang.getRowCount () ; i ++ ) {
-                String tenSanPham = tblGioHang.getValueAt ( i , 1 ).toString ();
-                int soLuong = Integer.parseInt ( tblGioHang.getValueAt ( i , 6 ).toString () );
-                double donGia = Double.parseDouble ( tblGioHang.getValueAt ( i , 7 ).toString () );
-                preparedStatementHoaDonChiTiet.setInt ( 1 , soLuong );
-                preparedStatementHoaDonChiTiet.setDouble ( 2 , soLuong * donGia );
-                preparedStatementHoaDonChiTiet.setDate ( 3 , new java.sql.Date ( new Date ().getTime () ) );
-                preparedStatementHoaDonChiTiet.setInt ( 4 , 1 );
-                preparedStatementHoaDonChiTiet.setString ( 5 , idHoaDonCT );
-                preparedStatementHoaDonChiTiet.executeUpdate ();
+            // Tìm idctsp từ các thông tin chi tiết sản phẩm
+            String idSPCT = findIdctsp(tenSanPham, size, mauSac, doCaoDe, kieuDang);
+            if (idSPCT == null) {
+                // Không tìm thấy idctsp
+                System.err.println("Không tìm thấy idctsp cho các thông tin chi tiết sản phẩm.");
+                return false;
             }
 
-            // Đóng kết nối và hiển thị thông báo cho người dùng
-            connection.close ();
-            JOptionPane.showMessageDialog ( this , "Hóa đơn đã được lưu vào cơ sở dữ liệu." );
-            // Làm sạch giao diện
-            jTextFieldTenNhanVien.setText ( "" );
-            jTextFieldMaHoaDon.setText ( "" );
-            jTextFieldTongTien.setText ( "" );
-            dtmGioHang.setRowCount ( 0 );
-        } catch ( SQLException | NumberFormatException ex ) {
-            ex.printStackTrace ();
-            JOptionPane.showMessageDialog ( this , "Lỗi khi lưu hóa đơn vào cơ sở dữ liệu." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
-        } catch ( Exception ex ) {
-            Logger.getLogger ( QuanLyBanHang.class.getName () ).log ( Level.SEVERE , null , ex );
-        }
+            // Ngày tạo và ngày chỉnh sửa
+            java.util.Date ngayTao = new java.util.Date();
+            java.sql.Date ngayTaoSQL = new java.sql.Date(ngayTao.getTime());
+            java.sql.Date ngayChinhSuaSQL = new java.sql.Date(ngayTao.getTime());
 
+            preparedStatement.setString(1, id);
+            preparedStatement.setString(2, idHoaDon);
+            preparedStatement.setString(3, idSPCT);
+            preparedStatement.setInt(4, soLuong);
+            preparedStatement.setDouble(5, tongTien);
+            preparedStatement.setDate(6, ngayTaoSQL);
+            preparedStatement.setDate(7, ngayChinhSuaSQL);
+            preparedStatement.setInt(8, 1); // Trạng thái mặc định, ví dụ: đã thanh toán
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            // In ra thông tin chi tiết của SQLException
+            System.err.println("SQLException: " + e.getMessage());
+            System.err.println("SQLState: " + e.getSQLState());
+            System.err.println("VendorError: " + e.getErrorCode());
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            // Xử lý ngoại lệ khác (nếu có)
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+// Phương thức tạo mới hóa đơn
+    private boolean createNewInvoice(String idHoaDon, String idKhachHang, String idNhanVien, String maHoaDon, Date ngayTao, Date ngayChinhSua, int trangThai) throws Exception {
+        try (Connection connection = DatabaseHelper.getConnection()) {
+            String sql = "INSERT INTO HOADON (Id,Idkh,Idnv, MaHd, NgayTao,NgayChinhSua, TrangThai) VALUES (?,?,?, ?, ?, ?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, idHoaDon);
+                preparedStatement.setString(2, idKhachHang);
+                preparedStatement.setString(3, idNhanVien);
+                preparedStatement.setString(4, maHoaDon);
+                preparedStatement.setDate(5, new java.sql.Date(ngayTao.getTime()));
+                preparedStatement.setDate(6, new java.sql.Date(ngayChinhSua.getTime()));
+                preparedStatement.setInt(7, trangThai);
+                int rowsAffected = preparedStatement.executeUpdate();
+                return rowsAffected > 0;
+            }
+        }
+    }
+
+    private void jButtonThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThanhToanActionPerformed
+        // Tạo hóa đơn mới
+        idHoaDon = UUID.randomUUID().toString(); // Tạo id hóa đơn mới
+        maHoaDon = "HD" + " " + idHoaDon; // Tạo mã hóa đơn mới
+        idHoaDonCT = UUID.randomUUID().toString(); // Tạo id hóa đơn mới
+        try {
+            // Lấy ID của khách hàng từ tên khách hàng trong combobox
+            idKhachHang = getIdByTenKhachHang(jComboBoxTenKhachHang.getSelectedItem().toString());
+            // Lấy ID của nhân viên từ tên tài khoản đang đăng nhập
+            idNhanVien = getIdByTenNhanVien(Dashboard.taiKhoan.getTentaikhoan());
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyBanHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Date ngayTao = new Date(); // Lấy ngày giờ hiện tại
+        Date ngayChinhSua = new Date(); // Lấy ngày giờ hiện tại
+        int trangThai = 1; // Mặc định trạng thái là đã thanh toán
+        try {
+            // Lưu thông tin hóa đơn mới vào cơ sở dữ liệu
+            boolean successCreateInvoice = createNewInvoice(idHoaDon, idKhachHang, idNhanVien, maHoaDon, ngayTao, ngayChinhSua, trangThai);
+            if (!successCreateInvoice) {
+                JOptionPane.showMessageDialog(this, "Không thể tạo hóa đơn mới.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Lưu các thông tin chi tiết của hóa đơn vào cơ sở dữ liệu
+            DefaultTableModel model = (DefaultTableModel) tblGioHang.getModel();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                // Lấy thông tin chi tiết của sản phẩm từ bảng giỏ hàng
+                String tenSanPham = (String) model.getValueAt(i, 0);
+                String size = (String) model.getValueAt(i, 1);
+                String mauSac = (String) model.getValueAt(i, 2);
+                String doCaoDe = (String) model.getValueAt(i, 3);
+                String kieuDang = (String) model.getValueAt(i, 4);
+                int soLuong = (int) model.getValueAt(i, 5);
+                double thanhTien = (double) model.getValueAt(i, 7);
+
+                // Kiểm tra idHoaDon
+                if (idHoaDon != null) {
+                    // Lưu thông tin chi tiết sản phẩm vào cơ sở dữ liệu
+                    boolean successSaveInvoiceDetail = saveInvoiceDetail(idHoaDonCT, idHoaDon, tenSanPham, size, mauSac, doCaoDe, kieuDang, soLuong, thanhTien);
+                    if (!successSaveInvoiceDetail) {
+                        JOptionPane.showMessageDialog(this, "Không thể lưu thông tin hóa đơn chi tiết.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Lỗi: idHoaDon không hợp lệ.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
+            // Hiển thị thông báo thành công
+            JOptionPane.showMessageDialog(this, "Thanh toán thành công. Hóa đơn mới đã được tạo.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            // Reset giao diện
+            ClearForm();
+
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyBanHang.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi thanh toán. Vui lòng thử lại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonThanhToanActionPerformed
 
     private void jButtonHuyThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHuyThanhToanActionPerformed
-        try {
-            // Xóa thông tin hóa đơn, hóa đơn chi tiết tương ứng với hóa đơn
-            Connection connection = null;
-            PreparedStatement preparedStatementHoaDon = null;
-            PreparedStatement preparedStatementHoaDonChiTiet = null;
-
-            try {
-                connection = DatabaseHelper.getConnection ();
-                // Tắt chế độ tự động commit để có thể rollback nếu cần thiết
-                connection.setAutoCommit ( false );
-
-                // Xóa thông tin hóa đơn chi tiết
-                String sqlHoaDonChiTiet = "DELETE FROM HOADONCHITIET WHERE Idhd = ?";
-                preparedStatementHoaDonChiTiet = connection.prepareStatement ( sqlHoaDonChiTiet );
-                preparedStatementHoaDonChiTiet.setString ( 1 , jTextFieldMaHoaDon.getText () );
-                preparedStatementHoaDonChiTiet.executeUpdate ();
-
-                // Xóa thông tin hóa đơn
-                String sqlHoaDon = "DELETE FROM HOADON WHERE Mahd = ?";
-                preparedStatementHoaDon = connection.prepareStatement ( sqlHoaDon );
-                preparedStatementHoaDon.setString ( 1 , jTextFieldMaHoaDon.getText () );
-                preparedStatementHoaDon.executeUpdate ();
-
-                // Commit các thay đổi nếu không có vấn đề nào xảy ra
-                connection.commit ();
-                JOptionPane.showMessageDialog ( this , "Hóa đơn đã được xóa khỏi cơ sở dữ liệu." );
-                // Làm sạch giao diện
-                jTextFieldTenNhanVien.setText ( "" );
-                jTextFieldMaHoaDon.setText ( "" );
-                jTextFieldTongTien.setText ( "" );
-                dtmGioHang.setRowCount ( 0 );
-            } catch ( SQLException ex ) {
-                // Nếu có lỗi xảy ra, rollback lại các thay đổi đã thực hiện
-                if ( connection != null ) {
-                    connection.rollback ();
-                }
-                ex.printStackTrace ();
-                JOptionPane.showMessageDialog ( this , "Lỗi khi xóa hóa đơn từ cơ sở dữ liệu." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
-            } finally {
-                // Đóng tất cả các tài nguyên
-                if ( preparedStatementHoaDonChiTiet != null ) {
-                    preparedStatementHoaDonChiTiet.close ();
-                }
-                if ( preparedStatementHoaDon != null ) {
-                    preparedStatementHoaDon.close ();
-                }
-                if ( connection != null ) {
-                    connection.close ();
-                }
-            }
-        } catch ( Exception ex ) {
-            Logger.getLogger ( QuanLyBanHang.class.getName () ).log ( Level.SEVERE , null , ex );
-        }
+        ClearForm();
     }//GEN-LAST:event_jButtonHuyThanhToanActionPerformed
 
-    private void displayEmployeeNameFromDatabase () throws Exception {
+    private void displayEmployeeNameFromDatabase() throws Exception {
         try {
             // Kết nối đến cơ sở dữ liệu
-            Connection connection = DatabaseHelper.getConnection ();
+            Connection connection = DatabaseHelper.getConnection();
             // Tạo câu truy vấn SQL để lấy tên nhân viên từ bảng NHANVIEN dựa trên tên tài khoản từ bảng TAIKHOAN
             String sql = "SELECT NV.Ten FROM NHANVIEN NV JOIN TAIKHOAN TK ON NV.MataiKhoan = TK.Mataikhoan WHERE TK.Tentaikhoan = ?";
             // Tạo PreparedStatement
-            PreparedStatement preparedStatement = connection.prepareStatement ( sql );
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             // Đặt tham số cho câu truy vấn
-            preparedStatement.setString ( 1 , Dashboard.taiKhoan.getTentaikhoan () );
+            preparedStatement.setString(1, Dashboard.taiKhoan.getTentaikhoan());
             // Thực thi câu truy vấn
-            ResultSet resultSet = preparedStatement.executeQuery ();
+            ResultSet resultSet = preparedStatement.executeQuery();
             // Kiểm tra xem có kết quả trả về không
-            if ( resultSet.next () ) {
+            if (resultSet.next()) {
                 // Lấy tên nhân viên từ kết quả trả về và hiển thị trong JTextFieldTenNhanVien
-                String tenNhanVien = resultSet.getString ( "Ten" );
-                jTextFieldTenNhanVien.setText ( tenNhanVien );
+                String tenNhanVien = resultSet.getString("Ten");
+                jTextFieldTenNhanVien.setText(tenNhanVien);
             }
             // Đóng kết nối
-            connection.close ();
-        } catch ( SQLException e ) {
-            e.printStackTrace ();
-            throw new Exception ( "Lỗi khi lấy tên nhân viên từ cơ sở dữ liệu." );
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Lỗi khi lấy tên nhân viên từ cơ sở dữ liệu.");
         }
     }
-
-    private boolean createNewInvoice ( String idHoaDon , String maHoaDon , Date ngayTao , Integer trangThai ) throws Exception {
-        try ( Connection connection = DatabaseHelper.getConnection () ) {
-            String sql = "INSERT INTO HOADON (Id, Mahd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try ( PreparedStatement preparedStatement = connection.prepareStatement ( sql ) ) {
-                preparedStatement.setString ( 1 , idHoaDon );
-                preparedStatement.setString ( 2 , maHoaDon );
-                preparedStatement.setDate ( 3 , new java.sql.Date ( ngayTao.getTime () ) );
-                preparedStatement.setInt ( 4 , trangThai );
-                int rowsAffected = preparedStatement.executeUpdate ();
-                return rowsAffected > 0;
-            }
-        } catch ( SQLException e ) {
-            e.printStackTrace ();
-            return false;
-        }
-    }
-
-    public boolean createNewInvoiceDetail ( String idHoaDonChiTiet , String idHoaDon , Date ngayTao , Integer trangThai ) throws Exception {
-        try ( Connection connection = DatabaseHelper.getConnection () ) {
-            String sql = "INSERT INTO HOADONCHITIET (Id, Idhd, Ngaytao, TrangThai) VALUES (?, ?, ?, ?)";
-            try ( PreparedStatement preparedStatement = connection.prepareStatement ( sql ) ) {
-                preparedStatement.setString ( 1 , idHoaDon );
-                preparedStatement.setString ( 2 , idHoaDon );
-                preparedStatement.setDate ( 3 , new java.sql.Date ( ngayTao.getTime () ) );
-                preparedStatement.setInt ( 4 , trangThai );
-                int rowsAffected = preparedStatement.executeUpdate ();
-                return rowsAffected > 0;
-            }
-        } catch ( SQLException e ) {
-            e.printStackTrace ();
-            return false;
-        }
-    }
-
 
     private void jButtonTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaoHoaDonActionPerformed
         try {
             // Hiển thị tên nhân viên từ cơ sở dữ liệu
-            displayEmployeeNameFromDatabase ();
-            tblSanPham.setEnabled ( true );
-
+            displayEmployeeNameFromDatabase();
+            tblSanPham.setEnabled(true);
             // Lấy tên nhân viên từ cơ sở dữ liệu và hiển thị trên JTextFieldTenNhanVien
-            String tenNhanVien = jTextFieldTenNhanVien.getText ();
-
-            // Tạo hóa đơn mới và lưu vào cơ sở dữ liệu
-            String idHoaDon = UUID.randomUUID ().toString ();
-            String maHoaDon = "HD" + UUID.randomUUID ().toString ();
-            Date ngayTao = new Date ();
-            Integer trangThai = 1;
-            // Tạo hóa đơn CT mới và lưu vào cơ sở dữ liệu
-            idHoaDonCT = UUID.randomUUID ().toString ();
-            String idMaHoaDon = idHoaDon;
-            Date ngayTaoCT = ngayTao;
-            Integer trangThaiCT = 0;
-
-            boolean success1 = createNewInvoice ( idHoaDon , maHoaDon , ngayTao , trangThai );
-            boolean success2 = createNewInvoiceDetail ( idHoaDonCT , idMaHoaDon , ngayTaoCT , trangThaiCT );
-
-            if ( success1 && success2 ) {
-                JOptionPane.showMessageDialog ( this , "Hóa đơn mới đã được tạo thành công." , "Thông báo" , JOptionPane.INFORMATION_MESSAGE );
-                jTextFieldMaHoaDon.setText ( maHoaDon );
-                jTextFieldTenNhanVien.setText ( tenNhanVien );
-            } else {
-                JOptionPane.showMessageDialog ( this , "Không thể tạo hóa đơn mới." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
-            }
-        } catch ( Exception ex ) {
-            Logger.getLogger ( QuanLyBanHang.class.getName () ).log ( Level.SEVERE , null , ex );
-            JOptionPane.showMessageDialog ( this , "Có lỗi xảy ra khi tạo hóa đơn mới." , "Lỗi" , JOptionPane.ERROR_MESSAGE );
+            String tenNhanVien = jTextFieldTenNhanVien.getText();
+        } catch (Exception ex) {
+            Logger.getLogger(QuanLyBanHang.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jButtonTaoHoaDonActionPerformed
 
     private void jButtonThemMoiKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThemMoiKhachHangActionPerformed
-        JOptionPane.showMessageDialog ( this , "Thêm Khách Hàng tại menu item trên thanh menu." , "Thông Báo" , JOptionPane.INFORMATION_MESSAGE );
+        JOptionPane.showMessageDialog(this, "Thêm Khách Hàng tại menu item trên thanh menu.", "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonThemMoiKhachHangActionPerformed
-
-    private void jTextFieldTienKhachDuaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTienKhachDuaFocusLost
-        capNhatDuLieu ();
-    }//GEN-LAST:event_jTextFieldTienKhachDuaFocusLost
 
     private void jTextFieldTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTongTienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTongTienActionPerformed
-//    private void loadSanPham() {
-//        List<ChiTietSanPham> listSanPham = banHangDao.getAll();
-//        dtmSanPham.setRowCount(0);
-//        for (ChiTietSanPham ctsp : listSanPham) {
-//            dtmSanPham.addRow(new Object[]{ctsp.getMactsp(),
-//                ctsp.getIdsp(), ctsp.getIdsize(),
-//                ctsp.getIdkieu(), ctsp.getDongia(), ctsp.getSoluong()});
-//        }
-//    }
 
-    private double tinhTongTien () {
+    private void jButtonXoaSPGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXoaSPGioHangActionPerformed
+        int selectedRow = tblGioHang.getSelectedRow(); // Lấy chỉ số của hàng được chọn
+        if (selectedRow != -1) { // Kiểm tra xem có hàng được chọn không
+            DefaultTableModel model = (DefaultTableModel) tblGioHang.getModel(); // Lấy mô hình của bảng tblGioHang
+            model.removeRow(selectedRow); // Loại bỏ hàng được chọn
+            tinhTongTien(); // Cập nhật tổng tiền sau khi loại bỏ hàng
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm để xóa", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonXoaSPGioHangActionPerformed
+
+    private void jComboBoxGiamGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGiamGiaActionPerformed
+        tinhTongTienSauGiamGia();
+    }//GEN-LAST:event_jComboBoxGiamGiaActionPerformed
+
+    private double tinhTongTien() {
         double tongTien = 0.0;
-        for ( int i = 0 ; i < tblGioHang.getRowCount () ; i ++ ) {
-            double giaTriCotCuoi = Double.parseDouble ( tblGioHang.getValueAt ( i , tblGioHang.getColumnCount () - 1 ).toString () );
+        for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+            double giaTriCotCuoi = Double.parseDouble(tblGioHang.getValueAt(i, tblGioHang.getColumnCount() - 1).toString());
             tongTien += giaTriCotCuoi;
         }
-        String tongTienString = String.valueOf ( tongTien );
+        String tongTienString = String.valueOf(tongTien);
         // hoặc: String tongTienString = Double.toString(tongTien);
 
         // Set text cho jTextFieldTongTien
-        jTextFieldTongTien.setText ( tongTienString );
+        jTextFieldTongTien.setText(tongTienString);
         return tongTien;
-    }
-
-    private void capNhatDuLieu () {
-        // Tính tổng tiền
-        double tongTien = tinhTongTien ();
-
-        // Lấy giá trị giảm giá từ jComboBoxGiamGia
-        double giamGia = Integer.parseInt ( jComboBoxGiamGia.getSelectedItem ().toString () );
-
-        // Tính tổng tiền sau khi giảm giá
-        double tongTienSauGiamGia = tongTien * ( 100 - giamGia ) / 100.0;
-
-        // Hiển thị tổng tiền
-        jTextFieldTongTien.setText ( String.valueOf ( tongTienSauGiamGia ) );
-
-        // Lấy giá trị tiền khách đưa từ jTextFieldTienKhachDua
-        int tienKhachDua = Integer.parseInt ( jTextFieldTienKhachDua.getText () );
-
-        // Tính tiền thừa
-        double tienThua = tienKhachDua - tongTienSauGiamGia;
-
-        // Hiển thị tiền thừa
-        jTextFieldTienThua.setText ( String.valueOf ( tienThua ) );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -815,11 +736,8 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxTenKhachHang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelGioHang;
-    private javax.swing.JLabel jLabelMaHoaDon;
     private javax.swing.JLabel jLabelQUANLYBANHANG;
     private javax.swing.JLabel jLabelSanPham;
     private javax.swing.JLabel jLabelSanPham1;
@@ -831,14 +749,85 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelTongTien;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextFieldMaHoaDon;
     private javax.swing.JTextField jTextFieldTenNhanVien;
-    private javax.swing.JTextField jTextFieldTienKhachDua;
-    private javax.swing.JTextField jTextFieldTienThua;
     private javax.swing.JTextField jTextFieldTongTien;
     private javax.swing.JTable tblGioHang;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtTk;
     // End of variables declaration//GEN-END:variables
+
+    private void ClearForm() {
+        // Xóa tất cả các hàng khỏi bảng tblGioHang
+        DefaultTableModel model = (DefaultTableModel) tblGioHang.getModel();
+        model.setRowCount(0);
+
+        // Đặt lại các trường văn bản về giá trị mặc định hoặc rỗng
+        jTextFieldTenNhanVien.setText("");
+        jTextFieldTongTien.setText("");
+    }
+
+    private void tinhTongTienSauGiamGia() {
+        try {
+            // Tính tổng tiền
+            double tongTien = tinhTongTien();
+
+            // Lấy giá trị giảm giá từ jComboBoxGiamGia
+            String giamGiaStr = jComboBoxGiamGia.getSelectedItem().toString().replace("%", "");
+            double giamGia = Double.parseDouble(giamGiaStr);
+
+            // Kiểm tra giảm giá hợp lệ (không âm và không lớn hơn tổng tiền)
+            if (giamGia < 0 || giamGia > 100) {
+                throw new IllegalArgumentException("Giảm giá không hợp lệ.");
+            }
+
+            // Tính tổng tiền sau khi giảm giá
+            double tongTienSauGiamGia = tongTien * (100 - giamGia) / 100.0;
+
+            // Hiển thị tổng tiền
+            jTextFieldTongTien.setText(String.valueOf(tongTienSauGiamGia));
+        } catch (NumberFormatException ex) {
+            // Xử lý ngoại lệ khi nhập liệu không hợp lệ
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số hợp lệ.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            // Xử lý ngoại lệ khi dữ liệu không hợp lệ
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private String getIdByTenKhachHang(String tenKhachHang) throws Exception {
+        idKhachHang = null;
+        try (Connection connection = DatabaseHelper.getConnection()) {
+            String sql = "SELECT Id FROM KhachHang WHERE Ten = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, tenKhachHang);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        idKhachHang = resultSet.getString("Id");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idKhachHang;
+    }
+
+    private String getIdByTenNhanVien(String tentaikhoan) throws Exception {
+        idNhanVien = null;
+        try (Connection connection = DatabaseHelper.getConnection()) {
+            String sql = "SELECT NV.Id FROM NHANVIEN NV JOIN TAIKHOAN TK ON NV.MataiKhoan = TK.Mataikhoan WHERE TK.Tentaikhoan = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, tentaikhoan);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        idNhanVien = resultSet.getString("Id");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idNhanVien;
+    }
 
 }
