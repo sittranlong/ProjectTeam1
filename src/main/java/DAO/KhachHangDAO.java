@@ -26,7 +26,7 @@ public class KhachHangDAO {
                 + "     VALUES\n"
                 + "           (?,?)";
         int check = 0;
-        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = DatabaseHelper.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, kd.getTen());
             ps.setObject(2, kd.getSdt());
 
@@ -47,7 +47,7 @@ public class KhachHangDAO {
                 + "     VALUES\n"
                 + "           (?,?,?,?)";
         int check = 0;
-        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = DatabaseHelper.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, kd.getMakh());
             ps.setObject(2, kd.getTen());
             ps.setObject(3, kd.getDiachi());
@@ -66,7 +66,7 @@ public class KhachHangDAO {
                 + "      ,[Diachi]\n"
                 + "      ,[Sdt]\n"
                 + "  FROM [dbo].[KHACHHANG]";
-        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = DatabaseHelper.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ResultSet rs = ps.executeQuery();
             List<KhachHang> list = new ArrayList<>();
             while (rs.next()) {
@@ -83,7 +83,7 @@ public class KhachHangDAO {
         String query = "DELETE FROM [dbo].[KHACHHANG]\n"
                 + "      WHERE Makh = ?";
         int check = 0;
-        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = DatabaseHelper.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, ma);
             check = ps.executeUpdate();
         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class KhachHangDAO {
                 + "      ,[Sdt] = ?\n"
                 + " WHERE [Makh] = ?";
         int check = 0;
-        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = DatabaseHelper.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, dg.getMakh());
             ps.setObject(2, dg.getTen());
             ps.setObject(3, dg.getDiachi());
@@ -120,7 +120,7 @@ public class KhachHangDAO {
                 + "      ,[Diachi]\n"
                 + "      ,[Sdt]\n"
                 + "  FROM [dbo].[KHACHHANG] where Makh = ? or Sdt = ?";
-        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = DatabaseHelper.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, ten);
             ps.setObject(2, ten);
             ResultSet rs = ps.executeQuery();
@@ -155,7 +155,6 @@ public class KhachHangDAO {
         }
         return null;
     }
-    
 
     public List<KhachHang> Tknew(String ten) {
         ArrayList<KhachHang> listLh = new ArrayList<>();
@@ -163,7 +162,7 @@ public class KhachHangDAO {
                 + "      ,[Ten]\n"
                 + "      ,[Sdt]\n"
                 + "  FROM [dbo].[KHACHHANG] where Sdt = ?";
-        try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = DatabaseHelper.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -177,5 +176,21 @@ public class KhachHangDAO {
 
         }
         return listLh;
+    }
+
+    public String getIdByTenKhachHang(String tenKhachHang) throws Exception{
+        String idKhachHang = null;
+        try (Connection connection = DatabaseHelper.getConnection()) {
+            String sql = "SELECT Id FROM KhachHang WHERE TenKhachHang = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, tenKhachHang);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        idKhachHang = resultSet.getString("Id");
+                    }
+                }
+            }
+        }
+        return idKhachHang;
     }
 }
