@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * @author TieuLong
  */
 public class HoaDonChiTietDAO {
+
     public ArrayList<HoaDonChiTiet> getHDCT() {
         ArrayList<HoaDonChiTiet> list = new ArrayList<>();
         String sql = "";

@@ -48,7 +48,8 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
             });
         }
     }
-     public void loadTable2() {
+
+    public void loadTable2() {
         model.setRowCount(0);
         List<HoaDonChiTiet> list = hdctd.getHDCT();
         for (HoaDonChiTiet hdCT : list) {
@@ -60,13 +61,10 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                 hdCT.getNgayChinhSua(),
                 hdCT.getTensp(),
                 hdCT.getSoluong(),
-                hdCT.getThanhtien(),
-            });
+                hdCT.getThanhtien(),});
         }
     }
 
-
-    
     public void fillTable() {
         int row = tb_hoadon.getSelectedRow();
         tf_makhachhang.setText(tb_hoadon.getValueAt(row, 0) + "");
@@ -283,18 +281,9 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ngaytaoActionPerformed
 
-    private void btn_themhoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themhoadonActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btn_themhoadonActionPerformed
-
     private void tb_hoadonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hoadonMouseClicked
         fillTable();        // TODO add your handling code here:
     }//GEN-LAST:event_tb_hoadonMouseClicked
-
-    private void btn_xoahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoahoadonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_xoahoadonActionPerformed
 
     private void btn_xuathoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuathoadonActionPerformed
         // TODO add your handling code here:
@@ -303,6 +292,14 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_timkiemActionPerformed
+
+    private void btn_xoahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoahoadonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_xoahoadonActionPerformed
+
+    private void btn_themhoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themhoadonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_themhoadonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
