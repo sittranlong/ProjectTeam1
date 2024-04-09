@@ -223,7 +223,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
             }
         });
 
-        jButtonXoaSPGioHang.setText("Xóa Sản Phẩm");
+        jButtonXoaSPGioHang.setText("Làm mới giỏ hàng");
         jButtonXoaSPGioHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonXoaSPGioHangActionPerformed(evt);
@@ -238,13 +238,33 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelSanPham)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelTenSanPham)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTk, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonTimTenSanPham)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelSanPham2)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelQUANLYBANHANG)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(717, 717, 717)
-                                .addComponent(jButtonXoaSPGioHang))
-                            .addComponent(jLabelGioHang)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(59, 59, 59)
+                                .addComponent(cbbKieu, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabelSanPham1)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonXoaSPGioHang)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelGioHang)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +275,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                                         .addComponent(jButtonThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButtonHuyThanhToan)))
-                                .addContainerGap(228, Short.MAX_VALUE))
+                                .addContainerGap(207, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -285,30 +305,7 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(106, 106, 106)
                                         .addComponent(jComboBoxHinhThucThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelSanPham)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelTenSanPham)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTk, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonTimTenSanPham)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelSanPham2)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelQUANLYBANHANG)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cbbKieu, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(jLabelSanPham1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbbSize, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -717,7 +714,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
                     int soLuongTon = Integer.parseInt ( tblSanPham.getValueAt ( i , 6 ).toString () );
                     // Cập nhật số lượng tồn mới
                     tblSanPham.setValueAt ( soLuongTon + soLuongMua , i , 6 );
-                    showData ( list );
                     break; // Kết thúc vòng lặp sau khi cập nhật
                 }
             }
