@@ -71,7 +71,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btXoa5" max="32767" attributes="0"/>
+                                  <Component id="btImportExcel" max="32767" attributes="0"/>
                                   <Component id="btBack" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="btXoa" max="32767" attributes="0"/>
@@ -100,7 +100,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btXoa5" min="-2" max="-2" attributes="0"/>
+                              <Component id="btImportExcel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -208,12 +208,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btXoa5">
+            <Component class="javax.swing.JButton" name="btImportExcel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Import Excel"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btXoa5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btImportExcelActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

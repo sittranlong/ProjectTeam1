@@ -7,6 +7,8 @@ package DAO;
 import DATABASE.DatabaseHelper;
 import ENTITY.HoaDon;
 import ENTITY.HoaDonChiTiet;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -16,26 +18,25 @@ import java.util.ArrayList;
  */
 public class HoaDonChiTietDAO {
 
-    public ArrayList<HoaDonChiTiet> getHDCT() {
-        ArrayList<HoaDonChiTiet> list = new ArrayList<>();
-        String sql = "";
-        ResultSet rs = JDBCHelper.excuteQuery(sql);
+    public ArrayList<HoaDonChiTiet> getHDCT(String idhd) {
         try {
+            ArrayList<HoaDonChiTiet> list = new ArrayList<>();
+            Connection connection = DatabaseHelper.getConnection();
+            String sql = "SELECT * FROM HOADONCHITIET WHERE Idhd = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, idhd.toString()); // Set the parameter value before executing the query
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 HoaDonChiTiet hdct = new HoaDonChiTiet();
-                hdct.setId(rs.getString("id"));
-                hdct.setManv(rs.getString("manv"));
-                hdct.setMakh(rs.getString("makh"));
-                hdct.setNgayTao(rs.getString("ngaytao"));
-                hdct.setNgayChinhSua(rs.getString("ngaychinhsua"));
-                hdct.setTensp(rs.getString("tensp"));
-                hdct.setThanhtien(rs.getString("thanhtien"));
+                // Set properties of hdct
                 list.add(hdct);
             }
+            connection.close();
+            return list;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
+            return null; // Return null if an exception occurs
         }
-        return list;
     }
 
     public Integer xoaHD(String Mahd) {

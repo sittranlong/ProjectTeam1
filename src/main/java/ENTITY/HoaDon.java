@@ -12,7 +12,7 @@ import java.util.UUID;
  * @author TieuLong
  */
 public class HoaDon {
-  private String id;
+    private String id;
     private String idkh;
     private String idnv;
     private String mahd;

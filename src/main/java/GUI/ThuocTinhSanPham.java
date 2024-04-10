@@ -144,7 +144,7 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
         btBack = new javax.swing.JButton();
         btXoa = new javax.swing.JButton();
         btAdd = new javax.swing.JButton();
-        btXoa5 = new javax.swing.JButton();
+        btImportExcel = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtMa1 = new javax.swing.JTextField();
@@ -233,10 +233,10 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
             }
         });
 
-        btXoa5.setText("Import Excel");
-        btXoa5.addActionListener(new java.awt.event.ActionListener() {
+        btImportExcel.setText("Import Excel");
+        btImportExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btXoa5ActionPerformed(evt);
+                btImportExcelActionPerformed(evt);
             }
         });
 
@@ -262,7 +262,7 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
                                 .addComponent(jLabel1)))
                         .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btXoa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btImportExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btBack)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -283,7 +283,7 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btXoa5)
+                        .addComponent(btImportExcel)
                         .addGap(27, 27, 27)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -939,7 +939,7 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btBack4ActionPerformed
 
-    private void btXoa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoa5ActionPerformed
+    private void btImportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImportExcelActionPerformed
         // TODO add your handling code here:
 
         File excelFile;
@@ -971,7 +971,9 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
                     String ma = String.valueOf(excelMa);
                     String ten = String.valueOf(excelTen);
                     SanPham sp = new SanPham(ma, ten);
+                    
                     list.add(sp);
+                    spsi.add(sp);
                     showData(list);
 
 //                    for (int colum = 0; colum < excelRow.getLastCellNum(); colum++) {
@@ -1003,7 +1005,7 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
                 }
             }
         }
-    }//GEN-LAST:event_btXoa5ActionPerformed
+    }//GEN-LAST:event_btImportExcelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1017,12 +1019,12 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
     private javax.swing.JButton btBack2;
     private javax.swing.JButton btBack3;
     private javax.swing.JButton btBack4;
+    private javax.swing.JButton btImportExcel;
     private javax.swing.JButton btXoa;
     private javax.swing.JButton btXoa1;
     private javax.swing.JButton btXoa2;
     private javax.swing.JButton btXoa3;
     private javax.swing.JButton btXoa4;
-    private javax.swing.JButton btXoa5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
