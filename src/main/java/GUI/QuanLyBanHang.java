@@ -695,39 +695,8 @@ public class QuanLyBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldTongTienActionPerformed
 
     private void jButtonXoaSPGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXoaSPGioHangActionPerformed
-        // Lấy chỉ số của hàng được chọn trong bảng giỏ hàng
-        int selectedRow = tblGioHang.getSelectedRow ();
-
-        // Kiểm tra xem có hàng được chọn không
-        if ( selectedRow != -1 ) {
-            // Lấy mô hình của bảng giỏ hàng
-            DefaultTableModel gioHangModel = ( DefaultTableModel ) tblGioHang.getModel ();
-
-            // Lấy thông tin sản phẩm cần xóa từ hàng được chọn
-            String maSanPham = gioHangModel.getValueAt ( selectedRow , 0 ).toString ();
-            int soLuongMua = Integer.parseInt ( gioHangModel.getValueAt ( selectedRow , 5 ).toString () );
-
-            // Cập nhật số lượng tồn trên bảng sản phẩm
-            for ( int i = 0 ; i < tblSanPham.getRowCount () ; i ++ ) {
-                if ( tblSanPham.getValueAt ( i , 0 ).toString ().equals ( maSanPham ) ) {
-                    // Lấy số lượng tồn hiện tại từ bảng sản phẩm
-                    int soLuongTon = Integer.parseInt ( tblSanPham.getValueAt ( i , 6 ).toString () );
-                    // Cập nhật số lượng tồn mới
-                    tblSanPham.setValueAt ( soLuongTon + soLuongMua , i , 6 );
-                    break; // Kết thúc vòng lặp sau khi cập nhật
-                }
-            }
-
-            // Loại bỏ hàng được chọn từ bảng giỏ hàng
-            gioHangModel.removeRow ( selectedRow );
-
-            // Cập nhật tổng tiền sau khi loại bỏ hàng
-            tinhTongTien ();
-
-        } else {
-            // Hiển thị thông báo yêu cầu chọn sản phẩm để xóa nếu không có hàng nào được chọn
-            JOptionPane.showMessageDialog ( null , "Vui lòng chọn sản phẩm để xóa" , "Thông báo" , JOptionPane.WARNING_MESSAGE );
-        }
+        showData ( list );
+        dtmGioHang.setRowCount ( 0);
     }//GEN-LAST:event_jButtonXoaSPGioHangActionPerformed
 
     private void jComboBoxGiamGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGiamGiaActionPerformed
