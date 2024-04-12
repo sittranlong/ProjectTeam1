@@ -4,17 +4,33 @@
  */
 package GUI;
 
+import DAO.DoiHangDao;
+import ENTITY.HoaDon;
+import ENTITY.HoaDonChiTiet;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TieuLong
  */
 public class QuanLyDoiTra extends javax.swing.JPanel {
 
+    private DefaultTableModel model = new DefaultTableModel ();
+    private DefaultTableModel model1 = new DefaultTableModel ();
+    private DefaultTableModel model2 = new DefaultTableModel ();
+    private DoiHangDao dhd = new DoiHangDao ();
     /**
      * Creates new form QuanLyDoiTra
      */
     public QuanLyDoiTra() {
         initComponents();
+        model = ( DefaultTableModel ) tblHoaDon.getModel ();
+        model1 = ( DefaultTableModel ) tblHDCT.getModel ();
+        model2 = ( DefaultTableModel ) tblDH.getModel ();
+        loadTableHD();
+        loadTableHDCT ();
+        loadTableDH ();
     }
 
     /**
@@ -31,10 +47,10 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblHDCT = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblHoaDon = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -48,7 +64,7 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tblDH = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,11 +80,11 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("Quản lý đổi trả");
+        jLabel1.setText("Quản lý đổi hàng");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa đơn chi tiết"));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblHDCT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,10 +92,10 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã HD", "Số lượng", "Đơn giá", "Tiền sản phẩm"
+                "Mã HD", "Số lượng", "Đơn giá", "Tổng tiền"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblHDCT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,7 +115,7 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa đơn"));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -110,7 +126,7 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
                 "Mã HD", "Số lượng", "Ngày tạo", "Tổng tiền"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tblHoaDon);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -143,7 +159,7 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
 
         jButton1.setText("Hoàn trả");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tblDH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -154,7 +170,7 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
                 "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Đơn giá", "Trạng thái"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tblDH);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -276,13 +292,53 @@ public class QuanLyDoiTra extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tblDH;
+    private javax.swing.JTable tblHDCT;
+    private javax.swing.JTable tblHoaDon;
     // End of variables declaration//GEN-END:variables
+
+    private void loadTableHD () {
+        model.setRowCount ( 0);
+        ArrayList<HoaDon> hd = dhd.getDTHD ();
+        for ( HoaDon hdd : hd ) {
+            model.addRow ( new Object[]{
+                hdd.getMahd (),
+                hdd.getSoLuong (),
+                hdd.getNgayTao (),
+                hdd.getTongTien ()
+            });
+        }
+    }
+    
+    public void loadTableHDCT(){
+        model1.setRowCount ( 0);
+        ArrayList<HoaDon> list = dhd.getDTHDCT ();
+        for ( HoaDon h : list ) {
+            model1.addRow ( new Object[]{
+                h.getMahd (),
+                h.getSoLuong (),
+                h.getDonGia (), 
+                h.getTongTien ()
+            });
+        }
+    }
+
+    private void loadTableDH () {
+        model2.setRowCount ( 0);
+        ArrayList<HoaDonChiTiet> list = dhd.getDH ();
+        for ( HoaDonChiTiet ct : list ) {
+            model2.addRow ( new Object[]{
+                ct.getMaSP (),
+                ct.getTensp (),
+                ct.getSoluong (),
+                ct.getDonGia (),
+                ct.getTrangThai ()
+            });
+        }
+    }
 }
