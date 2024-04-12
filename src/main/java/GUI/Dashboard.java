@@ -112,7 +112,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jMenuSanPham.setText("Quản Lý Sản Phẩm");
+        jMenuSanPham.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItemQLSPCT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemQLSPCT.setText("Chi Tiết Sản Phẩm");
         jMenuItemQLSPCT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +123,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenuSanPham.add(jMenuItemQLSPCT);
 
+        jCheckBoxMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("Thuộc Tính Sản Phẩm");
         jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +136,9 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1.add(jMenuSanPham);
 
         jMenuHoaDon.setText("Hóa Đơn");
+        jMenuHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItemQLHoaDonVaHDCT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemQLHoaDonVaHDCT.setText("Quản Lý Hóa Đơn & Hóa Đơn Chi Tiết");
         jMenuItemQLHoaDonVaHDCT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +147,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenuHoaDon.add(jMenuItemQLHoaDonVaHDCT);
 
+        jMenuItemQLThongKe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemQLThongKe.setText("Thống Kê");
         jMenuItemQLThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +159,9 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1.add(jMenuHoaDon);
 
         jMenuBanHang.setText("Bán Hàng");
+        jMenuBanHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItemQLBanHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemQLBanHang.setText("Quản Lý Bán Hàng");
         jMenuItemQLBanHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,6 +170,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenuBanHang.add(jMenuItemQLBanHang);
 
+        jMenuItemQLDoiHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemQLDoiHang.setText("Quản Lý Đổi Hàng");
         jMenuItemQLDoiHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +182,9 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1.add(jMenuBanHang);
 
         jMenuNguoiDung.setText("Người Dùng");
+        jMenuNguoiDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItemQLKhachHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemQLKhachHang.setText("Quản Lý Khách Hàng");
         jMenuItemQLKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +193,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenuNguoiDung.add(jMenuItemQLKhachHang);
 
+        jMenuItemQLNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemQLNhanVien.setText("Quản Lý Nhân Viên");
         jMenuItemQLNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +205,9 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1.add(jMenuNguoiDung);
 
         jMenuTaiKhoan.setText("Tài Khoản");
+        jMenuTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jMenuItemDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemDoiMatKhau.setText("Đổi Mật Khẩu");
         jMenuItemDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +216,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenuTaiKhoan.add(jMenuItemDoiMatKhau);
 
+        jMenuItemDangXuat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItemDangXuat.setText("Đăng Xuất");
         jMenuItemDangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +242,7 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

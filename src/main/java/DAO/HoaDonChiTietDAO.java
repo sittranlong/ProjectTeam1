@@ -1,48 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
 import DATABASE.DatabaseHelper;
-import ENTITY.HoaDon;
 import ENTITY.HoaDonChiTiet;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
  * @author TieuLong
  */
 public class HoaDonChiTietDAO {
-    public ArrayList<HoaDonChiTiet> getHDCT() {
-        ArrayList<HoaDonChiTiet> list = new ArrayList<>();
-        String sql = "";
-        ResultSet rs = JDBCHelper.excuteQuery(sql);
+
+    public ArrayList<HoaDonChiTiet> getHDCTByMaHD(String mahd) {
         try {
-            while (rs.next()) {
+            ArrayList<HoaDonChiTiet> list = new ArrayList<>();
+            Connection connection = DatabaseHelper.getConnection();
+            String sql = "SELECT hct.*\n"
+                    + "FROM HOADONCHITIET hct\n"
+                    + "JOIN HOADON hd ON hct.Idhd = hd.Id\n"
+                    + "WHERE hd.Mahd = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, mahd); // Add parameter value
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
                 HoaDonChiTiet hdct = new HoaDonChiTiet();
-                hdct.setId(rs.getString("id"));
-                hdct.setManv(rs.getString("manv"));
-                hdct.setMakh(rs.getString("makh"));
-                hdct.setNgayTao(rs.getString("ngaytao"));
-                hdct.setNgayChinhSua(rs.getString("ngaychinhsua"));
-                hdct.setTensp(rs.getString("tensp"));
-                hdct.setThanhtien(rs.getString("thanhtien"));
+                hdct.setId(resultSet.getString("id"));
+                hdct.setIdhd(resultSet.getString("idhd"));
+                hdct.setIdctsp(resultSet.getString("idctsp"));
+                hdct.setSoluong(resultSet.getInt("soluong"));
+                hdct.setThanhtien(resultSet.getDouble("tongtien") + "");
+                hdct.setNgayTao(resultSet.getDate("ngaytao") + "");
+                hdct.setNgayChinhSua(resultSet.getDate("ngaychinhsua") + "");
+                hdct.setTrangThai(resultSet.getInt("trangthai") + "");
                 list.add(hdct);
             }
+            connection.close();
+            return list;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
-    }
-
-    public Integer xoaHD(String Mahd) {
-        int row;
-        String sql = "delete from HoaDon\n"
-                + "where id = ?";
-        row = DatabaseHelper.excuteUpdate(sql, Mahd);
-        return row;
+        return null; // Return null in case of exception or no results
     }
 
 }
