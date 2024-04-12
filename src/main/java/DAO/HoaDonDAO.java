@@ -17,18 +17,32 @@ public class HoaDonDAO {
 
     public ArrayList<HoaDon> getHD() {
         ArrayList<HoaDon> list = new ArrayList<>();
-        String sql = "SELECT * FROM  HOADON";
+        String sql = " SELECT \n" +
+"    HD.Mahd AS MaHoaDon,\n" +
+"    NV.Manv AS MaNhanVien,\n" +
+"    KH.Makh AS MaKhachHang,\n" +
+"    HD.NgayTao AS NgayTao,\n" +
+"    SP.Ten AS TenSanPham,\n" +
+"    SUM(HDC.Tongtien) AS TongTien\n" +
+"FROM \n" +
+"    HOADON HD\n" +
+"    INNER JOIN NHANVIEN NV ON HD.Idnv = NV.Id\n" +
+"    INNER JOIN KHACHHANG KH ON HD.Idkh = KH.Id\n" +
+"    INNER JOIN HOADONCHITIET HDC ON HD.Id = HDC.Idhd\n" +
+"    INNER JOIN CHITIETSANPHAM CTSP ON HDC.Idctsp = CTSP.Id\n" +
+"    INNER JOIN SANPHAM SP ON CTSP.Idsp = SP.Id\n" +
+"GROUP BY \n" +
+"     HD.Mahd, NV.Manv, KH.Makh, HD.NgayTao, SP.Ten";
         ResultSet rs = JDBCHelper.excuteQuery(sql);
         try {
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
-                hd.setId(rs.getString("Id"));
-                hd.setIdkh(rs.getString("Idkh"));
-                hd.setIdnv(rs.getString("Idnv"));
-                hd.setMahd(rs.getString("Mahd"));
-                hd.setNgayTao(rs.getDate("NgayTao"));
-                hd.setNgayChinhSua(rs.getDate("NgayChinhSua"));
-                hd.setTrangThai(rs.getInt("TrangThai"));
+                hd.setMahd(rs.getString("mahd"));
+                hd.setIdnv(rs.getString("idnv"));
+                hd.setIdkh(rs.getString("idkh"));
+                hd.setNgayTao(rs.getDate("ngaytao"));
+                hd.setTenSP(rs.getString("ten"));
+                hd.setTongTien(rs.getInt("Tongtien"));
                 list.add(hd);
             }
         } catch (Exception e) {
@@ -44,8 +58,7 @@ public class HoaDonDAO {
         row = DatabaseHelper.excuteUpdate(sql, Mahd);
         return row;
     }
-
-    public Integer themHD(HoaDon hd) {
+        public Integer themHD(HoaDon hd) {
         int row;
         String sql = "insert into HOADON(idkh,idnv,mahd,ngaytao,TrangThai)\n"
                 + "values (?, ?, ?)";

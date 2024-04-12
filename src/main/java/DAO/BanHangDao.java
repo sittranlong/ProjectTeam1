@@ -92,7 +92,7 @@ public class BanHangDao {
 
     public List<ChiTietSanPham> Loc1 ( String ten ) {
         ArrayList<ChiTietSanPham> listLh = new ArrayList<> ();
-        String sql = "SELECT CTSP.MACTSP, SP.TEN, CAST(S.TENSIZE AS NVARCHAR(100)) AS TENSIZE, KD.TENKIEU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.ID     \n"
+        String sql = "SELECT CTSP.MACTSP, SP.TEN, CAST(S.TENSIZE AS NVARCHAR(100)) AS TENSIZE, MS.TENMAU, DG.DOCAODE, KD.TENKIEU, CTSP.DONGIA, CTSP.SOLUONG, CTSP.ID     \n"
                 + "FROM CHITIETSANPHAM CTSP \n"
                 + "INNER JOIN DEGIAY DG ON CTSP.Idde = DG.Id \n"
                 + "INNER JOIN KIEUDANG KD ON CTSP.Idkieu = KD.Id \n"
@@ -109,13 +109,14 @@ public class BanHangDao {
                 ChiTietSanPham ctsp = new ChiTietSanPham ();
                 ctsp.setMactsp ( rs.getString ( 1 ) );
                 ctsp.setIdsp ( rs.getString ( 2 ) );
-                ctsp.setIdkieu ( rs.getString ( 4 ) );
                 ctsp.setIdsize ( rs.getString ( 3 ) );
-                ctsp.setIdkieu ( rs.getString ( 4 ) );
+                ctsp.setIdms(rs.getString ( 4 ) );
+                ctsp.setIdde(rs.getString ( 5 ) );
+                ctsp.setIdkieu ( rs.getString ( 6 ) );
 
-                ctsp.setDongia ( rs.getInt ( 5 ) );
-                ctsp.setSoluong ( rs.getInt ( 6 ) );
-                ctsp.setId ( rs.getString ( 7 ) );
+                ctsp.setDongia ( rs.getInt ( 7 ) );
+                ctsp.setSoluong ( rs.getInt ( 8 ) );
+                ctsp.setId ( rs.getString ( 9 ) );
                 listLh.add ( ctsp );
             }
         } catch ( Exception e ) {

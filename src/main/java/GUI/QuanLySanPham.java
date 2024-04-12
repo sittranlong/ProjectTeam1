@@ -297,36 +297,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         rdHet.setText("Hết Hàng");
 
-        cbbSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbSanPhamMouseEntered(evt);
-            }
-        });
-
-        cbbMau.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbMauMouseEntered(evt);
-            }
-        });
-
-        cbbKieu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbKieuMouseEntered(evt);
-            }
-        });
-
-        cbbSize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbSizeMouseEntered(evt);
-            }
-        });
-
-        cbbChieuCao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbChieuCaoMouseEntered(evt);
-            }
-        });
-
         lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -493,22 +463,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         jLabel16.setText("Kiểu Dáng");
 
-        cbbKD.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbKDMouseEntered(evt);
-            }
-        });
         cbbKD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbKDActionPerformed(evt);
             }
         });
 
-        cbbMS.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbMSMouseEntered(evt);
-            }
-        });
         cbbMS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbMSActionPerformed(evt);
@@ -516,11 +476,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         });
 
         cbbTt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1" }));
-        cbbTt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cbbTtMouseEntered(evt);
-            }
-        });
         cbbTt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbTtActionPerformed(evt);
@@ -968,61 +923,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         //            System.out.println("Error: " + ex.toString());
         //        }
     }//GEN-LAST:event_lblAnhMouseClicked
-
-    private void cbbSanPhamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbSanPhamMouseEntered
-        // TODO add your handling code here:
-        cbbSanPham.removeAllItems();
-        LoadCbbSP(ctspsi.getListSanPham());
-    }//GEN-LAST:event_cbbSanPhamMouseEntered
-
-    private void cbbMauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbMauMouseEntered
-        // TODO add your handling code here:
-        cbbMau.removeAllItems();
-                LoadCbbMS(ctspsi.getListMauSac());
-
-    }//GEN-LAST:event_cbbMauMouseEntered
-
-    private void cbbKieuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbKieuMouseEntered
-        // TODO add your handling code here:
-        cbbKieu.removeAllItems();
-                LoadCbbKD(ctspsi.getListKieuDang());
-
-    }//GEN-LAST:event_cbbKieuMouseEntered
-
-    private void cbbSizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbSizeMouseEntered
-        // TODO add your handling code here:
-        cbbSize.removeAllItems();
-                LoadCbbS(ctspsi.getListSize());
-
-    }//GEN-LAST:event_cbbSizeMouseEntered
-
-    private void cbbChieuCaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbChieuCaoMouseEntered
-        // TODO add your handling code here:
-        cbbChieuCao.removeAllItems();
-                LoadCbbCC(ctspsi.getListChieuCao());
-
-    }//GEN-LAST:event_cbbChieuCaoMouseEntered
-
-    private void cbbKDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbKDMouseEntered
-        // TODO add your handling code here:
-        cbbKD.removeAllItems();
-                LoadCbbLocKD(ctspsi.getListKieuDang());
-
-    }//GEN-LAST:event_cbbKDMouseEntered
-
-    private void cbbMSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbMSMouseEntered
-        // TODO add your handling code here:
-        cbbMS.removeAllItems();
-                        LoadCbbLocMS(ctspsi.getListMauSac());
-
-    }//GEN-LAST:event_cbbMSMouseEntered
-
-    private void cbbTtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbTtMouseEntered
-        // TODO add your handling code here:
-        cbbTt.removeAllItems();
-                        LoadCbbLocTT(ctspsi.getListTrangThai());
-
-    }//GEN-LAST:event_cbbTtMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

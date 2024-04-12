@@ -14,26 +14,12 @@ import ENTITY.KieuDang;
 import ENTITY.MauSac;
 import ENTITY.SanPham;
 import ENTITY.Size;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 /**
  *
  * @author Phan Loc
@@ -43,23 +29,29 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
     private DefaultTableModel dtm = new DefaultTableModel();
     private List<SanPham> list = new ArrayList<>();
     private SanPhamDao spsi = new SanPhamDao();
-
+    
+    
 //    private DefaultTableModel dtm1 = new DefaultTableModel();
     private MauSacDAO ms = new MauSacDAO();
     List<MauSac> list1 = new ArrayList<>();
-
+    
+    
+    
 //    private DefaultTableModel dtm2 = new DefaultTableModel();
     private KieuDangDAO kd1 = new KieuDangDAO();
     List<KieuDang> list2 = new ArrayList<>();
-
+    
+    
+    
 //    private DefaultTableModel dtm3 = new DefaultTableModel();
     private SizeDao sd = new SizeDao();
     List<Size> list3 = new ArrayList<>();
-
+    
+    
+    
 //    private DefaultTableModel dtm4 = new DefaultTableModel();
     private DeGiayDAO d = new DeGiayDAO();
     List<DeGiay> list4 = new ArrayList<>();
-
     /**
      * Creates new form ThuocTinhSanPham
      */
@@ -75,54 +67,49 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
         showData3(list3);
         list4 = d.getAll4();
         showData4(list4);
-
+        
     }
 
-    public void showData(List<SanPham> list) {
-        DefaultTableModel dtm = new DefaultTableModel();
+    public void showData(List<SanPham> list){
+    DefaultTableModel dtm = new DefaultTableModel();
         dtm = (DefaultTableModel) tbSP.getModel();
         dtm.setRowCount(0);
         for (SanPham s : list) {
-            dtm.addRow(new Object[]{s.getMasp(), s.getTen()});
+            dtm.addRow(new Object[] {s.getMasp(), s.getTen()});
         }
     }
-
-    public void showData1(List<KieuDang> list) {
-        DefaultTableModel dtm = new DefaultTableModel();
+    public void showData1(List<KieuDang> list){
+    DefaultTableModel dtm = new DefaultTableModel();
         dtm = (DefaultTableModel) tbKD.getModel();
         dtm.setRowCount(0);
         for (KieuDang deGiayJPN : list) {
-            dtm.addRow(new Object[]{deGiayJPN.getMakieu(), deGiayJPN.getTenkieu()});
+            dtm.addRow(new Object[] {deGiayJPN.getMakieu(), deGiayJPN.getTenkieu()});
         }
     }
-
-    public void showData2(List<MauSac> list) {
-        DefaultTableModel dtm = new DefaultTableModel();
+    public void showData2(List<MauSac> list){
+    DefaultTableModel dtm = new DefaultTableModel();
         dtm = (DefaultTableModel) tbMS.getModel();
         dtm.setRowCount(0);
         for (MauSac deGiayJPN : list) {
-            dtm.addRow(new Object[]{deGiayJPN.getMamau(), deGiayJPN.getTenmau()});
+            dtm.addRow(new Object[] {deGiayJPN.getMamau(), deGiayJPN.getTenmau()});
         }
     }
-
-    public void showData3(List<Size> list) {
-        DefaultTableModel dtm = new DefaultTableModel();
+    public void showData3(List<Size> list){
+    DefaultTableModel dtm = new DefaultTableModel();
         dtm = (DefaultTableModel) tbS.getModel();
         dtm.setRowCount(0);
         for (Size deGiayJPN : list) {
-            dtm.addRow(new Object[]{deGiayJPN.getMasize(), deGiayJPN.getTensize()});
+            dtm.addRow(new Object[] {deGiayJPN.getMasize(), deGiayJPN.getTensize()});
         }
     }
-
-    public void showData4(List<DeGiay> list) {
-        DefaultTableModel dtm = new DefaultTableModel();
+    public void showData4(List<DeGiay> list){
+    DefaultTableModel dtm = new DefaultTableModel();
         dtm = (DefaultTableModel) tbDG.getModel();
         dtm.setRowCount(0);
         for (DeGiay deGiayJPN : list) {
-            dtm.addRow(new Object[]{deGiayJPN.getMade(), deGiayJPN.getChatlieude(), deGiayJPN.getDocaode()});
+            dtm.addRow(new Object[] {deGiayJPN.getMade(), deGiayJPN.getChatlieude(), deGiayJPN.getDocaode()});
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,7 +131,6 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
         btBack = new javax.swing.JButton();
         btXoa = new javax.swing.JButton();
         btAdd = new javax.swing.JButton();
-        btImportExcel = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtMa1 = new javax.swing.JTextField();
@@ -233,13 +219,6 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
             }
         });
 
-        btImportExcel.setText("Import Excel");
-        btImportExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btImportExcelActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -253,38 +232,30 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel1)))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btImportExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btBack)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE))
+                                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(69, 69, 69)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btBack)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel1)
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btImportExcel)
-                        .addGap(27, 27, 27)))
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -720,7 +691,7 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
 
     private void btBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBackActionPerformed
         // TODO add your handling code here:
-        txtMa.setText("");
+        txtMa.setText("");       
         txtTen.setText("");
         list = spsi.getAll();
         showData(list);
@@ -729,14 +700,9 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
         String ma = list.get(tbSP.getSelectedRow()).getMasp();
-        boolean result = spsi.delete(ma);
-        if (result) {
-            JOptionPane.showMessageDialog(this, "Xóa thành công");
-            list = spsi.getAll();
-            showData(list);
-        } else {
-            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-        }
+        JOptionPane.showMessageDialog(this, spsi.delete(ma));
+        list = spsi.getAll();
+        showData(list);
 
     }//GEN-LAST:event_btXoaActionPerformed
 
@@ -749,61 +715,40 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
         } else if (ten.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tên không được bỏ trống");
-        } else {
-            SanPham sp = new SanPham(ma, ten);
-            boolean result = spsi.add(sp);
+        }else{
+        SanPham sp = new SanPham(ma, ten);
+        boolean result = spsi.add(sp);
             if (result) {
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
                 list = spsi.getAll();
                 showData(list);
             } else {
                 JOptionPane.showMessageDialog(this, "Thêm thất bại");
-            }
-        }
-
+            }}
+        
     }//GEN-LAST:event_btAddActionPerformed
 
     private void btAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdd1ActionPerformed
         // TODO add your handling code here:
         String ma = txtMa1.getText();
         String ten = txtTen1.getText();
-        
-        
-         if (ma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
-        } else if (ten.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Tên không được bỏ trống");
-        } else {
-            MauSac m = new MauSac(ten, ma);
-            boolean result = ms.Add1(m);
-            if (result) {
-                JOptionPane.showMessageDialog(this, "Thêm thành công");
-                list1.add(m);
+        MauSac m = new MauSac(ten, ma);
+        JOptionPane.showMessageDialog(this, ms.Add1(m));
+        list1.add(m);
         showData2(list1);
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thất bại");
-            }
-        }
     }//GEN-LAST:event_btAdd1ActionPerformed
 
     private void btXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoa1ActionPerformed
         // TODO add your handling code here:
         String ma = list1.get(tbMS.getSelectedRow()).getMamau();
-        
-        boolean result = spsi.delete(ma);
-        if (result) {
-         JOptionPane.showMessageDialog(this, "Xóa thành công");
-
-            list1 = ms.getAll1();
+        JOptionPane.showMessageDialog(this, ms.delete1(ma));
+        list1 = ms.getAll1();
         showData2(list1);
-        } else {
-            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-        }
     }//GEN-LAST:event_btXoa1ActionPerformed
 
     private void btBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBack1ActionPerformed
         // TODO add your handling code here:
-        txtMa1.setText("");
+        txtMa1.setText("");       
         txtTen1.setText("");
     }//GEN-LAST:event_btBack1ActionPerformed
 
@@ -811,85 +756,47 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
         String ma = txtMa2.getText();
         String ten = txtTen2.getText();
-        
-        
-        if (ma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
-        } else if (ten.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Tên không được bỏ trống");
-        } else {
-            KieuDang kd = new KieuDang(ten, ma);
-            boolean result = kd1.Add2(kd);
-            if (result) {
-                JOptionPane.showMessageDialog(this, "Thêm Thành Công");
+        KieuDang kd = new KieuDang(ten, ma);
+        JOptionPane.showMessageDialog(this, kd1.Add2(kd));
         list2.add(kd);
         showData1(list2);
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thất bại");
-            }
-        }
     }//GEN-LAST:event_btAdd2ActionPerformed
 
     private void btXoa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoa2ActionPerformed
         // TODO add your handling code here:
         String ma = list2.get(tbKD.getSelectedRow()).getMakieu();
-        
-        
-        boolean result = spsi.delete(ma);
-        if (result) {
-            JOptionPane.showMessageDialog(this, "Xóa Thành Công");
-            list2 = kd1.getAll2();
+        JOptionPane.showMessageDialog(this, kd1.delete2(ma));
+        list2 = kd1.getAll2();
         showData1(list2);
-        } else {
-            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-        }
     }//GEN-LAST:event_btXoa2ActionPerformed
 
     private void btBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBack2ActionPerformed
         // TODO add your handling code here:
-        txtMa2.setText("");
+        txtMa2.setText("");       
         txtTen2.setText("");
     }//GEN-LAST:event_btBack2ActionPerformed
 
     private void btAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdd3ActionPerformed
         // TODO add your handling code here:
         String ma = txtMa3.getText();
-        String ten = txtTen3.getText() + "";
-        
-        
-        if (ma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
-        } else if (ten.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Tên không được bỏ trống");
-        } else {
-            Size s = new Size(Integer.parseInt(ten), ma);
-            boolean result = sd.Add3(s);
-            if (result) {
-                JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-                list3.add(s);
-                showData3(list3);
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thất bại");
-            }
-        }
+        String ten = txtTen3.getText()+ "";
+        Size s = new Size(Integer.parseInt(ten), ma);
+        JOptionPane.showMessageDialog(this, sd.Add3(s));
+        list3.add(s);
+        showData3(list3);
     }//GEN-LAST:event_btAdd3ActionPerformed
 
     private void btXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoa3ActionPerformed
         // TODO add your handling code here:
         String ma = list3.get(tbS.getSelectedRow()).getMasize();
-        boolean result = spsi.delete(ma);
-        if (result) {
-            JOptionPane.showMessageDialog(this, "Xóa Thành Công");
-            list3 = sd.getAll3();
+        JOptionPane.showMessageDialog(this, sd.delete3(ma));
+        list3 = sd.getAll3();
         showData3(list3);
-        } else {
-            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-        }
     }//GEN-LAST:event_btXoa3ActionPerformed
 
     private void btBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBack3ActionPerformed
         // TODO add your handling code here:
-        txtMa3.setText("");
+        txtMa3.setText("");       
         txtTen3.setText("");
     }//GEN-LAST:event_btBack3ActionPerformed
 
@@ -898,114 +805,27 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
         String ma = txtMa4.getText();
         String ten = txtTen4.getText();
         String soLuong = txtTen5.getText() + "";
-        
-        if (ma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
-        } else if (ten.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Tên không được bỏ trống");
-        } else if (soLuong.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Số lượng không được bỏ trống");
-        } else {
         DeGiay dg = new DeGiay(ma, ten, Integer.parseInt(soLuong));
-            boolean result = d.Add4(dg);
-            if (result) {
-                JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-                list4.add(dg);
+        JOptionPane.showMessageDialog(this, d.Add4(dg));
+        list4.add(dg);
         showData4(list4);
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thất bại");
-            }
-        }
     }//GEN-LAST:event_btAdd4ActionPerformed
 
     private void btXoa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoa4ActionPerformed
         // TODO add your handling code here:
         String ma = list4.get(tbDG.getSelectedRow()).getMade();
-        boolean result = spsi.delete(ma);
-        if (result) {
-            JOptionPane.showMessageDialog(this, "Xóa Thành Công");
-            list4 = d.getAll4();
+        JOptionPane.showMessageDialog(this, d.delete4(ma));
+        list4 = d.getAll4();
         showData4(list4);
-        } else {
-            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-        }
     }//GEN-LAST:event_btXoa4ActionPerformed
 
     private void btBack4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBack4ActionPerformed
         // TODO add your handling code here:
-        txtMa4.setText("");
-        txtTen4.setText("");
+        txtMa4.setText("");       
+        txtTen4.setText("");        
         txtTen5.setText("");
 
     }//GEN-LAST:event_btBack4ActionPerformed
-
-    private void btImportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImportExcelActionPerformed
-        // TODO add your handling code here:
-
-        File excelFile;
-        FileInputStream excelFIS = null;
-        BufferedInputStream excelBIS = null;
-        XSSFWorkbook excelJTableImport = null;
-
-        String defaultCurrenntDirectoryPath = "D:\\DuAnBanGiay";
-        JFileChooser excelFileChooser = new JFileChooser(defaultCurrenntDirectoryPath);
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXCEL FILES", "xls","xlsx", "xlsm");
-        excelFileChooser.setFileFilter(fnef);
-        excelFileChooser.setDialogTitle("Select Excel File");
-        int excelChooser = excelFileChooser.showOpenDialog(null);
-
-        if (excelChooser == JFileChooser.APPROVE_OPTION) {
-            try {
-                excelFile = excelFileChooser.getSelectedFile();
-                excelFIS = new FileInputStream(excelFile);
-                excelBIS = new BufferedInputStream(excelFIS);
-                excelJTableImport = new XSSFWorkbook(excelBIS);
-                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
-
-                for (int row = 0; row < excelSheet.getLastRowNum(); row++) {
-                    XSSFRow excelRow = excelSheet.getRow(row);
-
-                    XSSFCell excelMa = excelRow.getCell(0);
-                    XSSFCell excelTen = excelRow.getCell(1);
-
-                    String ma = String.valueOf(excelMa);
-                    String ten = String.valueOf(excelTen);
-                    SanPham sp = new SanPham(ma, ten);
-                    
-                    list.add(sp);
-                    spsi.add(sp);
-                    showData(list);
-
-//                    for (int colum = 0; colum < excelRow.getLastCellNum(); colum++) {
-//                        XSSFCell excelCell = excelRow.getCell(colum);
-//
-//                        System.out.println(excelCell.getStringCellValue());
-//                    }
-                }
-                JOptionPane.showMessageDialog(null, "Nhập Excel Thành Công");
-            } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            } catch (IOException ex) {
-
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            } finally {
-                try {
-                    if (excelFIS != null) {
-                        excelFIS.close();
-                    }
-                    if (excelBIS != null) {
-                        excelBIS.close();
-                    }
-                    if (excelJTableImport != null) {
-                        excelJTableImport.close();
-                    }
-                } catch (IOException iOException) {
-                    JOptionPane.showMessageDialog(null, iOException.getMessage());
-
-                }
-            }
-        }
-    }//GEN-LAST:event_btImportExcelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1019,7 +839,6 @@ public class ThuocTinhSanPham extends javax.swing.JPanel {
     private javax.swing.JButton btBack2;
     private javax.swing.JButton btBack3;
     private javax.swing.JButton btBack4;
-    private javax.swing.JButton btImportExcel;
     private javax.swing.JButton btXoa;
     private javax.swing.JButton btXoa1;
     private javax.swing.JButton btXoa2;

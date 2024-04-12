@@ -12,7 +12,7 @@ import java.util.UUID;
  * @author TieuLong
  */
 public class HoaDon {
-    private String id;
+  private String id;
     private String idkh;
     private String idnv;
     private String mahd;
@@ -21,11 +21,13 @@ public class HoaDon {
     private int trangThai;
     private String tenSP;
     private int tongTien;
+    private int soLuong;
+    private double donGia;
 
     public HoaDon () {
     }
 
-    public HoaDon ( String id , String idkh , String idnv , String mahd , Date ngayTao , Date ngayChinhSua , int trangThai , String tenSP , int tongTien ) {
+    public HoaDon ( String id , String idkh , String idnv , String mahd , Date ngayTao , Date ngayChinhSua , int trangThai , String tenSP , int tongTien , int soLuong , double donGia ) {
         this.id = id;
         this.idkh = idkh;
         this.idnv = idnv;
@@ -35,6 +37,8 @@ public class HoaDon {
         this.trangThai = trangThai;
         this.tenSP = tenSP;
         this.tongTien = tongTien;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
     }
 
     public String getId () {
@@ -109,10 +113,26 @@ public class HoaDon {
         this.tongTien = tongTien;
     }
 
-    @Override
-    public String toString () {
-        return "HoaDon{" + "id=" + id + ", idkh=" + idkh + ", idnv=" + idnv + ", mahd=" + mahd + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + ", tenSP=" + tenSP + ", tongTien=" + tongTien + '}';
+    public int getSoLuong () {
+        return soLuong;
     }
 
-   
+    public void setSoLuong ( int soLuong ) {
+        this.soLuong = soLuong;
+    }
+
+    public double getDonGia () {
+        return donGia;
+    }
+
+    public void setDonGia ( double donGia ) {
+        this.donGia = donGia;
+    }
+
+    @Override
+    public String toString () {
+        return "HoaDon{" + "id=" + id + ", idkh=" + idkh + ", idnv=" + idnv + ", mahd=" + mahd + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + ", tenSP=" + tenSP + ", tongTien=" + tongTien + ", soLuong=" + soLuong + ", donGia=" + donGia + '}';
+    }
+    
+    
 }

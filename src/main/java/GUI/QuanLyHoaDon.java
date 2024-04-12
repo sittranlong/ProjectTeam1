@@ -8,7 +8,6 @@ import DAO.HoaDonChiTietDAO;
 import DAO.HoaDonDAO;
 import ENTITY.HoaDon;
 import ENTITY.HoaDonChiTiet;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,8 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyHoaDon extends javax.swing.JPanel {
 
-    private DefaultTableModel modelHoaDon;
-    private DefaultTableModel modelHoaDonChiTiet;
+    private DefaultTableModel model = new DefaultTableModel();
     private HoaDonDAO hdd = new HoaDonDAO();
     private HoaDonChiTietDAO hdctd = new HoaDonChiTietDAO();
     String idhd;
@@ -30,72 +28,53 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
      */
     public QuanLyHoaDon() {
         initComponents();
-        modelHoaDon = (DefaultTableModel) tb_hoadon.getModel();
-        modelHoaDonChiTiet = (DefaultTableModel) tb_hoadonchitiet.getModel();
+        model = (DefaultTableModel) tb_hoadon.getModel();
+        model = (DefaultTableModel) tb_hoadonchitiet.getModel();
         loadTable();
-        loadTable2(idhd);
+        loadTable2();
     }
 
     public void loadTable() {
-        modelHoaDon.setRowCount(0);
+        model.setRowCount(0);
         List<HoaDon> list = hdd.getHD();
         for (HoaDon hd : list) {
-            modelHoaDon.addRow(new Object[]{
-                hd.getId(),
-                hd.getIdkh(),
-                hd.getIdnv(),
+            model.addRow(new Object[]{
                 hd.getMahd(),
+                hd.getIdnv(),
+                hd.getIdkh(),
                 hd.getNgayTao(),
-                hd.getNgayChinhSua(),
-                hd.getTrangThai()
+                hd.getTenSP(),
+                hd.getTongTien()
+            });
+        }
+    }
+     public void loadTable2() {
+        model.setRowCount(0);
+        List<HoaDonChiTiet> list = hdctd.getHDCT();
+        for (HoaDonChiTiet hdCT : list) {
+            model.addRow(new Object[]{
+                hdCT.getMahd(),
+                hdCT.getManv(),
+                hdCT.getMakh(),
+                hdCT.getNgayTao(),
+                hdCT.getNgayChinhSua(),
+                hdCT.getTensp(),
+                hdCT.getSoluong(),
+                hdCT.getThanhtien(),
             });
         }
     }
 
-    public void loadTable2(String idhd) {
-        modelHoaDonChiTiet.setRowCount(0);
-        List<HoaDonChiTiet> list = hdctd.getHDCT(idhd);
-        if (list != null) { // Check if the list is not null
-            for (HoaDonChiTiet hdCT : list) {
-                modelHoaDonChiTiet.addRow(new Object[]{
-                    hdCT.getId(),
-                    hdCT.getManv(),
-                    hdCT.getMakh(),
-                    hdCT.getNgayTao(),
-                    hdCT.getNgayChinhSua(),
-                    hdCT.getTensp(),
-                    hdCT.getSoluong(),
-                    hdCT.getThanhtien()
-                });
-            }
-        }
-    }
 
-    public void fillTable(String idhd) {
+    
+    public void fillTable() {
         int row = tb_hoadon.getSelectedRow();
-        if (row != -1) { // Ensure that a row is selected
-            idhd = (String) tb_hoadon.getValueAt(row, 3); // Get idhd from the selected row
-            tf_mahoadon.setText(tb_hoadon.getValueAt(row, 3).toString());
-            tf_makhachhang.setText(tb_hoadon.getValueAt(row, 1).toString());
-            tf_manhanvien.setText(tb_hoadon.getValueAt(row, 2).toString());
-
-            // Convert java.sql.Date to String for display
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            tf_ngaytao.setText(dateFormat.format(tb_hoadon.getValueAt(row, 4))); // Convert date to string
-            tf_ngayChinhSua.setText(dateFormat.format(tb_hoadon.getValueAt(row, 5))); // Convert date to string
-
-            tf_trangThai.setText(tb_hoadon.getValueAt(row, 6).toString());
-
-            // Load data into tblHoaDonChiTiet based on idhd
-            Object value = tb_hoadon.getValueAt(row, 3);
-            if (value != null) { // Check if the value is not null
-                idhd = value.toString(); // Convert to string
-                tf_mahoadon.setText(idhd);
-                // Load data into tblHoaDonChiTiet based on idhd
-                loadTable2(idhd);
-            }
-
-        }
+        tf_makhachhang.setText(tb_hoadon.getValueAt(row, 0) + "");
+        tf_makhachhang.setText(tb_hoadon.getValueAt(row, 1) + "");
+        tf_manhanvien.setText(tb_hoadon.getValueAt(row, 2) + "");
+        tf_ngaytao.setText(tb_hoadon.getValueAt(row, 3) + "");
+        tf_tensanpham.setText(tb_hoadon.getValueAt(row, 4) + "");
+        tf_tongtien.setText(tb_hoadon.getValueAt(row, 5) + "");
     }
 
     public void clear() {
@@ -103,8 +82,8 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         tf_makhachhang.setText("");
         tf_manhanvien.setText("");
         tf_ngaytao.setText("");
-        tf_ngayChinhSua.setText("");
-        tf_trangThai.setText("");
+        tf_tensanpham.setText("");
+        tf_tongtien.setText("");
     }
 
     /**
@@ -130,8 +109,8 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         tf_manhanvien = new javax.swing.JTextField();
         tf_makhachhang = new javax.swing.JTextField();
         tf_ngaytao = new javax.swing.JTextField();
-        tf_ngayChinhSua = new javax.swing.JTextField();
-        tf_trangThai = new javax.swing.JTextField();
+        tf_tensanpham = new javax.swing.JTextField();
+        tf_tongtien = new javax.swing.JTextField();
         btn_timkiem = new javax.swing.JButton();
         btn_themhoadon = new javax.swing.JButton();
         btn_xuathoadon = new javax.swing.JButton();
@@ -151,10 +130,13 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
 
         tb_hoadon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Mã khách hàng", "Mã nhân viên", "Mã hóa đơn", "Ngày tạo", "Ngày chỉnh sửa", "Trạng Thái"
+                "Mã hóa đơn", "Mã nhân viên", "Mã khách hàng", "Ngày tạo", "Tên sản phẩm", "Thành tiền"
             }
         ));
         tb_hoadon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,14 +150,14 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         pn_tb_hoadon.setLayout(pn_tb_hoadonLayout);
         pn_tb_hoadonLayout.setHorizontalGroup(
             pn_tb_hoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_tb_hoadonLayout.createSequentialGroup()
-                .addContainerGap(279, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(258, 258, 258))
             .addGroup(pn_tb_hoadonLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_tb_hoadonLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(258, 258, 258))
         );
         pn_tb_hoadonLayout.setVerticalGroup(
             pn_tb_hoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,10 +183,10 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         lb_ngaytao.setText("Ngày tạo");
         add(lb_ngaytao, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 276, -1, -1));
 
-        lb_tensanpham.setText("Ngày chỉnh sửa");
+        lb_tensanpham.setText("Tên sản phẩm");
         add(lb_tensanpham, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 316, -1, -1));
 
-        lb_tongtien.setText("Trạng Thái");
+        lb_tongtien.setText("Tổng tiền");
         add(lb_tongtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 356, -1, -1));
         add(tf_mahoadon, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 148, 107, -1));
         add(tf_manhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 188, 107, -1));
@@ -216,8 +198,8 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
             }
         });
         add(tf_ngaytao, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 273, 107, -1));
-        add(tf_ngayChinhSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 313, 107, -1));
-        add(tf_trangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 353, 107, -1));
+        add(tf_tensanpham, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 313, 107, -1));
+        add(tf_tongtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 353, 107, -1));
 
         btn_timkiem.setText("Tìm kiếm");
         btn_timkiem.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +237,10 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
 
         tb_hoadonchitiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Mã hóa đơn chi tiết", "Mã nhân viên", "Mã khách hàng", "Ngày tạo", "Ngày chỉnh sửa", "Tên sản phẩm", "Số lượng", "Thành tiền"
@@ -277,8 +262,8 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addGroup(pn_tb_hoadonchitietLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 917, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn_tb_hoadonchitietLayout.setVerticalGroup(
             pn_tb_hoadonchitietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +275,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
                 .addGap(83, 83, 83))
         );
 
-        add(pn_tb_hoadonchitiet, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 522, 940, 380));
+        add(pn_tb_hoadonchitiet, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 522, 962, 380));
         add(tf_timkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -298,13 +283,18 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ngaytaoActionPerformed
 
+    private void btn_themhoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themhoadonActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_themhoadonActionPerformed
+
     private void tb_hoadonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hoadonMouseClicked
-        int row = tb_hoadon.getSelectedRow();
-        if (row != -1) {
-            String idhd = (String) tb_hoadon.getValueAt(row, 3); // Assuming the id is at index 3
-            fillTable(idhd); // Pass idhd to fillTable method
-        }
+        fillTable();        // TODO add your handling code here:
     }//GEN-LAST:event_tb_hoadonMouseClicked
+
+    private void btn_xoahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoahoadonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_xoahoadonActionPerformed
 
     private void btn_xuathoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuathoadonActionPerformed
         // TODO add your handling code here:
@@ -313,14 +303,6 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     private void btn_timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timkiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_timkiemActionPerformed
-
-    private void btn_xoahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoahoadonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_xoahoadonActionPerformed
-
-    private void btn_themhoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themhoadonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_themhoadonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -345,10 +327,10 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     private javax.swing.JTextField tf_mahoadon;
     private javax.swing.JTextField tf_makhachhang;
     private javax.swing.JTextField tf_manhanvien;
-    private javax.swing.JTextField tf_ngayChinhSua;
     private javax.swing.JTextField tf_ngaytao;
+    private javax.swing.JTextField tf_tensanpham;
     private javax.swing.JTextField tf_timkiem;
-    private javax.swing.JTextField tf_trangThai;
+    private javax.swing.JTextField tf_tongtien;
     // End of variables declaration//GEN-END:variables
 
 //    private void loadTable() {

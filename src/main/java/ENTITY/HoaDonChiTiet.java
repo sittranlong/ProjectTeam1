@@ -26,11 +26,12 @@ public class HoaDonChiTiet {
     private String mahd;
     private int size;
     private int donGia;
+    private String maSP;
 
     public HoaDonChiTiet () {
     }
 
-    public HoaDonChiTiet ( String id , String idhd , String idctsp , int soluong , String thanhtien , String ngayTao , String ngayChinhSua , String trangThai , String manv , String makh , String tensp , String mahd , int size , int donGia ) {
+    public HoaDonChiTiet ( String id , String idhd , String idctsp , int soluong , String thanhtien , String ngayTao , String ngayChinhSua , String trangThai , String manv , String makh , String tensp , String mahd , int size , int donGia , String maSP ) {
         this.id = id;
         this.idhd = idhd;
         this.idctsp = idctsp;
@@ -45,6 +46,7 @@ public class HoaDonChiTiet {
         this.mahd = mahd;
         this.size = size;
         this.donGia = donGia;
+        this.maSP = maSP;
     }
 
     public String getId () {
@@ -159,11 +161,19 @@ public class HoaDonChiTiet {
         this.donGia = donGia;
     }
 
-    @Override
-    public String toString () {
-        return "HoaDonChiTiet{" + "id=" + id + ", idhd=" + idhd + ", idctsp=" + idctsp + ", soluong=" + soluong + ", thanhtien=" + thanhtien + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + ", manv=" + manv + ", makh=" + makh + ", tensp=" + tensp + ", mahd=" + mahd + ", size=" + size + ", donGia=" + donGia + '}';
+    public String getMaSP () {
+        return maSP;
     }
 
+    public void setMaSP ( String maSP ) {
+        this.maSP = maSP;
+    }
+
+    @Override
+    public String toString () {
+        return "HoaDonChiTiet{" + "id=" + id + ", idhd=" + idhd + ", idctsp=" + idctsp + ", soluong=" + soluong + ", thanhtien=" + thanhtien + ", ngayTao=" + ngayTao + ", ngayChinhSua=" + ngayChinhSua + ", trangThai=" + trangThai + ", manv=" + manv + ", makh=" + makh + ", tensp=" + tensp + ", mahd=" + mahd + ", size=" + size + ", donGia=" + donGia + ", maSP=" + maSP + '}';
+    }
+    
     
     
 }
