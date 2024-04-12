@@ -22,6 +22,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
     private DefaultTableModel modelHoaDonChiTiet;
     private HoaDonDAO hdd = new HoaDonDAO();
     private HoaDonChiTietDAO hdctd = new HoaDonChiTietDAO();
+    String idhd;
 
     /**
      * O
@@ -32,6 +33,7 @@ public class QuanLyHoaDon extends javax.swing.JPanel {
         modelHoaDon = (DefaultTableModel) tb_hoadon.getModel();
         modelHoaDonChiTiet = (DefaultTableModel) tb_hoadonchitiet.getModel();
         loadTable();
+        loadTable2(idhd);
     }
 
     public void loadTable() {
