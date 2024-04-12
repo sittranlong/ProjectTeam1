@@ -237,7 +237,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         jLabel7.setText("Ảnh Sản Phẩm");
 
-        jLabel8.setText("�?ế Giày");
+        jLabel8.setText("Đế Giày");
 
         jLabel9.setText("Size");
 
@@ -282,7 +282,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
             }
         });
 
-        btChonAnh.setText("Ch�?n Ảnh");
+        btChonAnh.setText("Chọn Ảnh");
         btChonAnh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btChonAnhActionPerformed(evt);
@@ -543,7 +543,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã CTSP", "Tên Sản Phẩm", "Kiểu Dáng", "Size", "Màu Sắc", "Chi�?u Cao �?ế", "Giá", "Số Lượng", "Mô Tả", "Trạng Thái"
+                "Mã CTSP", "Tên Sản Phẩm", "Kiểu Dáng", "Size", "Màu Sắc", "Chiều Cao Đế", "Giá", "Số Lượng", "Mô Tả", "Trạng Thái"
             }
         ));
         tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
