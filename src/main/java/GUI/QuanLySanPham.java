@@ -297,6 +297,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         rdHet.setText("Hết Hàng");
 
+        cbbChieuCao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbChieuCaoActionPerformed(evt);
+            }
+        });
+
         lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -595,14 +601,14 @@ public class QuanLySanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             JFileChooser jfc = new JFileChooser("C:\\");
-            jfc.setDialogTitle("Ch�?n Ảnh :");
+            jfc.setDialogTitle("Chọn Ảnh :");
             jfc.showOpenDialog(null);
             File fl = jfc.getSelectedFile();
             strAnh = fl.getAbsolutePath();
             if (strAnh != null) {
                 lblAnh.setIcon(resizeImage(strAnh));
             } else {
-                JOptionPane.showMessageDialog(this, "Bạn Chưa Ch�?n Ảnh!"
+                JOptionPane.showMessageDialog(this, "Bạn Chưa Chọn Ảnh!"
                         + "Nếu Chưa Ch�?n Thì Hệ Thống Sẽ Ch�?n Ảnh Mặc �?ịnh");
             }
         } catch (Exception e) {
@@ -628,21 +634,21 @@ public class QuanLySanPham extends javax.swing.JPanel {
         }
 
         if (ma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã không được bỏ? trống");
+            JOptionPane.showMessageDialog(this, "Mã không được bỏ trống");
 //        } else if (sanPham.isEmpty()) {
 //            JOptionPane.showMessageDialog(this, "Tên không được b�? trống");
 //        } else if (!sanPham.matches("[A-Z a-z]+")) {
 //            JOptionPane.showMessageDialog(this, "Tên phải là chữ");
         } else if (soLuong.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Số lượng không được bỏ? trống");
+            JOptionPane.showMessageDialog(this, "Số lượng không được bỏ trống");
         } else if (!soLuong.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "Số lượng phải là số");
         } else if (donGia.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "�?ơn giá không được bỏ? trống");
+            JOptionPane.showMessageDialog(this, "Đơn giá không được bỏ trống");
         } else if (!donGia.matches("\\d+")) {
-            JOptionPane.showMessageDialog(this, "�?ơn giá phải là số");
+            JOptionPane.showMessageDialog(this, "Đơn giá phải là số");
         } else if (moTa.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mô tả không được bỏ? trống");
+            JOptionPane.showMessageDialog(this, "Mô tả không được bỏ trống");
         } else {
             ChiTietSanPham ctsp = new ChiTietSanPham(sanPham, mauSac, kieuDang, size, deGiay, ma, Integer.parseInt(donGia), Integer.parseInt(soLuong), moTa, Integer.parseInt(trangThai));
 
@@ -908,21 +914,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_cbbTtActionPerformed
 
     private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
-        //        try {
-        //            // TODO add your handling code here:
-        //            JFileChooser jfc = new JFileChooser("C:\\Users\\Phan Loc\\Downloads\\PRO1041_DUAN1_BLOCK2 (1)\\src\\main\\resources");
-        //            jfc.showOpenDialog(null);
-        //            File file = jfc.getSelectedFile();
-        //            strAnh = file.getName();
-        //            Image img = ImageIO.read(file);
-        //            lblAnh.setText("");
-        //            int width = lblAnh.getWidth();
-        //            int height = lblAnh.getHeight();
-        //            lblAnh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
-        //        } catch (IOException ex) {
-        //            System.out.println("Error: " + ex.toString());
-        //        }
+        
     }//GEN-LAST:event_lblAnhMouseClicked
+
+    private void cbbChieuCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbChieuCaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbChieuCaoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

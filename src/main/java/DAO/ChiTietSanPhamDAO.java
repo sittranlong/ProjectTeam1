@@ -80,11 +80,11 @@ public class ChiTietSanPhamDAO {
             ps.setObject(4, ctsp.getIdsize());
             ps.setObject(5, ctsp.getIdde());
             ps.setObject(6, ctsp.getMactsp());
-            ps.setObject(7, ctsp.getDongia());
-            ps.setObject(8, ctsp.getMota());
+            ps.setObject(7, ctsp.getHinhanh());
+            ps.setObject(8, ctsp.getDongia());
             ps.setObject(9, ctsp.getSoluong());
-            ps.setObject(10, ctsp.getTrangThai());
-            ps.setObject(11, ctsp.getHinhanh());
+            ps.setObject(10, ctsp.getMota());
+            ps.setObject(11, ctsp.getTrangThai());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -309,7 +309,7 @@ public class ChiTietSanPhamDAO {
 
     public List<String> getListChieuCao() {
         List<String> list = new ArrayList<>();
-        String query = "select DEGIAY.Docaode from DEGIAY";
+        String query = "select DEGIAY.DOCAODE from DEGIAY";
         try ( Connection con = DatabaseHelper.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
